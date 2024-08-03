@@ -14,7 +14,7 @@ const bot = new Telegraf(process.env.TELEGRAF_TOKEN);
 
 const LANGUAGE_MODE_CONST = {
   english: "EU",
-  hindi: "HD",
+  thai: "TH",
 };
 
 let userState = {
@@ -39,11 +39,20 @@ const EVENTS_ARR = [
 ];
 let SubIdAndChatId = {};
 let MyAllSubIds = [];
-
+// const chatIdOfSub = [];
 //#region Contract Events
 
 const ListenerFunction = async () => {
   try {
+    // MyAllSubIds = (await getSubIdFromChatId(userState.chatId)).data;
+    // console.log("All my Sub Ids ==> ", MyAllSubIds);
+    // if (MyAllSubIds.length > 0) {
+    //   for (const subIds of MyAllSubIds) {
+    //     const chatIds = await getChatIdFromSubID(subIds);
+    //     SubIdAndChatId[subIds] = chatIds;
+    //   }
+    // }
+
     const provider = new ethers.providers.JsonRpcProvider(CONTRACT.rpcProvider);
     const signer = provider.getSigner();
     const oxInstance = new ethers.Contract(
@@ -56,7 +65,7 @@ const ListenerFunction = async () => {
       "Registration",
       async (newUserId, orignalRefId, currentRefId, time) => {
         for (let index = 0; index < MyAllSubIds.length; index++) {
-          const chatIdOfSub = SubIdAndChatId[MyAllSubIds[index]];
+          let chatIdOfSub = SubIdAndChatId[MyAllSubIds[index]];
           console.log(`Registration Called ==> `);
           if (chatIdOfSub) {
             for (let i = 0; i < chatIdOfSub.length; i++) {
@@ -105,33 +114,32 @@ const ListenerFunction = async () => {
     oxInstance.on("DirectPaid", async (to, from, amount, level, timeNow) => {
       for (let index = 0; index < MyAllSubIds.length; index++) {
         const chatIdOfSub = SubIdAndChatId[MyAllSubIds[index]];
-        if (!chatIdOfSub) {
-          return;
-        }
-        for (let i = 0; i < chatIdOfSub.length; i++) {
-          if (MyAllSubIds[0] === to) {
-            console.log(
-              `Chat Id => ${
-                chatIdOfSub[i]
-              } DirectPaid ::\n to => ${ethers.BigNumber.from(
-                to
-              ).toNumber()} | from => ${ethers.BigNumber.from(
-                from
-              ).toNumber()} | Amount => ${toEth(amount)}
-               | level => ${ethers.BigNumber.from(level).toNumber()}
-            `
-            );
+        if (chatIdOfSub) {
+          for (let i = 0; i < chatIdOfSub.length; i++) {
+            if (MyAllSubIds[0] === to) {
+              console.log(
+                `Chat Id => ${
+                  chatIdOfSub[i]
+                } DirectPaid ::\n to => ${ethers.BigNumber.from(
+                  to
+                ).toNumber()} | from => ${ethers.BigNumber.from(
+                  from
+                ).toNumber()} | Amount => ${toEth(amount)}
+                 | level => ${ethers.BigNumber.from(level).toNumber()}
+              `
+              );
 
-            sendMessage(
-              chatIdOfSub[i],
-              `DirectPaid ::\n to => ${ethers.BigNumber.from(
-                to
-              ).toNumber()} | from => ${ethers.BigNumber.from(
-                from
-              ).toNumber()} || Amount => ${toEth(amount)}
-               | level => ${ethers.BigNumber.from(level).toNumber()}
-                `
-            );
+              sendMessage(
+                chatIdOfSub[i],
+                `DirectPaid ::\n to => ${ethers.BigNumber.from(
+                  to
+                ).toNumber()} | from => ${ethers.BigNumber.from(
+                  from
+                ).toNumber()} || Amount => ${toEth(amount)}
+                 | level => ${ethers.BigNumber.from(level).toNumber()}
+                  `
+              );
+            }
           }
         }
       }
@@ -142,34 +150,33 @@ const ListenerFunction = async () => {
       async (receiverId, senderId, matrix, level, amount, time) => {
         for (let index = 0; index < MyAllSubIds.length; index++) {
           const chatIdOfSub = SubIdAndChatId[MyAllSubIds[index]];
-          if (!chatIdOfSub) {
-            return;
-          }
-          for (let i = 0; i < chatIdOfSub.length; i++) {
-            console.log(
-              `Chat Id => ${
-                chatIdOfSub[i]
-              } | Receiver Id => ${ethers.BigNumber.from(
-                receiverId
-              ).toNumber()} | Sender ID => ${ethers.BigNumber.from(
-                senderId
-              ).toNumber()} | Level => ${ethers.BigNumber.from(
-                level
-              ).toNumber()} | Amount => ${toEth(amount)}
-            `
-            );
-            if (MyAllSubIds[0] === receiverId) {
-              sendMessage(
-                chatIdOfSub[i],
-                `TreePayout ::\n Receiver Id => ${ethers.BigNumber.from(
+          if (chatIdOfSub) {
+            for (let i = 0; i < chatIdOfSub.length; i++) {
+              console.log(
+                `Chat Id => ${
+                  chatIdOfSub[i]
+                } | Receiver Id => ${ethers.BigNumber.from(
                   receiverId
                 ).toNumber()} | Sender ID => ${ethers.BigNumber.from(
                   senderId
                 ).toNumber()} | Level => ${ethers.BigNumber.from(
                   level
                 ).toNumber()} | Amount => ${toEth(amount)}
-                  `
+              `
               );
+              if (MyAllSubIds[0] === receiverId) {
+                sendMessage(
+                  chatIdOfSub[i],
+                  `TreePayout ::\n Receiver Id => ${ethers.BigNumber.from(
+                    receiverId
+                  ).toNumber()} | Sender ID => ${ethers.BigNumber.from(
+                    senderId
+                  ).toNumber()} | Level => ${ethers.BigNumber.from(
+                    level
+                  ).toNumber()} | Amount => ${toEth(amount)}
+                    `
+                );
+              }
             }
           }
         }
@@ -211,39 +218,38 @@ const ListenerFunction = async () => {
       ) => {
         for (let index = 0; index < MyAllSubIds.length; index++) {
           const chatIdOfSub = SubIdAndChatId[MyAllSubIds[index]];
-          if (!chatIdOfSub) {
-            return;
-          }
-          for (let i = 0; i < chatIdOfSub.length; i++) {
-            if (MyAllSubIds[0] === newUserId) {
-              console.log(
-                `Chat Id => ${
-                  chatIdOfSub[i]
-                } | reinvestUserId => ${ethers.BigNumber.from(
-                  reinvestUserId
-                ).toNumber()} | newUserId => ${ethers.BigNumber.from(
-                  newUserId
-                ).toNumber()} | Level => ${ethers.BigNumber.from(
-                  level
-                ).toNumber()} | newCurrentReferrerId => ${
-                  ethers.BigNumber.from(newCurrentReferrerId).toNumber
-                }
-              `
-              );
+          if (chatIdOfSub) {
+            for (let i = 0; i < chatIdOfSub.length; i++) {
+              if (MyAllSubIds[0] === newUserId) {
+                console.log(
+                  `Chat Id => ${
+                    chatIdOfSub[i]
+                  } | reinvestUserId => ${ethers.BigNumber.from(
+                    reinvestUserId
+                  ).toNumber()} | newUserId => ${ethers.BigNumber.from(
+                    newUserId
+                  ).toNumber()} | Level => ${ethers.BigNumber.from(
+                    level
+                  ).toNumber()} | newCurrentReferrerId => ${
+                    ethers.BigNumber.from(newCurrentReferrerId).toNumber
+                  }
+                `
+                );
 
-              sendMessage(
-                chatIdOfSub[i],
-                `Reinvest ::\n reinvestUserId => ${ethers.BigNumber.from(
-                  reinvestUserId
-                ).toNumber()} | newUserId => ${ethers.BigNumber.from(
-                  newUserId
-                ).toNumber()} | Level => ${ethers.BigNumber.from(
-                  level
-                ).toNumber()} | newCurrentReferrerId => ${
-                  ethers.BigNumber.from(newCurrentReferrerId).toNumber
-                }
-                  `
-              );
+                sendMessage(
+                  chatIdOfSub[i],
+                  `Reinvest ::\n reinvestUserId => ${ethers.BigNumber.from(
+                    reinvestUserId
+                  ).toNumber()} | newUserId => ${ethers.BigNumber.from(
+                    newUserId
+                  ).toNumber()} | Level => ${ethers.BigNumber.from(
+                    level
+                  ).toNumber()} | newCurrentReferrerId => ${
+                    ethers.BigNumber.from(newCurrentReferrerId).toNumber
+                  }
+                    `
+                );
+              }
             }
           }
         }
@@ -254,41 +260,40 @@ const ListenerFunction = async () => {
       async (freezeUserId, senderId, level, amount, time) => {
         // for (let index = 0; index < MyAllSubIds.length; index++) {
         //   const chatIdOfSub = SubIdAndChatId[MyAllSubIds[index]];
-        if (!chatIdOfSub) {
-          return;
+        if (chatIdOfSub) {
+          // for (let i = 0; i < chatIdOfSub.length; i++) {
+          //     if (MyAllSubIds[0] === senderId) {
+          //       console.log(
+          //         `Chat Id => ${
+          //           chatIdOfSub[i]
+          //         } | freezeUserId => ${ethers.BigNumber.from(
+          //           freezeUserId
+          //         ).toNumber()} | senderId => ${ethers.BigNumber.from(
+          //           senderId
+          //         ).toNumber()} | Level => ${ethers.BigNumber.from(
+          //           level
+          //         ).toNumber()} | amount => ${
+          //           toEth(amount)
+          //         }
+          //       `
+          //       );
+          //       sendMessage(
+          //         chatIdOfSub[i],
+          //         `FreezeAmount ::\n freezeUserId => ${ethers.BigNumber.from(
+          //           freezeUserId
+          //         ).toNumber()} | senderId => ${ethers.BigNumber.from(
+          //           senderId
+          //         ).toNumber()} | Level => ${ethers.BigNumber.from(
+          //           level
+          //         ).toNumber()} | amount => ${
+          //           toEth(amount)
+          //         }
+          //           `
+          //       );
+          //     }
+          //   }
+          // }
         }
-        // for (let i = 0; i < chatIdOfSub.length; i++) {
-        //     if (MyAllSubIds[0] === senderId) {
-        //       console.log(
-        //         `Chat Id => ${
-        //           chatIdOfSub[i]
-        //         } | freezeUserId => ${ethers.BigNumber.from(
-        //           freezeUserId
-        //         ).toNumber()} | senderId => ${ethers.BigNumber.from(
-        //           senderId
-        //         ).toNumber()} | Level => ${ethers.BigNumber.from(
-        //           level
-        //         ).toNumber()} | amount => ${
-        //           toEth(amount)
-        //         }
-        //       `
-        //       );
-        //       sendMessage(
-        //         chatIdOfSub[i],
-        //         `FreezeAmount ::\n freezeUserId => ${ethers.BigNumber.from(
-        //           freezeUserId
-        //         ).toNumber()} | senderId => ${ethers.BigNumber.from(
-        //           senderId
-        //         ).toNumber()} | Level => ${ethers.BigNumber.from(
-        //           level
-        //         ).toNumber()} | amount => ${
-        //           toEth(amount)
-        //         }
-        //           `
-        //       );
-        //     }
-        //   }
-        // }
       }
     );
     oxInstance.on(
@@ -305,51 +310,50 @@ const ListenerFunction = async () => {
       ) => {
         for (let index = 0; index < MyAllSubIds.length; index++) {
           const chatIdOfSub = SubIdAndChatId[MyAllSubIds[index]];
-          if (!chatIdOfSub) {
-            return;
-          }
-          for (let i = 0; i < chatIdOfSub.length; i++) {
-            if (MyAllSubIds[0] === userId) {
-              console.log(
-                `Chat Id => ${
-                  chatIdOfSub[i]
-                } | sender => ${ethers.BigNumber.from(
-                  sender
-                ).toNumber()} | userId => ${ethers.BigNumber.from(
-                  userId
-                ).toNumber()} | Level => ${ethers.BigNumber.from(
-                  level
-                ).toNumber()} | referrerId => ${
-                  ethers.BigNumber.from(referrerId).toNumber
-                } | place => ${
-                  ethers.BigNumber.from(place).toNumber
-                } | reInvestCount => ${
-                  ethers.BigNumber.from(reInvestCount).toNumber
-                } | originalReferrer => ${
-                  ethers.BigNumber.from(originalReferrer).toNumber
-                }
-              `
-              );
+          if (chatIdOfSub) {
+            for (let i = 0; i < chatIdOfSub.length; i++) {
+              if (MyAllSubIds[0] === userId) {
+                console.log(
+                  `Chat Id => ${
+                    chatIdOfSub[i]
+                  } | sender => ${ethers.BigNumber.from(
+                    sender
+                  ).toNumber()} | userId => ${ethers.BigNumber.from(
+                    userId
+                  ).toNumber()} | Level => ${ethers.BigNumber.from(
+                    level
+                  ).toNumber()} | referrerId => ${
+                    ethers.BigNumber.from(referrerId).toNumber
+                  } | place => ${
+                    ethers.BigNumber.from(place).toNumber
+                  } | reInvestCount => ${
+                    ethers.BigNumber.from(reInvestCount).toNumber
+                  } | originalReferrer => ${
+                    ethers.BigNumber.from(originalReferrer).toNumber
+                  }
+                `
+                );
 
-              sendMessage(
-                chatIdOfSub[i],
-                `NewUserPlace ::\n sender => ${ethers.BigNumber.from(
-                  sender
-                ).toNumber()} | userId => ${ethers.BigNumber.from(
-                  userId
-                ).toNumber()} | Level => ${ethers.BigNumber.from(
-                  level
-                ).toNumber()} | referrerId => ${
-                  ethers.BigNumber.from(referrerId).toNumber
-                } | place => ${
-                  ethers.BigNumber.from(place).toNumber
-                } | reInvestCount => ${
-                  ethers.BigNumber.from(reInvestCount).toNumber
-                } | originalReferrer => ${
-                  ethers.BigNumber.from(originalReferrer).toNumber
-                }
-                  `
-              );
+                sendMessage(
+                  chatIdOfSub[i],
+                  `NewUserPlace ::\n sender => ${ethers.BigNumber.from(
+                    sender
+                  ).toNumber()} | userId => ${ethers.BigNumber.from(
+                    userId
+                  ).toNumber()} | Level => ${ethers.BigNumber.from(
+                    level
+                  ).toNumber()} | referrerId => ${
+                    ethers.BigNumber.from(referrerId).toNumber
+                  } | place => ${
+                    ethers.BigNumber.from(place).toNumber
+                  } | reInvestCount => ${
+                    ethers.BigNumber.from(reInvestCount).toNumber
+                  } | originalReferrer => ${
+                    ethers.BigNumber.from(originalReferrer).toNumber
+                  }
+                    `
+                );
+              }
             }
           }
         }
@@ -360,35 +364,34 @@ const ListenerFunction = async () => {
       async (receiverWhoMissedId, sender, level, amountMissed, time) => {
         for (let index = 0; index < MyAllSubIds.length; index++) {
           const chatIdOfSub = SubIdAndChatId[MyAllSubIds[index]];
-          if (!chatIdOfSub) {
-            return;
-          }
-          for (let i = 0; i < chatIdOfSub.length; i++) {
-            if (MyAllSubIds[0] === sender) {
-              console.log(
-                `Chat Id => ${
-                  chatIdOfSub[i]
-                } | sender => ${ethers.BigNumber.from(
-                  sender
-                ).toNumber()} | receiverWhoMissedId => ${ethers.BigNumber.from(
-                  receiverWhoMissedId
-                ).toNumber()} | Level => ${ethers.BigNumber.from(
-                  level
-                ).toNumber()} | amountMissed => ${toEth(amountMissed)}
-              `
-              );
+          if (chatIdOfSub) {
+            for (let i = 0; i < chatIdOfSub.length; i++) {
+              if (MyAllSubIds[0] === sender) {
+                console.log(
+                  `Chat Id => ${
+                    chatIdOfSub[i]
+                  } | sender => ${ethers.BigNumber.from(
+                    sender
+                  ).toNumber()} | receiverWhoMissedId => ${ethers.BigNumber.from(
+                    receiverWhoMissedId
+                  ).toNumber()} | Level => ${ethers.BigNumber.from(
+                    level
+                  ).toNumber()} | amountMissed => ${toEth(amountMissed)}
+                `
+                );
 
-              sendMessage(
-                chatIdOfSub[i],
-                `FundsPassedUp ::\n sender => ${ethers.BigNumber.from(
-                  sender
-                ).toNumber()} | receiverWhoMissedId => ${ethers.BigNumber.from(
-                  receiverWhoMissedId
-                ).toNumber()} | Level => ${ethers.BigNumber.from(
-                  level
-                ).toNumber()} | amountMissed => ${toEth(amountMissed)}
-                  `
-              );
+                sendMessage(
+                  chatIdOfSub[i],
+                  `FundsPassedUp ::\n sender => ${ethers.BigNumber.from(
+                    sender
+                  ).toNumber()} | receiverWhoMissedId => ${ethers.BigNumber.from(
+                    receiverWhoMissedId
+                  ).toNumber()} | Level => ${ethers.BigNumber.from(
+                    level
+                  ).toNumber()} | amountMissed => ${toEth(amountMissed)}
+                    `
+                );
+              }
             }
           }
         }
@@ -399,39 +402,38 @@ const ListenerFunction = async () => {
       async (msgSenderId, orignalRefId, currentRefId, level, time) => {
         for (let index = 0; index < MyAllSubIds.length; index++) {
           const chatIdOfSub = SubIdAndChatId[MyAllSubIds[index]];
-          if (!chatIdOfSub) {
-            return;
-          }
-          for (let i = 0; i < chatIdOfSub.length; i++) {
-            if (MyAllSubIds[0] === orignalRefId) {
-              console.log(
-                `Chat Id => ${
-                  chatIdOfSub[i]
-                } | msgSenderId => ${ethers.BigNumber.from(
-                  msgSenderId
-                ).toNumber()} | orignalRefId => ${ethers.BigNumber.from(
-                  orignalRefId
-                ).toNumber()} | Level => ${ethers.BigNumber.from(
-                  level
-                ).toNumber()} | currentRefId => ${
-                  ethers.BigNumber.from(currentRefId).toNumber
-                } 
-              `
-              );
+          if (chatIdOfSub) {
+            for (let i = 0; i < chatIdOfSub.length; i++) {
+              if (MyAllSubIds[0] === orignalRefId) {
+                console.log(
+                  `Chat Id => ${
+                    chatIdOfSub[i]
+                  } | msgSenderId => ${ethers.BigNumber.from(
+                    msgSenderId
+                  ).toNumber()} | orignalRefId => ${ethers.BigNumber.from(
+                    orignalRefId
+                  ).toNumber()} | Level => ${ethers.BigNumber.from(
+                    level
+                  ).toNumber()} | currentRefId => ${
+                    ethers.BigNumber.from(currentRefId).toNumber
+                  } 
+                `
+                );
 
-              sendMessage(
-                chatIdOfSub[i],
-                `Upgrade ::\n msgSenderId => ${ethers.BigNumber.from(
-                  msgSenderId
-                ).toNumber()} | orignalRefId => ${ethers.BigNumber.from(
-                  orignalRefId
-                ).toNumber()} | Level => ${ethers.BigNumber.from(
-                  level
-                ).toNumber()} | currentRefId => ${
-                  ethers.BigNumber.from(currentRefId).toNumber
-                }
-                  `
-              );
+                sendMessage(
+                  chatIdOfSub[i],
+                  `Upgrade ::\n msgSenderId => ${ethers.BigNumber.from(
+                    msgSenderId
+                  ).toNumber()} | orignalRefId => ${ethers.BigNumber.from(
+                    orignalRefId
+                  ).toNumber()} | Level => ${ethers.BigNumber.from(
+                    level
+                  ).toNumber()} | currentRefId => ${
+                    ethers.BigNumber.from(currentRefId).toNumber
+                  }
+                    `
+                );
+              }
             }
           }
         }
@@ -442,28 +444,11 @@ const ListenerFunction = async () => {
   }
 };
 
-
-
-
-
-
-await ListenerFunction().then(() => {
-  console.log("contract event listening....");
-});
-
-
-
-
+// await ListenerFunction().then(() => {
+//   console.log("contract event listening....");
+// });
 
 //#region Contract Events 2.0
-
-
-
-
-
-
-
-
 
 async function sendMessage(chatId, message) {
   console.log("Chat Id ==>", chatId);
@@ -493,7 +478,7 @@ const defaultMenu = Markup.keyboard([["Accounts", "Settings"]]).resize();
 
 bot.start(async (ctx) => {
   try {
-    console.log("Bot Start ...");
+    // console.log("Bot Start ...");
 
     let res = await checkChatid(ctx.from.id);
 
@@ -501,33 +486,51 @@ bot.start(async (ctx) => {
     if (res == 200) {
       let language = userState.language;
 
-      const messages = {
-        [LANGUAGE_MODE_CONST.english]: {
-          reply: "✅ Changes were successfully accepted",
-          welcome:
-            "Welcome!! \ntelegram bot sends you instant free notifications \nabout making profits, registering new partners and other important events in your account and the entire ecosystem. \n\nTo start using all the features of the Telegram bot, subscribe to the official Telegram channel at the link below.",
-        },
-        [LANGUAGE_MODE_CONST.hindi]: {
-          reply: "✅ सफलतापूर्वक परिवर्तन स्वीकार लिए गए",
-          welcome:
-            "स्वागतम्!! \nटेलीग्राम बॉट आपको तुरंत मुफ्त सूचनाएँ भेजता है। यह सूचनाएँ आपको लाभ कमाने, नए साझेदारों को पंजीकृत करने और आपके खाते और पूरे इकोसिस्टम में अन्य महत्वपूर्ण घटनाओं के बारे में बताती हैं। \n\nटेलीग्राम बॉट की सभी सुविधाओं का उपयोग करने के लिए, नीचे दिए गए लिंक पर जाकर आधिकारिक टेलीग्राम चैनल को सब्सक्राइब करें।",
-        },
-      };
-      console.log("sg ===>>>", messages[language]);
+      // const messages = {
+      //   [LANGUAGE_MODE_CONST.english]: {
+      //     reply: "✅ Changes were successfully accepted",
+      //     welcome:
+      //       "Welcome!! \ntelegram bot sends you instant free notifications \nabout making profits, registering new partners and other important events in your account and the entire ecosystem. \n\nTo start using all the features of the Telegram bot, subscribe to the official Telegram channel at the link below.",
+      //   },
+      //   [LANGUAGE_MODE_CONST.thai]: {
+      //     reply: "✅ การเปลี่ยนแปลงได้รับการยอมรับสำเร็จแล้ว",
+      //     welcome:
+      //       "ยินดีต้อนรับ!! \nntelegram bot จะส่งการแจ้งเตือนฟรีทันทีเกี่ยวกับการทำกำไร การลงทะเบียนพันธมิตรใหม่ และกิจกรรมสำคัญอื่นๆ ในบัญชีของคุณและระบบนิเวศทั้งหมด \n\nหากต้องการเริ่มใช้คุณสมบัติทั้งหมดของ Telegram bot ให้สมัครรับข้อมูลช่อง Telegram อย่างเป็นทางการที่ลิงก์ด้านล่าง",
+      //   },
+      // };
+      // console.log("sg ===>>>", messages[language]);
+      if (language == "TH") {
+        await ctx.reply(
+          "คุณได้ลงทะเบียนเรียบร้อยแล้ว \nใส่กระเป๋าสตางค์ / ID ของคุณ :"
+        );
+      } else {
+        await ctx.reply(
+          "You are already registered. \nEnter your wallet / ID :"
+        );
+      }
 
-      await ctx.reply("You are already registered");
-      await ctx.reply(messages[language].reply);
-      await ctx.reply(
-        messages[language].welcome,
-        getSubscriptionButtons(language)
-      );
+      MyAllSubIds = (await getSubIdFromChatId(ctx.from.id)).data;
+      console.log("All my Sub Ids ==> ", MyAllSubIds);
+      if (MyAllSubIds.length > 0) {
+        for (const subIds of MyAllSubIds) {
+          const chatIds = await getChatIdFromSubID(subIds);
+          SubIdAndChatId[subIds] = chatIds;
+        }
+      }
+      console.log("All my Sub Ids with chain Ids  ==> ", SubIdAndChatId);
+
+      // await ctx.reply(messages[language].reply);
+      // await ctx.reply(
+      //   messages[language].welcome,
+      //   getSubscriptionButtons(language)
+      // );
     } else {
       await ctx.reply(
-        "Select the language of the bot interface",
+        "Select the language of the bot interface.(เลือกภาษาของอินเทอร์เฟซบอท.)",
         Markup.inlineKeyboard([
           [
             Markup.button.callback("EU", "language_selected_eng"),
-            Markup.button.callback("HD", "language_selected_hindi"),
+            Markup.button.callback("TH", "language_selected_thai"),
           ],
         ])
       );
@@ -549,10 +552,10 @@ const handleLanguageSelection = async (ctx, language) => {
       welcome:
         "Welcome!! \ntelegram bot sends you instant free notifications \nabout making profits, registering new partners and other important events in your account and the entire ecosystem. \n\nTo start using all the features of the Telegram bot, subscribe to the official Telegram channel at the link below.",
     },
-    [LANGUAGE_MODE_CONST.hindi]: {
-      reply: "✅ सफलतापूर्वक परिवर्तन स्वीकार लिए गए",
+    [LANGUAGE_MODE_CONST.thai]: {
+      reply: "✅ การเปลี่ยนแปลงได้รับการยอมรับสำเร็จแล้ว",
       welcome:
-        "स्वागतम्!! \nटेलीग्राम बॉट आपको तुरंत मुफ्त सूचनाएँ भेजता है। यह सूचनाएँ आपको लाभ कमाने, नए साझेदारों को पंजीकृत करने और आपके खाते और पूरे इकोसिस्टम में अन्य महत्वपूर्ण घटनाओं के बारे में बताती हैं। \n\nटेलीग्राम बॉट की सभी सुविधाओं का उपयोग करने के लिए, नीचे दिए गए लिंक पर जाकर आधिकारिक टेलीग्राम चैनल को सब्सक्राइब करें।",
+        "ยินดีต้อนรับ!! \ntelegram bot จะส่งการแจ้งเตือนฟรีทันทีเกี่ยวกับการทำกำไร การลงทะเบียนพันธมิตรใหม่ และกิจกรรมสำคัญอื่นๆ ในบัญชีของคุณและระบบนิเวศทั้งหมด \n\nหากต้องการเริ่มใช้คุณสมบัติทั้งหมดของ Telegram bot ให้สมัครรับข้อมูลช่อง Telegram อย่างเป็นทางการที่ลิงก์ด้านล่าง",
     },
   };
 
@@ -563,22 +566,18 @@ const handleLanguageSelection = async (ctx, language) => {
 bot.action("language_selected_eng", (ctx) =>
   handleLanguageSelection(ctx, LANGUAGE_MODE_CONST.english)
 );
-bot.action("language_selected_hindi", (ctx) =>
-  handleLanguageSelection(ctx, LANGUAGE_MODE_CONST.hindi)
+
+bot.action("language_selected_thai", (ctx) =>
+  handleLanguageSelection(ctx, LANGUAGE_MODE_CONST.thai)
 );
 
 const getSubscriptionButtons = (language) => {
-  if (language === LANGUAGE_MODE_CONST.hindi) {
+  if (language === LANGUAGE_MODE_CONST.thai) {
     return Markup.inlineKeyboard([
+      [Markup.button.callback("สมัครสมาชิก @OurChannel", "add_subscription")],
       [
         Markup.button.callback(
-          "@OurChannel पर सब्सक्राइब करें।",
-          "add_subscription"
-        ),
-      ],
-      [
-        Markup.button.callback(
-          "मैंने पहले ही सब्सक्राइब कर लिया है।",
+          "ฉันสมัครสมาชิกเรียบร้อยแล้ว",
           "add_subscription"
         ),
       ],
@@ -586,7 +585,7 @@ const getSubscriptionButtons = (language) => {
   }
   return Markup.inlineKeyboard([
     [Markup.button.callback("subscribe @OurChannel", "add_subscription")],
-    [Markup.button.callback("i already subscribed", "add_subscription")],
+    [Markup.button.callback("I already subscribed", "add_subscription")],
   ]);
 };
 
@@ -594,22 +593,33 @@ const getSubscriptionButtons = (language) => {
 bot.action("add_subscription", async (ctx) => {
   // userState.idFlag = true;
   const prompt =
-    userState.language === LANGUAGE_MODE_CONST.hindi
-      ? "अपना वॉलेट/आईडी दर्ज करें।"
+    userState.language === LANGUAGE_MODE_CONST.thai
+      ? "กรอกกระเป๋าสตางค์/รหัสประจำตัวของคุณ"
       : "Enter your wallet/id";
   await ctx.reply(prompt);
 });
 
 bot.hears("Accounts", async (ctx) => {
+  let language = userState.language;
   try {
     let allSubs = (await getSubIdFromChatId(ctx.from.id)).data;
 
     if (!Array.isArray(allSubs)) {
       console.error("allSubs is not an array:", allSubs);
-      return ctx.reply("An error occurred fetching subscriptions.");
+      if (language == "EU") {
+        return ctx.reply("An error occurred fetching subscriptions.");
+      } else {
+        return ctx.reply("เกิดข้อผิดพลาดในการดึงข้อมูลสมัครสมาชิก");
+      }
     }
-
-    let messageContent = `Number Of Subscription => ${allSubs.length} \n\n Click on the ID you are interested in to configure the event filter. \n`;
+    let messageContent, err;
+    if (language == "TH") {
+      messageContent = `จำนวนการสมัครสมาชิก => ${allSubs.length} \n\n คลิกที่ ID ที่คุณสนใจเพื่อกำหนดค่าตัวกรองเหตุการณ์ \n`;
+      err = `เกิดข้อผิดพลาดในการดึงข้อมูลสมัครสมาชิก`;
+    } else {
+      messageContent = `Number Of Subscription => ${allSubs.length} \n\n Click on the ID you are interested in to configure the event filter. \n`;
+      err = `An error occurred fetching subscriptions.`;
+    }
 
     console.log("Account Chat Id all Subs =>", allSubs);
 
@@ -617,45 +627,67 @@ bot.hears("Accounts", async (ctx) => {
       Markup.button.callback(`ID => ${id}`, `select_${id}`),
     ]);
 
-    idButtons.push([
-      Markup.button.callback("Add", "add_subscription"),
-      Markup.button.callback("Delete", "delete_subscription"),
-    ]);
+    if (language == "TH") {
+      idButtons.push([
+        Markup.button.callback("เพิ่ม", "add_subscription"),
+        Markup.button.callback("ลบ", "delete_subscription"),
+      ]);
+    } else {
+      idButtons.push([
+        Markup.button.callback("Add", "add_subscription"),
+        Markup.button.callback("Delete", "delete_subscription"),
+      ]);
+    }
 
     await ctx.reply(messageContent.trim(), Markup.inlineKeyboard(idButtons));
   } catch (error) {
     console.error("Error fetching subscriptions:", error);
-    ctx.reply("An error occurred fetching subscriptions.");
+    ctx.reply(err);
   }
 });
 
 bot.action(/^select_(.+)$/, async (ctx) => {
   const chatId = ctx.from.id;
   const selectedId = ctx.match[1];
+  let language = userState.language;
+  let msg;
   console.log("Seleted Id in select => ", selectedId);
+  let btns = [];
+  if (language == "TH") {
+    msg = `การตั้งค่าสำหรับ ID ${selectedId}`;
+    btns = [
+      [Markup.button.callback("ไม่รวมประเภทกิจกรรม", `ex_event_${selectedId}`)],
+    ];
+    btns.push([Markup.button.callback("กลับไป", "go_back")]);
+  } else {
+    msg = `Setting for ID ${selectedId}`;
+    btns = [
+      [Markup.button.callback("Exclude event type", `ex_event_${selectedId}`)],
+    ];
+    btns.push([Markup.button.callback("Go Back", "go_back")]);
+  }
 
-  let btns = [
-    [Markup.button.callback("Exclude event type", `ex_event_${selectedId}`)],
-  ];
-  btns.push([Markup.button.callback("Go Back", "go_back")]);
-
-  await ctx.reply(`Setting for ID ${selectedId}`, Markup.inlineKeyboard(btns));
+  await ctx.reply(msg, Markup.inlineKeyboard(btns));
 });
 
 bot.action(/^ex_event_(.+)$/, async (ctx) => {
   const chatId = ctx.from.chatId;
   const selectedID = ctx.match[1];
-
-  let messageContent = `Personalize your event for ID ${selectedID} by selection only the right ones. \n ✅ - Actived \n ☑ - Not Activated`;
-
-  const idButtons = EVENTS_ARR.map((evnt) => [
-    Markup.button.callback(
-      `${evnt}`,
-      `evnt_action_${selectedID}_${evnt}`
-    ),
-  ]);
-
-  idButtons.push([Markup.button.callback("Go Back", `select_${selectedID}`)]);
+  let language = userState.language;
+  let idButtons, messageContent;
+  if (language == "TH") {
+    messageContent = `ปรับแต่งกิจกรรมของคุณสำหรับ ID ${selectedID} โดยเลือกเฉพาะกิจกรรมที่ถูกต้องเท่านั้น \n ✅ - เปิดใช้งาน \n ☑ - ไม่ได้เปิดใช้งาน`;
+    idButtons = EVENTS_ARR.map((evnt) => [
+      Markup.button.callback(`${evnt}`, `evnt_action_${selectedID}_${evnt}`),
+    ]);
+    idButtons.push([Markup.button.callback("กลับไป", `select_${selectedID}`)]);
+  } else {
+    messageContent = `Personalize your event for ID ${selectedID} by selection only the right ones. \n ✅ - Actived \n ☑ - Not Activated`;
+    idButtons = EVENTS_ARR.map((evnt) => [
+      Markup.button.callback(`${evnt}`, `evnt_action_${selectedID}_${evnt}`),
+    ]);
+    idButtons.push([Markup.button.callback("Go Back", `select_${selectedID}`)]);
+  }
 
   await ctx.reply(messageContent.trim(), Markup.inlineKeyboard(idButtons));
 });
@@ -664,45 +696,73 @@ bot.action(/^evnt_action_(.+)_(.+)$/, async (ctx) => {
   const chatId = ctx.from.chatId;
   const selectedID = ctx.match[1];
   const selectedEvent = ctx.match[2];
+  let language = userState.language;
 
-  await ctx.reply(
-    `selected ID => ${selectedID} , selected Event -> ${selectedEvent}`
-  );
+  if (language == "TH") {
+    await ctx.reply(
+      `เลือก ID=> ${selectedID} , กิจกรรมที่เลือก -> ${selectedEvent}`
+    );
+  } else {
+    await ctx.reply(
+      `selected ID => ${selectedID} , selected Event -> ${selectedEvent}`
+    );
+  }
 });
 
 bot.action("delete_subscription", async (ctx) => {
   try {
     let chatId = ctx.from.id;
     let allSubs = (await getSubIdFromChatId(ctx.from.id)).data;
+    let language = userState.language;
+    let err, msg, gb;
+
+    if (language == "TH") {
+      err = "เกิดข้อผิดพลาดในการดึงข้อมูลสมัครสมาชิก";
+      msg = "เลือกบัญชีที่คุณต้องการลบ📤.";
+      gb = "กลับไป";
+    } else {
+      err = "An error occurred fetching subscriptions.";
+      msg = "Select the account you want to delete.📤";
+      gb = "Go Back";
+    }
 
     if (!Array.isArray(allSubs)) {
       console.error("allSubs is not an array:", allSubs);
-      return ctx.reply("An error occurred fetching subscriptions.");
+      return ctx.reply(err);
     }
-
-    let messageContent = `Select the account you want to delete.📤`;
 
     console.log("Account Chat Id all Subs =>", allSubs);
 
     const idButtons = allSubs.map((id) => [
-      Markup.button.callback(`ID => ${id}`, `select_delete_${id}`),
+      Markup.button.callback(`ID => ${id}`, `delete_id_${id}`),
     ]);
-    idButtons.push([Markup.button.callback("Go Back", "go_back")]);
-    await ctx.reply(messageContent.trim(), Markup.inlineKeyboard(idButtons));
+
+    idButtons.push([Markup.button.callback(gb, "go_back")]);
+
+    await ctx.reply(msg.trim(), Markup.inlineKeyboard(idButtons));
   } catch (error) {
     console.log("Error in delete sub Ids ==>", error);
   }
 });
 
-bot.action(/^select_delete_(.+)$/, async (ctx) => {
+bot.action(/^delete_id_(.+)$/, async (ctx) => {
   let chatId = ctx.from.id;
   const selectedId = ctx.match[1];
+  let language = userState.language;
+  let msg;
+  
+  if (language == "TH") {
+    msg = `✔ รหัส ${selectedId} ของคุณถูกลบเรียบร้อยแล้ว`;
+  } else {
+    msg = `✔ Your Id ${selectedId} is Successfully deleted.`;
+  }
+
   try {
     let res = await deleteChatId(chatId, selectedId);
-    console.log("Res ===>>", res);
+    // console.log("Res ===>>", res);
 
     if (res.status) {
-      await ctx.reply(`✔ Your Id ${selectedId} is Successfully deleted.`);
+      await ctx.reply(msg);
     } else {
       await ctx.reply(`❌ ${res.data}.`);
     }
@@ -712,15 +772,24 @@ bot.action(/^select_delete_(.+)$/, async (ctx) => {
 });
 
 bot.action("go_back", async (ctx) => {
-  try {
-    let allSubs = (await getSubIdFromChatId(ctx.from.id)).data;
+  let language = userState.language;
+  let err, msg;
+  let allSubs = (await getSubIdFromChatId(ctx.from.id)).data;
 
+  if (language == "TH") {
+    err = "เกิดข้อผิดพลาดในการดึงข้อมูลสมัครสมาชิก";
+    msg = `จำนวนการสมัครสมาชิก => ${allSubs.length} \n\n คลิกที่ ID ที่คุณสนใจเพื่อกำหนดค่าตัวกรองเหตุการณ์ \n`;
+  } else {
+    err = "An error occurred fetching subscriptions.";
+    msg = `Number Of Subscription => ${allSubs.length} \n\n Click on the ID you are interested in to configure the event filter. \n`;
+  }
+  try {
     if (!Array.isArray(allSubs)) {
       console.error("allSubs is not an array:", allSubs);
-      return ctx.reply("An error occurred fetching subscriptions.");
+      return ctx.reply(err);
     }
 
-    let messageContent = `Number Of Subscription => ${allSubs.length} \n\n Click on the ID you are interested in to configure the event filter. \n`;
+    let messageContent = msg;
 
     console.log("Account Chat Id all Subs =>", allSubs);
 
@@ -728,15 +797,27 @@ bot.action("go_back", async (ctx) => {
       Markup.button.callback(`ID => ${id}`, `select_${id}`),
     ]);
 
-    idButtons.push([
-      Markup.button.callback("Add", "add_subscription"),
-      Markup.button.callback("Delete", "delete_subscription"),
-    ]);
+    // idButtons.push([
+    //   Markup.button.callback("Add", "add_subscription"),
+    //   Markup.button.callback("Delete", "delete_subscription"),
+    // ]);
+
+    if (language == "TH") {
+      idButtons.push([
+        Markup.button.callback("เพิ่ม", "add_subscription"),
+        Markup.button.callback("ลบ", "delete_subscription"),
+      ]);
+    } else {
+      idButtons.push([
+        Markup.button.callback("Add", "add_subscription"),
+        Markup.button.callback("Delete", "delete_subscription"),
+      ]);
+    }
 
     await ctx.reply(messageContent.trim(), Markup.inlineKeyboard(idButtons));
   } catch (error) {
     console.error("Error fetching subscriptions:", error);
-    ctx.reply("An error occurred fetching subscriptions.");
+    ctx.reply(err);
   }
 });
 
@@ -746,36 +827,59 @@ bot.action("change_language", async (ctx) => {
   const btn = Markup.inlineKeyboard([
     [
       Markup.button.callback("EU", "language_selected_eng"),
-      Markup.button.callback("HD", "language_selected_hindi"),
+      Markup.button.callback("TH", "language_selected_thai"),
     ],
     [Markup.button.callback("Go Back", "go_back_lang")],
   ]);
 
-  await ctx.reply("Select the language of the bot interface", btn);
+  await ctx.reply(
+    "Select the language of the bot interface.(เลือกภาษาของอินเทอร์เฟซบอท.)",
+    btn
+  );
 });
 
 bot.action("go_back_lang", async (ctx) => {
-  let messageContent = "General Setting of your account";
-  let btn = Markup.inlineKeyboard([
-    [Markup.button.callback("Language", "change_language")],
-    [Markup.button.callback("Go Back", "go_back")],
-  ]);
-  ctx.reply(messageContent.trim(), btn);
+  let language = userState.language;
+  let msg, btn;
+  if (language == "TH") {
+    msg = "การตั้งค่าทั่วไปของบัญชีของคุณ";
+    btn = Markup.inlineKeyboard([
+      [Markup.button.callback("ภาษา", "change_language")],
+      [Markup.button.callback("กลับไป", "go_back")],
+    ]);
+  } else {
+    msg = "General Setting of your account";
+    btn = Markup.inlineKeyboard([
+      [Markup.button.callback("Language", "change_language")],
+      [Markup.button.callback("Go Back", "go_back")],
+    ]);
+  }
+  ctx.reply(msg.trim(), btn);
 });
 
 bot.hears("Settings", async (ctx) => {
   // const chat_id = ctx.from.id;
-
-  let messageContent = "General Setting of your account";
-  let btn = Markup.inlineKeyboard([
-    [Markup.button.callback("Language", "change_language")],
-    [Markup.button.callback("Go Back", "go_back")],
-  ]);
-  ctx.reply(messageContent.trim(), btn);
+  let language = userState.language;
+  let msg, btn;
+  if (language == "TH") {
+    msg = "การตั้งค่าทั่วไปของบัญชีของคุณ";
+    btn = Markup.inlineKeyboard([
+      [Markup.button.callback("ภาษา", "change_language")],
+      [Markup.button.callback("กลับไป", "go_back")],
+    ]);
+  } else {
+    msg = "General Setting of your account";
+    btn = Markup.inlineKeyboard([
+      [Markup.button.callback("Language", "change_language")],
+      [Markup.button.callback("Go Back", "go_back")],
+    ]);
+  }
+  ctx.reply(msg.trim(), btn);
 });
 
 bot.on("text", async (ctx) => {
   const userId = ctx.message.text;
+  let language = userState.language;
 
   if (userState.chatId && userState.language && userId) {
     const result = await insertData({
@@ -789,26 +893,26 @@ bot.on("text", async (ctx) => {
     // Check if the operation was successful
     if (result.status) {
       responseMessage =
-        userState.language === LANGUAGE_MODE_CONST.hindi
-          ? "✅ आपका आईडी सफलतापूर्वक दर्ज किया गया है।"
+        userState.language === LANGUAGE_MODE_CONST.thai
+          ? "✅ บันทึก ID ของคุณเรียบร้อยแล้ว"
           : "✅ Your ID has been successfully recorded.";
     } else {
       // Handle the case where the data already exists
       if (result.message === "Already exist") {
         responseMessage =
-          userState.language === LANGUAGE_MODE_CONST.hindi
-            ? "✔️ यह आईडी पहले से ही मौजूद है।"
+          userState.language === LANGUAGE_MODE_CONST.thai
+            ? "✔️ID นี้มีอยู่แล้ว"
             : "✔️ This ID already exists.";
       } else if (result.message === "Subcriber Id Invalid") {
         responseMessage =
-          userState.language === LANGUAGE_MODE_CONST.hindi
-            ? "✔️ सब्सक्राइबर आईडी अमान्य।"
+          userState.language === LANGUAGE_MODE_CONST.thai
+            ? "✔️ รหัสสมาชิกไม่ถูกต้อง"
             : "✔️ Subcriber Id Invalid.";
       } else {
         // Handle other failure scenarios
         responseMessage =
-          userState.language === LANGUAGE_MODE_CONST.hindi
-            ? "❌ कुछ गलत हो गया। कृपया पुनः प्रयास करें।"
+          userState.language === LANGUAGE_MODE_CONST.thai
+            ? "❌ มีบางอย่างผิดพลาด โปรดลองอีกครั้ง"
             : "❌ Something went wrong. Please try again.";
       }
     }
@@ -816,14 +920,14 @@ bot.on("text", async (ctx) => {
     await ctx.reply(responseMessage, defaultMenu);
   } else {
     await ctx.reply(
-      userState.language === LANGUAGE_MODE_CONST.hindi
-        ? "पहले भाषा को चुनें।"
+      userState.language === LANGUAGE_MODE_CONST.thai
+        ? "กรุณาเลือกภาษาจากการตั้งค่าก่อน"
         : "Please select the language first from setting."
     );
   }
 
-  MyAllSubIds = await getSubIdFromChatId(userState.chatId);
-  // console.log("All my Sub Ids ==> ", MyAllSubIds);
+  MyAllSubIds = (await getSubIdFromChatId(ctx.from.id)).data;
+  console.log("All my Sub Ids ==> ", MyAllSubIds);
   if (MyAllSubIds.length > 0) {
     for (const subIds of MyAllSubIds) {
       const chatIds = await getChatIdFromSubID(subIds);
@@ -832,20 +936,6 @@ bot.on("text", async (ctx) => {
   }
 
   // console.log(" Id and Chat Id Mapping ===>>> ", SubIdAndChatId);
-});
-
-bot.action("accounts_action", async (ctx) => {
-  // userState.idFlag = true;
-  const chat_id = ctx.from.id;
-  console.log("Account Chat Id =>", chat_id);
-  // console.log("Account Chat Id =>", ctx.from.id);
-
-  let messageContent = "Subscription IDs:\n";
-
-  MyAllSubIds.map((id, index) => {
-    messageContent += `${index + 1}. ${id}\n`;
-  });
-  ctx.reply(messageContent.trim());
 });
 
 bot.launch(() => {
