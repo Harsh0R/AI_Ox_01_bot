@@ -2,6 +2,7 @@ import { Telegraf, Markup } from "telegraf";
 import CONTRACT from "./constant.js";
 import {
   checkChatid,
+  deleteChatId,
   getChatIdFromSubID,
   getSubIdFromChatId,
   insertData,
@@ -19,9 +20,23 @@ const LANGUAGE_MODE_CONST = {
 let userState = {
   chatId: null,
   language: null,
-  idFlag: true,
+  // idFlag: true,
 };
-
+const EVENTS_ARR = [
+  "Place Activation",
+  "Gift from freezing",
+  "Overtaking gift",
+  "Output",
+  "Upgrade",
+  "Reinvest",
+  "Missed, Disabled Lavel",
+  "Missed, Recognized as Inferior",
+  "Overtaking",
+  "Coin sent for storage",
+  "Issue a coin",
+  "New Partner",
+  "FRGX Token",
+];
 let SubIdAndChatId = {};
 let MyAllSubIds = [];
 
@@ -43,34 +58,33 @@ const ListenerFunction = async () => {
         for (let index = 0; index < MyAllSubIds.length; index++) {
           const chatIdOfSub = SubIdAndChatId[MyAllSubIds[index]];
           console.log(`Registration Called ==> `);
-          if (!chatIdOfSub) {
-            continue;
-          }
-          for (let i = 0; i < chatIdOfSub.length; i++) {
-            console.log(
-              `Chat Id => ${
-                chatIdOfSub[i]
-              } Registration ::\n newUserId => ${ethers.BigNumber.from(
-                newUserId
-              ).toNumber()} | orignalRefId => ${ethers.BigNumber.from(
-                orignalRefId
-              ).toNumber()} | currentRefId => ${ethers.BigNumber.from(
-                currentRefId
-              ).toNumber()}
-            `
-            );
-            if (MyAllSubIds[0] === orignalRefId) {
-              sendMessage(
-                chatIdOfSub[i],
-                `Registration ::\n newUserId => ${ethers.BigNumber.from(
+          if (chatIdOfSub) {
+            for (let i = 0; i < chatIdOfSub.length; i++) {
+              console.log(
+                `Chat Id => ${
+                  chatIdOfSub[i]
+                } Registration ::\n newUserId => ${ethers.BigNumber.from(
                   newUserId
                 ).toNumber()} | orignalRefId => ${ethers.BigNumber.from(
                   orignalRefId
                 ).toNumber()} | currentRefId => ${ethers.BigNumber.from(
                   currentRefId
                 ).toNumber()}
-                  `
+              `
               );
+              if (MyAllSubIds[0] === orignalRefId) {
+                sendMessage(
+                  chatIdOfSub[i],
+                  `Registration ::\n newUserId => ${ethers.BigNumber.from(
+                    newUserId
+                  ).toNumber()} | orignalRefId => ${ethers.BigNumber.from(
+                    orignalRefId
+                  ).toNumber()} | currentRefId => ${ethers.BigNumber.from(
+                    currentRefId
+                  ).toNumber()}
+                    `
+                );
+              }
             }
           }
         }
@@ -428,9 +442,28 @@ const ListenerFunction = async () => {
   }
 };
 
-// await ListenerFunction().then(() => {
-//   console.log("contract event listening....");
-// });
+
+
+
+
+
+await ListenerFunction().then(() => {
+  console.log("contract event listening....");
+});
+
+
+
+
+
+//#region Contract Events 2.0
+
+
+
+
+
+
+
+
 
 async function sendMessage(chatId, message) {
   console.log("Chat Id ==>", chatId);
@@ -480,8 +513,8 @@ bot.start(async (ctx) => {
             "स्वागतम्!! \nटेलीग्राम बॉट आपको तुरंत मुफ्त सूचनाएँ भेजता है। यह सूचनाएँ आपको लाभ कमाने, नए साझेदारों को पंजीकृत करने और आपके खाते और पूरे इकोसिस्टम में अन्य महत्वपूर्ण घटनाओं के बारे में बताती हैं। \n\nटेलीग्राम बॉट की सभी सुविधाओं का उपयोग करने के लिए, नीचे दिए गए लिंक पर जाकर आधिकारिक टेलीग्राम चैनल को सब्सक्राइब करें।",
         },
       };
-      console.log("sg ===>>>" , messages[language]);
-      
+      console.log("sg ===>>>", messages[language]);
+
       await ctx.reply("You are already registered");
       await ctx.reply(messages[language].reply);
       await ctx.reply(
@@ -508,7 +541,7 @@ bot.start(async (ctx) => {
 const handleLanguageSelection = async (ctx, language) => {
   userState.chatId = ctx.from.id;
   userState.language = language;
-  userState.idFlag = true;
+  // userState.idFlag = true;
 
   const messages = {
     [LANGUAGE_MODE_CONST.english]: {
@@ -559,7 +592,7 @@ const getSubscriptionButtons = (language) => {
 
 // Handler for subscription actions
 bot.action("add_subscription", async (ctx) => {
-  userState.idFlag = true;
+  // userState.idFlag = true;
   const prompt =
     userState.language === LANGUAGE_MODE_CONST.hindi
       ? "अपना वॉलेट/आईडी दर्ज करें।"
@@ -568,17 +601,177 @@ bot.action("add_subscription", async (ctx) => {
 });
 
 bot.hears("Accounts", async (ctx) => {
+  try {
+    let allSubs = (await getSubIdFromChatId(ctx.from.id)).data;
+
+    if (!Array.isArray(allSubs)) {
+      console.error("allSubs is not an array:", allSubs);
+      return ctx.reply("An error occurred fetching subscriptions.");
+    }
+
+    let messageContent = `Number Of Subscription => ${allSubs.length} \n\n Click on the ID you are interested in to configure the event filter. \n`;
+
+    console.log("Account Chat Id all Subs =>", allSubs);
+
+    const idButtons = allSubs.map((id) => [
+      Markup.button.callback(`ID => ${id}`, `select_${id}`),
+    ]);
+
+    idButtons.push([
+      Markup.button.callback("Add", "add_subscription"),
+      Markup.button.callback("Delete", "delete_subscription"),
+    ]);
+
+    await ctx.reply(messageContent.trim(), Markup.inlineKeyboard(idButtons));
+  } catch (error) {
+    console.error("Error fetching subscriptions:", error);
+    ctx.reply("An error occurred fetching subscriptions.");
+  }
+});
+
+bot.action(/^select_(.+)$/, async (ctx) => {
+  const chatId = ctx.from.id;
+  const selectedId = ctx.match[1];
+  console.log("Seleted Id in select => ", selectedId);
+
+  let btns = [
+    [Markup.button.callback("Exclude event type", `ex_event_${selectedId}`)],
+  ];
+  btns.push([Markup.button.callback("Go Back", "go_back")]);
+
+  await ctx.reply(`Setting for ID ${selectedId}`, Markup.inlineKeyboard(btns));
+});
+
+bot.action(/^ex_event_(.+)$/, async (ctx) => {
+  const chatId = ctx.from.chatId;
+  const selectedID = ctx.match[1];
+
+  let messageContent = `Personalize your event for ID ${selectedID} by selection only the right ones. \n ✅ - Actived \n ☑ - Not Activated`;
+
+  const idButtons = EVENTS_ARR.map((evnt) => [
+    Markup.button.callback(
+      `${evnt}`,
+      `evnt_action_${selectedID}_${evnt}`
+    ),
+  ]);
+
+  idButtons.push([Markup.button.callback("Go Back", `select_${selectedID}`)]);
+
+  await ctx.reply(messageContent.trim(), Markup.inlineKeyboard(idButtons));
+});
+
+bot.action(/^evnt_action_(.+)_(.+)$/, async (ctx) => {
+  const chatId = ctx.from.chatId;
+  const selectedID = ctx.match[1];
+  const selectedEvent = ctx.match[2];
+
+  await ctx.reply(
+    `selected ID => ${selectedID} , selected Event -> ${selectedEvent}`
+  );
+});
+
+bot.action("delete_subscription", async (ctx) => {
+  try {
+    let chatId = ctx.from.id;
+    let allSubs = (await getSubIdFromChatId(ctx.from.id)).data;
+
+    if (!Array.isArray(allSubs)) {
+      console.error("allSubs is not an array:", allSubs);
+      return ctx.reply("An error occurred fetching subscriptions.");
+    }
+
+    let messageContent = `Select the account you want to delete.📤`;
+
+    console.log("Account Chat Id all Subs =>", allSubs);
+
+    const idButtons = allSubs.map((id) => [
+      Markup.button.callback(`ID => ${id}`, `select_delete_${id}`),
+    ]);
+    idButtons.push([Markup.button.callback("Go Back", "go_back")]);
+    await ctx.reply(messageContent.trim(), Markup.inlineKeyboard(idButtons));
+  } catch (error) {
+    console.log("Error in delete sub Ids ==>", error);
+  }
+});
+
+bot.action(/^select_delete_(.+)$/, async (ctx) => {
+  let chatId = ctx.from.id;
+  const selectedId = ctx.match[1];
+  try {
+    let res = await deleteChatId(chatId, selectedId);
+    console.log("Res ===>>", res);
+
+    if (res.status) {
+      await ctx.reply(`✔ Your Id ${selectedId} is Successfully deleted.`);
+    } else {
+      await ctx.reply(`❌ ${res.data}.`);
+    }
+  } catch (error) {}
+
+  // Implement additional logic for handling selected ID
+});
+
+bot.action("go_back", async (ctx) => {
+  try {
+    let allSubs = (await getSubIdFromChatId(ctx.from.id)).data;
+
+    if (!Array.isArray(allSubs)) {
+      console.error("allSubs is not an array:", allSubs);
+      return ctx.reply("An error occurred fetching subscriptions.");
+    }
+
+    let messageContent = `Number Of Subscription => ${allSubs.length} \n\n Click on the ID you are interested in to configure the event filter. \n`;
+
+    console.log("Account Chat Id all Subs =>", allSubs);
+
+    const idButtons = allSubs.map((id) => [
+      Markup.button.callback(`ID => ${id}`, `select_${id}`),
+    ]);
+
+    idButtons.push([
+      Markup.button.callback("Add", "add_subscription"),
+      Markup.button.callback("Delete", "delete_subscription"),
+    ]);
+
+    await ctx.reply(messageContent.trim(), Markup.inlineKeyboard(idButtons));
+  } catch (error) {
+    console.error("Error fetching subscriptions:", error);
+    ctx.reply("An error occurred fetching subscriptions.");
+  }
+});
+
+bot.action("change_language", async (ctx) => {
+  const chatId = ctx.from.id;
+
+  const btn = Markup.inlineKeyboard([
+    [
+      Markup.button.callback("EU", "language_selected_eng"),
+      Markup.button.callback("HD", "language_selected_hindi"),
+    ],
+    [Markup.button.callback("Go Back", "go_back_lang")],
+  ]);
+
+  await ctx.reply("Select the language of the bot interface", btn);
+});
+
+bot.action("go_back_lang", async (ctx) => {
+  let messageContent = "General Setting of your account";
+  let btn = Markup.inlineKeyboard([
+    [Markup.button.callback("Language", "change_language")],
+    [Markup.button.callback("Go Back", "go_back")],
+  ]);
+  ctx.reply(messageContent.trim(), btn);
+});
+
+bot.hears("Settings", async (ctx) => {
   // const chat_id = ctx.from.id;
 
-  let allSubs = (await getSubIdFromChatId(ctx.from.id)).data;
-  let messageContent = "Subscription IDs:\n";
-
-  console.log("Account Chat Id all Subs =>", allSubs);
-  allSubs.map((id, index) => {
-    messageContent += `${index + 1}. ${id}\n`;
-  });
-
-  ctx.reply(messageContent.trim());
+  let messageContent = "General Setting of your account";
+  let btn = Markup.inlineKeyboard([
+    [Markup.button.callback("Language", "change_language")],
+    [Markup.button.callback("Go Back", "go_back")],
+  ]);
+  ctx.reply(messageContent.trim(), btn);
 });
 
 bot.on("text", async (ctx) => {
@@ -625,7 +818,7 @@ bot.on("text", async (ctx) => {
     await ctx.reply(
       userState.language === LANGUAGE_MODE_CONST.hindi
         ? "पहले भाषा को चुनें।"
-        : "Please select the language first."
+        : "Please select the language first from setting."
     );
   }
 
@@ -654,15 +847,6 @@ bot.action("accounts_action", async (ctx) => {
   });
   ctx.reply(messageContent.trim());
 });
-
-bot.command("sendto", async (ctx) => {
-  userState.idFlag = true;
-  console.log("Ctx ==> ", ctx);
-});
-
-// bot.hears("Settings", (ctx) =>
-//   ctx.reply("You selected Settings", defaultMenu)
-// );
 
 bot.launch(() => {
   console.log("bot is live!!!!!");

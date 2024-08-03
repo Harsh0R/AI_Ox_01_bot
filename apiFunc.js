@@ -141,14 +141,10 @@ export const deleteChatId = async (chatID, SubID) => {
         headers: { "Content-Type": "multipart/form-data" },
       }
     );
-
-    const chatIds = response.data.data.map((item) => item.subscriber_id);
-    // console.log("Sub ID List ==> ", chatIds);
-
     // return response.data;
-    return chatIds;
+    return response;
   } catch (error) {
     console.error("Error in Get Sub Ids ======>>>>> ", error);
-    return { status: false, data: null };
+    return { status: false, data: "Not Found" };
   }
 };
