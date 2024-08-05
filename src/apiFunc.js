@@ -3,9 +3,6 @@
 import axios from "axios";
 import FormData from "form-data";
 
-
-
-
 export const checkChatid = async (data) => {
   try {
     console.log("insert data ===>>", data);
@@ -20,12 +17,12 @@ export const checkChatid = async (data) => {
       );
 
       // Check if the response status code indicates a conflict
-     
+
       if (response.status === 200) {
-        console.log("Data already exists" , response.status);
-        return response.status
-      }else if (response.status === 404) {
-        return response.status
+        console.log("Data already exists", response.status);
+        return response.status;
+      } else if (response.status === 404) {
+        return response.status;
       }
 
       console.log("Add respo ==> ", response.data);
@@ -38,8 +35,6 @@ export const checkChatid = async (data) => {
     return { status: false, data: null };
   }
 };
-
-
 
 export const insertData = async (data) => {
   try {
@@ -57,10 +52,9 @@ export const insertData = async (data) => {
       );
 
       // Check if the response status code indicates a conflict
-     
+
       if (response.status === 200) {
-        
-        console.log("Data already exists" , response.data.data);
+        console.log("Data already exists", response.data.data);
         return { status: false, message: response.data.data };
       }
 
@@ -101,7 +95,7 @@ export const getChatIdFromSubID = async (data) => {
   }
 };
 
-export const getSubIdFromChatId = async (data) => {
+export const getDataFromChatId = async (data) => {
   try {
     // console.log("get subId Para -=--=>", data);
     const form = new FormData();
@@ -114,13 +108,20 @@ export const getSubIdFromChatId = async (data) => {
         headers: { "Content-Type": "multipart/form-data" },
       }
     );
+    // console.log("res datra>>===> ", response.data.subscribers);
+    // console.log("res status>>===> ", response.data.status);
+    // console.log("res language>>===> ", response.data.language);
 
-    const chatIds = response.data.data.map((item) => item.subscriber_id);
+    // const chatIds = response.data.data.map((item) => item.subscriber_id);
     // console.log("Sub ID List ==> ", chatIds);
 
     // console.log("ressss===>>>> ", response.data);
     // return response.data;
-    return { status: response.data.status, data: chatIds };
+    return {
+      status: response.data.status,
+      data: response.data.subscribers,
+      language: response.data.language,
+    };
   } catch (error) {
     console.error("Error in Get Sub Ids ======>>>>> ", error);
     return { status: false, data: null };
