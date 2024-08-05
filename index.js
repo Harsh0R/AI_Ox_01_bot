@@ -52,6 +52,11 @@ const ListenerFunction = async () => {
     //     SubIdAndChatId[subIds] = chatIds;
     //   }
     // }
+    const toNumber = (bigNumber) => ethers.BigNumber.from(bigNumber).toNumber();
+    const logAndSendMessage = (chatId, eventType, message) => {
+      console.log(`Chat Id => ${chatId} | ${eventType} :: ${message}`);
+      sendMessage(chatId, `${eventType} :: ${message}`);
+    };
 
     const provider = new ethers.providers.JsonRpcProvider(CONTRACT.rpcProvider);
     const signer = provider.getSigner();
@@ -64,146 +69,177 @@ const ListenerFunction = async () => {
     oxInstance.on(
       "Registration",
       async (newUserId, orignalRefId, currentRefId, time) => {
-        for (let index = 0; index < MyAllSubIds.length; index++) {
-          let chatIdOfSub = SubIdAndChatId[MyAllSubIds[index]];
-          console.log(`Registration Called ==> `);
-          if (chatIdOfSub) {
-            for (let i = 0; i < chatIdOfSub.length; i++) {
-              console.log(
-                `Chat Id => ${
-                  chatIdOfSub[i]
-                } Registration ::\n newUserId => ${ethers.BigNumber.from(
-                  newUserId
-                ).toNumber()} | orignalRefId => ${ethers.BigNumber.from(
-                  orignalRefId
-                ).toNumber()} | currentRefId => ${ethers.BigNumber.from(
-                  currentRefId
-                ).toNumber()}
-              `
-              );
-              if (MyAllSubIds[0] === orignalRefId) {
-                sendMessage(
-                  chatIdOfSub[i],
-                  `Registration ::\n newUserId => ${ethers.BigNumber.from(
-                    newUserId
-                  ).toNumber()} | orignalRefId => ${ethers.BigNumber.from(
-                    orignalRefId
-                  ).toNumber()} | currentRefId => ${ethers.BigNumber.from(
-                    currentRefId
-                  ).toNumber()}
-                    `
-                );
-              }
-            }
-          }
-        }
+        // for (let index = 0; index < MyAllSubIds.length; index++) {
+        //   let chatIdOfSub = SubIdAndChatId[MyAllSubIds[index]];
+        //   console.log(`Registration Called ==> `);
+        //   if (chatIdOfSub) {
+        //     for (let i = 0; i < chatIdOfSub.length; i++) {
+        //       console.log(
+        //         `Chat Id => ${
+        //           chatIdOfSub[i]
+        //         } Registration ::\n newUserId => ${ethers.BigNumber.from(
+        //           newUserId
+        //         ).toNumber()} | orignalRefId => ${ethers.BigNumber.from(
+        //           orignalRefId
+        //         ).toNumber()} | currentRefId => ${ethers.BigNumber.from(
+        //           currentRefId
+        //         ).toNumber()}
+        //       `
+        //       );
+        //       if (MyAllSubIds[0] === orignalRefId) {
+        //         sendMessage(
+        //           chatIdOfSub[i],
+        //           `Registration ::\n newUserId => ${ethers.BigNumber.from(
+        //             newUserId
+        //           ).toNumber()} | orignalRefId => ${ethers.BigNumber.from(
+        //             orignalRefId
+        //           ).toNumber()} | currentRefId => ${ethers.BigNumber.from(
+        //             currentRefId
+        //           ).toNumber()}
+        //             `
+        //         );
+        //       }
+        //     }
+        //   }
+        // }
 
-        // console.log(
-        //   `newUserId Id => ${ethers.BigNumber.from(
-        //     newUserId
-        //   ).toNumber()} | orignalRefId ID => ${ethers.BigNumber.from(
-        //     orignalRefId
-        //   ).toNumber()} | currentRefId => ${ethers.BigNumber.from(
-        //     currentRefId
-        //   ).toNumber()}
-        //     `
-        // );
+        MyAllSubIds.forEach((subId) => {
+          const chatIds = SubIdAndChatId[subId];
+          if (chatIds) {
+            chatIds.forEach((chatId) => {
+              const message = `newUserId => ${toNumber(
+                newUserId
+              )} | orignalRefId => ${toNumber(
+                orignalRefId
+              )} | currentRefId => ${toNumber(currentRefId)}`;
+              logAndSendMessage(chatId, "Registration", message);
+            });
+          }
+        });
       }
     );
 
     oxInstance.on("DirectPaid", async (to, from, amount, level, timeNow) => {
-      for (let index = 0; index < MyAllSubIds.length; index++) {
-        const chatIdOfSub = SubIdAndChatId[MyAllSubIds[index]];
-        if (chatIdOfSub) {
-          for (let i = 0; i < chatIdOfSub.length; i++) {
-            if (MyAllSubIds[0] === to) {
-              console.log(
-                `Chat Id => ${
-                  chatIdOfSub[i]
-                } DirectPaid ::\n to => ${ethers.BigNumber.from(
-                  to
-                ).toNumber()} | from => ${ethers.BigNumber.from(
-                  from
-                ).toNumber()} | Amount => ${toEth(amount)}
-                 | level => ${ethers.BigNumber.from(level).toNumber()}
-              `
-              );
+      // for (let index = 0; index < MyAllSubIds.length; index++) {
+      //   const chatIdOfSub = SubIdAndChatId[MyAllSubIds[index]];
+      //   if (chatIdOfSub) {
+      //     for (let i = 0; i < chatIdOfSub.length; i++) {
+      //       if (MyAllSubIds[0] === to) {
+      //         console.log(
+      //           `Chat Id => ${
+      //             chatIdOfSub[i]
+      //           } DirectPaid ::\n to => ${ethers.BigNumber.from(
+      //             to
+      //           ).toNumber()} | from => ${ethers.BigNumber.from(
+      //             from
+      //           ).toNumber()} | Amount => ${toEth(amount)}
+      //            | level => ${ethers.BigNumber.from(level).toNumber()}
+      //         `
+      //         );
 
-              sendMessage(
-                chatIdOfSub[i],
-                `DirectPaid ::\n to => ${ethers.BigNumber.from(
-                  to
-                ).toNumber()} | from => ${ethers.BigNumber.from(
-                  from
-                ).toNumber()} || Amount => ${toEth(amount)}
-                 | level => ${ethers.BigNumber.from(level).toNumber()}
-                  `
-              );
-            }
-          }
+      //         sendMessage(
+      //           chatIdOfSub[i],
+      //           `DirectPaid ::\n to => ${ethers.BigNumber.from(
+      //             to
+      //           ).toNumber()} | from => ${ethers.BigNumber.from(
+      //             from
+      //           ).toNumber()} || Amount => ${toEth(amount)}
+      //            | level => ${ethers.BigNumber.from(level).toNumber()}
+      //             `
+      //         );
+      //       }
+      //     }
+      //   }
+      // }
+
+      MyAllSubIds.forEach((subId) => {
+        const chatIds = SubIdAndChatId[subId];
+        if (chatIds) {
+          chatIds.forEach((chatId) => {
+            // if (MyAllSubIds[0] === to) {
+              const message = `to => ${toNumber(to)} | from => ${toNumber(
+                from
+              )} | Amount => ${toEth(amount)} | level => ${toNumber(level)}`;
+              logAndSendMessage(chatId, "DirectPaid", message);
+            // }
+          });
         }
-      }
+      });
     });
 
     oxInstance.on(
       "TreePayout",
       async (receiverId, senderId, matrix, level, amount, time) => {
-        for (let index = 0; index < MyAllSubIds.length; index++) {
-          const chatIdOfSub = SubIdAndChatId[MyAllSubIds[index]];
-          if (chatIdOfSub) {
-            for (let i = 0; i < chatIdOfSub.length; i++) {
-              console.log(
-                `Chat Id => ${
-                  chatIdOfSub[i]
-                } | Receiver Id => ${ethers.BigNumber.from(
-                  receiverId
-                ).toNumber()} | Sender ID => ${ethers.BigNumber.from(
-                  senderId
-                ).toNumber()} | Level => ${ethers.BigNumber.from(
-                  level
-                ).toNumber()} | Amount => ${toEth(amount)}
-              `
-              );
-              if (MyAllSubIds[0] === receiverId) {
-                sendMessage(
-                  chatIdOfSub[i],
-                  `TreePayout ::\n Receiver Id => ${ethers.BigNumber.from(
-                    receiverId
-                  ).toNumber()} | Sender ID => ${ethers.BigNumber.from(
-                    senderId
-                  ).toNumber()} | Level => ${ethers.BigNumber.from(
-                    level
-                  ).toNumber()} | Amount => ${toEth(amount)}
-                    `
-                );
-              }
-            }
-          }
-        }
-
-        // for (let i = 0; i < CHAT_IDS.length; i++) {
-        //   console.log(
-        //     `Chat Id => ${CHAT_IDS[i]} | Receiver Id => ${ethers.BigNumber.from(
-        //       receiverId
-        //     ).toNumber()} | Sender ID => ${ethers.BigNumber.from(
-        //       senderId
-        //     ).toNumber()} | Level => ${ethers.BigNumber.from(
-        //       level
-        //     ).toNumber()} | Amount => ${toEth(amount)}
+        // for (let index = 0; index < MyAllSubIds.length; index++) {
+        //   const chatIdOfSub = SubIdAndChatId[MyAllSubIds[index]];
+        //   if (chatIdOfSub) {
+        //     for (let i = 0; i < chatIdOfSub.length; i++) {
+        //       console.log(
+        //         `Chat Id => ${
+        //           chatIdOfSub[i]
+        //         } | Receiver Id => ${ethers.BigNumber.from(
+        //           receiverId
+        //         ).toNumber()} | Sender ID => ${ethers.BigNumber.from(
+        //           senderId
+        //         ).toNumber()} | Level => ${ethers.BigNumber.from(
+        //           level
+        //         ).toNumber()} | Amount => ${toEth(amount)}
         //       `
-        //   );
-        //   sendMessage(
-        //     CHAT_IDS[i],
-        //     `Receiver Id => ${ethers.BigNumber.from(
-        //       receiverId
-        //     ).toNumber()} | Sender ID => ${ethers.BigNumber.from(
-        //       senderId
-        //     ).toNumber()} | Level => ${ethers.BigNumber.from(
-        //       level
-        //     ).toNumber()} | Amount => ${toEth(amount)}
-        //       `
-        //   );
+        //       );
+        //       if (MyAllSubIds[0] === receiverId) {
+        //         sendMessage(
+        //           chatIdOfSub[i],
+        //           `TreePayout ::\n Receiver Id => ${ethers.BigNumber.from(
+        //             receiverId
+        //           ).toNumber()} | Sender ID => ${ethers.BigNumber.from(
+        //             senderId
+        //           ).toNumber()} | Level => ${ethers.BigNumber.from(
+        //             level
+        //           ).toNumber()} | Amount => ${toEth(amount)}
+        //             `
+        //         );
+        //       }
+        //     }
+        //   }
         // }
+
+        // // for (let i = 0; i < CHAT_IDS.length; i++) {
+        // //   console.log(
+        // //     `Chat Id => ${CHAT_IDS[i]} | Receiver Id => ${ethers.BigNumber.from(
+        // //       receiverId
+        // //     ).toNumber()} | Sender ID => ${ethers.BigNumber.from(
+        // //       senderId
+        // //     ).toNumber()} | Level => ${ethers.BigNumber.from(
+        // //       level
+        // //     ).toNumber()} | Amount => ${toEth(amount)}
+        // //       `
+        // //   );
+        // //   sendMessage(
+        // //     CHAT_IDS[i],
+        // //     `Receiver Id => ${ethers.BigNumber.from(
+        // //       receiverId
+        // //     ).toNumber()} | Sender ID => ${ethers.BigNumber.from(
+        // //       senderId
+        // //     ).toNumber()} | Level => ${ethers.BigNumber.from(
+        // //       level
+        // //     ).toNumber()} | Amount => ${toEth(amount)}
+        // //       `
+        // //   );
+        // // }
+
+        MyAllSubIds.forEach((subId) => {
+          const chatIds = SubIdAndChatId[subId];
+          if (chatIds) {
+            chatIds.forEach((chatId) => {
+              const message = `Receiver Id => ${toNumber(
+                receiverId
+              )} | Sender ID => ${toNumber(senderId)} | Level => ${toNumber(
+                level
+              )} | Amount => ${toEth(amount)} | matrix => ${toNumber(matrix)}`;
+              logAndSendMessage(chatId, "TreePayout", message);
+            });
+          }
+        });
       }
     );
     oxInstance.on(
@@ -216,43 +252,57 @@ const ListenerFunction = async () => {
         reInvestCount,
         time
       ) => {
-        for (let index = 0; index < MyAllSubIds.length; index++) {
-          const chatIdOfSub = SubIdAndChatId[MyAllSubIds[index]];
-          if (chatIdOfSub) {
-            for (let i = 0; i < chatIdOfSub.length; i++) {
-              if (MyAllSubIds[0] === newUserId) {
-                console.log(
-                  `Chat Id => ${
-                    chatIdOfSub[i]
-                  } | reinvestUserId => ${ethers.BigNumber.from(
-                    reinvestUserId
-                  ).toNumber()} | newUserId => ${ethers.BigNumber.from(
-                    newUserId
-                  ).toNumber()} | Level => ${ethers.BigNumber.from(
-                    level
-                  ).toNumber()} | newCurrentReferrerId => ${
-                    ethers.BigNumber.from(newCurrentReferrerId).toNumber
-                  }
-                `
-                );
+        // for (let index = 0; index < MyAllSubIds.length; index++) {
+        //   const chatIdOfSub = SubIdAndChatId[MyAllSubIds[index]];
+        //   if (chatIdOfSub) {
+        //     for (let i = 0; i < chatIdOfSub.length; i++) {
+        //       if (MyAllSubIds[0] === newUserId) {
+        //         console.log(
+        //           `Chat Id => ${
+        //             chatIdOfSub[i]
+        //           } | reinvestUserId => ${ethers.BigNumber.from(
+        //             reinvestUserId
+        //           ).toNumber()} | newUserId => ${ethers.BigNumber.from(
+        //             newUserId
+        //           ).toNumber()} | Level => ${ethers.BigNumber.from(
+        //             level
+        //           ).toNumber()} | newCurrentReferrerId => ${
+        //             ethers.BigNumber.from(newCurrentReferrerId).toNumber
+        //           }
+        //         `
+        //         );
 
-                sendMessage(
-                  chatIdOfSub[i],
-                  `Reinvest ::\n reinvestUserId => ${ethers.BigNumber.from(
-                    reinvestUserId
-                  ).toNumber()} | newUserId => ${ethers.BigNumber.from(
-                    newUserId
-                  ).toNumber()} | Level => ${ethers.BigNumber.from(
-                    level
-                  ).toNumber()} | newCurrentReferrerId => ${
-                    ethers.BigNumber.from(newCurrentReferrerId).toNumber
-                  }
-                    `
-                );
-              }
-            }
+        //         sendMessage(
+        //           chatIdOfSub[i],
+        //           `Reinvest ::\n reinvestUserId => ${ethers.BigNumber.from(
+        //             reinvestUserId
+        //           ).toNumber()} | newUserId => ${ethers.BigNumber.from(
+        //             newUserId
+        //           ).toNumber()} | Level => ${ethers.BigNumber.from(
+        //             level
+        //           ).toNumber()} | newCurrentReferrerId => ${
+        //             ethers.BigNumber.from(newCurrentReferrerId).toNumber
+        //           }
+        //             `
+        //         );
+        //       }
+        //     }
+        //   }
+        // }
+
+        MyAllSubIds.forEach((subId) => {
+          const chatIds = SubIdAndChatId[subId];
+          if (chatIds) {
+            chatIds.forEach((chatId) => {
+              const message = `reinvestUserId => ${toNumber(
+                reinvestUserId
+              )} | newUserId => ${toNumber(newUserId)} | Level => ${toNumber(
+                level
+              )} | newCurrentReferrerId => ${toNumber(newCurrentReferrerId)}`;
+              logAndSendMessage(chatId, "Reinvest", message);
+            });
           }
-        }
+        });
       }
     );
     oxInstance.on(
@@ -294,6 +344,20 @@ const ListenerFunction = async () => {
           //   }
           // }
         }
+
+        MyAllSubIds.forEach((subId) => {
+          const chatIds = SubIdAndChatId[subId];
+          if (chatIds) {
+            chatIds.forEach((chatId) => {
+              const message = `freezeUserId => ${toNumber(
+                freezeUserId
+              )} | senderId => ${toNumber(senderId)} | Level => ${toNumber(
+                level
+              )} | Amount => ${toEth(amount)}`;
+              logAndSendMessage(chatId, "FreezeAmount", message);
+            });
+          }
+        });
       }
     );
     oxInstance.on(
@@ -308,135 +372,185 @@ const ListenerFunction = async () => {
         originalReferrer,
         time
       ) => {
-        for (let index = 0; index < MyAllSubIds.length; index++) {
-          const chatIdOfSub = SubIdAndChatId[MyAllSubIds[index]];
-          if (chatIdOfSub) {
-            for (let i = 0; i < chatIdOfSub.length; i++) {
-              if (MyAllSubIds[0] === userId) {
-                console.log(
-                  `Chat Id => ${
-                    chatIdOfSub[i]
-                  } | sender => ${ethers.BigNumber.from(
-                    sender
-                  ).toNumber()} | userId => ${ethers.BigNumber.from(
-                    userId
-                  ).toNumber()} | Level => ${ethers.BigNumber.from(
-                    level
-                  ).toNumber()} | referrerId => ${
-                    ethers.BigNumber.from(referrerId).toNumber
-                  } | place => ${
-                    ethers.BigNumber.from(place).toNumber
-                  } | reInvestCount => ${
-                    ethers.BigNumber.from(reInvestCount).toNumber
-                  } | originalReferrer => ${
-                    ethers.BigNumber.from(originalReferrer).toNumber
-                  }
-                `
-                );
+        // for (let index = 0; index < MyAllSubIds.length; index++) {
+        //   const chatIdOfSub = SubIdAndChatId[MyAllSubIds[index]];
+        //   if (chatIdOfSub) {
+        //     for (let i = 0; i < chatIdOfSub.length; i++) {
+        //       if (MyAllSubIds[0] === userId) {
+        //         console.log(
+        //           `Chat Id => ${
+        //             chatIdOfSub[i]
+        //           } | sender => ${ethers.BigNumber.from(
+        //             sender
+        //           ).toNumber()} | userId => ${ethers.BigNumber.from(
+        //             userId
+        //           ).toNumber()} | Level => ${ethers.BigNumber.from(
+        //             level
+        //           ).toNumber()} | referrerId => ${
+        //             ethers.BigNumber.from(referrerId).toNumber
+        //           } | place => ${
+        //             ethers.BigNumber.from(place).toNumber
+        //           } | reInvestCount => ${
+        //             ethers.BigNumber.from(reInvestCount).toNumber
+        //           } | originalReferrer => ${
+        //             ethers.BigNumber.from(originalReferrer).toNumber
+        //           }
+        //         `
+        //         );
 
-                sendMessage(
-                  chatIdOfSub[i],
-                  `NewUserPlace ::\n sender => ${ethers.BigNumber.from(
-                    sender
-                  ).toNumber()} | userId => ${ethers.BigNumber.from(
-                    userId
-                  ).toNumber()} | Level => ${ethers.BigNumber.from(
-                    level
-                  ).toNumber()} | referrerId => ${
-                    ethers.BigNumber.from(referrerId).toNumber
-                  } | place => ${
-                    ethers.BigNumber.from(place).toNumber
-                  } | reInvestCount => ${
-                    ethers.BigNumber.from(reInvestCount).toNumber
-                  } | originalReferrer => ${
-                    ethers.BigNumber.from(originalReferrer).toNumber
-                  }
-                    `
-                );
-              }
-            }
+        //         sendMessage(
+        //           chatIdOfSub[i],
+        //           `NewUserPlace ::\n sender => ${ethers.BigNumber.from(
+        //             sender
+        //           ).toNumber()} | userId => ${ethers.BigNumber.from(
+        //             userId
+        //           ).toNumber()} | Level => ${ethers.BigNumber.from(
+        //             level
+        //           ).toNumber()} | referrerId => ${
+        //             ethers.BigNumber.from(referrerId).toNumber
+        //           } | place => ${
+        //             ethers.BigNumber.from(place).toNumber
+        //           } | reInvestCount => ${
+        //             ethers.BigNumber.from(reInvestCount).toNumber
+        //           } | originalReferrer => ${
+        //             ethers.BigNumber.from(originalReferrer).toNumber
+        //           }
+        //             `
+        //         );
+        //       }
+        //     }
+        //   }
+        // }
+
+        MyAllSubIds.forEach((subId) => {
+          const chatIds = SubIdAndChatId[subId];
+          if (chatIds) {
+            chatIds.forEach((chatId) => {
+              const message = `sender => ${toNumber(
+                sender
+              )} | userId => ${toNumber(userId)} | Level => ${toNumber(
+                level
+              )} | referrerId => ${toNumber(referrerId)} | place => ${toNumber(
+                place
+              )} | reInvestCount => ${toNumber(
+                reInvestCount
+              )} | originalReferrer => ${toNumber(originalReferrer)}`;
+              logAndSendMessage(chatId, "NewUserPlace", message);
+            });
           }
-        }
+        });
       }
     );
     oxInstance.on(
       "FundsPassedUp",
       async (receiverWhoMissedId, sender, level, amountMissed, time) => {
-        for (let index = 0; index < MyAllSubIds.length; index++) {
-          const chatIdOfSub = SubIdAndChatId[MyAllSubIds[index]];
-          if (chatIdOfSub) {
-            for (let i = 0; i < chatIdOfSub.length; i++) {
-              if (MyAllSubIds[0] === sender) {
-                console.log(
-                  `Chat Id => ${
-                    chatIdOfSub[i]
-                  } | sender => ${ethers.BigNumber.from(
-                    sender
-                  ).toNumber()} | receiverWhoMissedId => ${ethers.BigNumber.from(
-                    receiverWhoMissedId
-                  ).toNumber()} | Level => ${ethers.BigNumber.from(
-                    level
-                  ).toNumber()} | amountMissed => ${toEth(amountMissed)}
-                `
-                );
+        // for (let index = 0; index < MyAllSubIds.length; index++) {
+        //   const chatIdOfSub = SubIdAndChatId[MyAllSubIds[index]];
+        //   if (chatIdOfSub) {
+        //     for (let i = 0; i < chatIdOfSub.length; i++) {
+        //       if (MyAllSubIds[0] === sender) {
+        //         console.log(
+        //           `Chat Id => ${
+        //             chatIdOfSub[i]
+        //           } | sender => ${ethers.BigNumber.from(
+        //             sender
+        //           ).toNumber()} | receiverWhoMissedId => ${ethers.BigNumber.from(
+        //             receiverWhoMissedId
+        //           ).toNumber()} | Level => ${ethers.BigNumber.from(
+        //             level
+        //           ).toNumber()} | amountMissed => ${toEth(amountMissed)}
+        //         `
+        //         );
 
-                sendMessage(
-                  chatIdOfSub[i],
-                  `FundsPassedUp ::\n sender => ${ethers.BigNumber.from(
-                    sender
-                  ).toNumber()} | receiverWhoMissedId => ${ethers.BigNumber.from(
-                    receiverWhoMissedId
-                  ).toNumber()} | Level => ${ethers.BigNumber.from(
-                    level
-                  ).toNumber()} | amountMissed => ${toEth(amountMissed)}
-                    `
-                );
-              }
-            }
+        //         sendMessage(
+        //           chatIdOfSub[i],
+        //           `FundsPassedUp ::\n sender => ${ethers.BigNumber.from(
+        //             sender
+        //           ).toNumber()} | receiverWhoMissedId => ${ethers.BigNumber.from(
+        //             receiverWhoMissedId
+        //           ).toNumber()} | Level => ${ethers.BigNumber.from(
+        //             level
+        //           ).toNumber()} | amountMissed => ${toEth(amountMissed)}
+        //             `
+        //         );
+        //       }
+        //     }
+        //   }
+        // }
+
+        MyAllSubIds.forEach((subId) => {
+          const chatIds = SubIdAndChatId[subId];
+          if (chatIds) {
+            chatIds.forEach((chatId) => {
+              const message = `sender => ${toNumber(
+                sender
+              )} | receiverWhoMissedId => ${toNumber(
+                receiverWhoMissedId
+              )} | Level => ${toNumber(level)} | amountMissed => ${toEth(
+                amountMissed
+              )}`;
+              logAndSendMessage(chatId, "FundsPassedUp", message);
+            });
           }
-        }
+        });
       }
     );
     oxInstance.on(
       "Upgrade",
       async (msgSenderId, orignalRefId, currentRefId, level, time) => {
-        for (let index = 0; index < MyAllSubIds.length; index++) {
-          const chatIdOfSub = SubIdAndChatId[MyAllSubIds[index]];
-          if (chatIdOfSub) {
-            for (let i = 0; i < chatIdOfSub.length; i++) {
-              if (MyAllSubIds[0] === orignalRefId) {
-                console.log(
-                  `Chat Id => ${
-                    chatIdOfSub[i]
-                  } | msgSenderId => ${ethers.BigNumber.from(
-                    msgSenderId
-                  ).toNumber()} | orignalRefId => ${ethers.BigNumber.from(
-                    orignalRefId
-                  ).toNumber()} | Level => ${ethers.BigNumber.from(
-                    level
-                  ).toNumber()} | currentRefId => ${
-                    ethers.BigNumber.from(currentRefId).toNumber
-                  } 
-                `
-                );
+        // for (let index = 0; index < MyAllSubIds.length; index++) {
+        //   const chatIdOfSub = SubIdAndChatId[MyAllSubIds[index]];
+        //   if (chatIdOfSub) {
+        //     for (let i = 0; i < chatIdOfSub.length; i++) {
+        //       if (MyAllSubIds[0] === orignalRefId) {
+        //         console.log(
+        //           `Chat Id => ${
+        //             chatIdOfSub[i]
+        //           } | msgSenderId => ${ethers.BigNumber.from(
+        //             msgSenderId
+        //           ).toNumber()} | orignalRefId => ${ethers.BigNumber.from(
+        //             orignalRefId
+        //           ).toNumber()} | Level => ${ethers.BigNumber.from(
+        //             level
+        //           ).toNumber()} | currentRefId => ${
+        //             ethers.BigNumber.from(currentRefId).toNumber
+        //           }
+        //         `
+        //         );
 
-                sendMessage(
-                  chatIdOfSub[i],
-                  `Upgrade ::\n msgSenderId => ${ethers.BigNumber.from(
-                    msgSenderId
-                  ).toNumber()} | orignalRefId => ${ethers.BigNumber.from(
-                    orignalRefId
-                  ).toNumber()} | Level => ${ethers.BigNumber.from(
-                    level
-                  ).toNumber()} | currentRefId => ${
-                    ethers.BigNumber.from(currentRefId).toNumber
-                  }
-                    `
-                );
-              }
-            }
+        //         sendMessage(
+        //           chatIdOfSub[i],
+        //           `Upgrade ::\n msgSenderId => ${ethers.BigNumber.from(
+        //             msgSenderId
+        //           ).toNumber()} | orignalRefId => ${ethers.BigNumber.from(
+        //             orignalRefId
+        //           ).toNumber()} | Level => ${ethers.BigNumber.from(
+        //             level
+        //           ).toNumber()} | currentRefId => ${
+        //             ethers.BigNumber.from(currentRefId).toNumber
+        //           }
+        //             `
+        //         );
+        //       }
+        //     }
+        //   }
+        // }
+
+        MyAllSubIds.forEach((subId) => {
+          const chatIds = SubIdAndChatId[subId];
+          if (chatIds) {
+            chatIds.forEach((chatId) => {
+              const message = `msgSenderId => ${toNumber(
+                msgSenderId
+              )} | orignalRefId => ${toNumber(
+                orignalRefId
+              )} | Level => ${toNumber(level)} | currentRefId => ${toNumber(
+                currentRefId
+              )}`;
+              logAndSendMessage(chatId, "Upgrade", message);
+            });
           }
-        }
+        });
       }
     );
   } catch (error) {
@@ -750,7 +864,7 @@ bot.action(/^delete_id_(.+)$/, async (ctx) => {
   const selectedId = ctx.match[1];
   let language = userState.language;
   let msg;
-  
+
   if (language == "TH") {
     msg = `✔ รหัส ${selectedId} ของคุณถูกลบเรียบร้อยแล้ว`;
   } else {
@@ -926,12 +1040,15 @@ bot.on("text", async (ctx) => {
     );
   }
 
-  MyAllSubIds = (await getSubIdFromChatId(ctx.from.id)).data;
+  const result = await getSubIdFromChatId(ctx.from.id);
+  const MyAllSubIds1 = result ? result.data : [];
+  MyAllSubIds = MyAllSubIds1;
   console.log("All my Sub Ids ==> ", MyAllSubIds);
+
   if (MyAllSubIds.length > 0) {
-    for (const subIds of MyAllSubIds) {
-      const chatIds = await getChatIdFromSubID(subIds);
-      SubIdAndChatId[subIds] = chatIds;
+    for (const subId of MyAllSubIds) {
+      const chatIds = await getChatIdFromSubID(subId);
+      SubIdAndChatId[subId] = chatIds;
     }
   }
 
