@@ -344,7 +344,6 @@ const ListenerFunction = async () => {
           //   }
           // }
         }
-
         MyAllSubIds.forEach((subId) => {
           const chatIds = SubIdAndChatId[subId];
           if (chatIds) {
