@@ -5,7 +5,7 @@ import FormData from "form-data";
 
 export const checkChatid = async (data) => {
   try {
-    console.log("insert data ===>>", data);
+    console.log("Check data ===>>", data);
     if (data) {
       const form = new FormData();
       form.append("chat_id", data);
@@ -36,14 +36,46 @@ export const checkChatid = async (data) => {
   }
 };
 
+export const editData = async (data) => {
+  try {
+    console.log("edit data ===>>", data);
+    if (data.chat_id && data.subscriber_id && data.events) {
+      const form = new FormData();
+      form.append("chat_id", data.chat_id);
+      form.append("subscriber_id", data.subscriber_id);
+      form.append("events", JSON.stringify(data.events));
+
+      const response = await axios.post(
+        "https://thecrypto360.com/notifier_bot/editdata.php",
+        form,
+        { headers: { "Content-Type": "multipart/form-data" } }
+      );
+
+      console.log("rtrrrrr====> " , response.data);
+      
+      
+      if (response.status === 201) {
+        console.log("Data Edited", response.data.data);
+        return { status: true, data: response.data.data };
+      }
+    } else {
+      return { status: false, data: null };
+    }
+  } catch (error) {
+    console.error("Error in set data =====>?>>>>>", error);
+    return { status: false, data: null };
+  }
+};
+
 export const insertData = async (data) => {
   try {
     console.log("insert data ===>>", data);
-    if (data.chat_id && data.language && data.subscriber_id) {
+    if (data.chat_id && data.language && data.subscriber_id && data.events) {
       const form = new FormData();
       form.append("chat_id", data.chat_id);
       form.append("language", data.language);
       form.append("subscriber_id", data.subscriber_id);
+      form.append("events", JSON.stringify(data.events));
 
       const response = await axios.post(
         "https://thecrypto360.com/notifier_bot/storedata.php",
@@ -97,7 +129,7 @@ export const getChatIdFromSubID = async (data) => {
 
 export const getDataFromChatId = async (data) => {
   try {
-    // console.log("get subId Para -=--=>", data);
+    console.log("get data from chatID -=--=>", data);
     const form = new FormData();
     form.append("chat_id", data);
     // console.log("Form in Get Sub Id ==:> ", form);
@@ -121,6 +153,7 @@ export const getDataFromChatId = async (data) => {
       status: response.data.status,
       data: response.data.subscribers,
       language: response.data.language,
+      events: response.data.events,
     };
   } catch (error) {
     console.error("Error in Get Sub Ids ======>>>>> ", error);
@@ -145,7 +178,7 @@ export const deleteChatId = async (chatID, SubID) => {
     // return response.data;
     return response;
   } catch (error) {
-    console.error("Error in Get Sub Ids ======>>>>> ", error);
+    console.error("Error in Delete chat Ids ======>>>>> ", error);
     return { status: false, data: "Not Found" };
   }
 };
