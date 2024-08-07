@@ -9,12 +9,13 @@ import {
   insertData,
 } from "./apiFunc.js";
 import { ethers } from "ethers";
+import logError from "./logger.js";
 import "dotenv/config";
 
 const bot = new Telegraf(process.env.TELEGRAM_URL);
 
 const LANGUAGE_MODE_CONST = {
-  english: "EU",
+  english: "EN",
   thai: "TH",
 };
 
@@ -23,6 +24,7 @@ let userState = {
   language: null,
   // idFlag: true,
 };
+let CHATID = null;
 const EVENTS_ARR = [
   "Place Activation",
   "Upgrade",
@@ -40,213 +42,6 @@ const EVENTS_ARR_THAI = [
 let SUB_EVENT_ARR = [];
 let SubIdAndChatId = {};
 let MyAllSubIds = [];
-// const chatIdOfSub = [];
-//#region Contract Events
-
-// const ListenerFunction = async () => {
-//   try {
-//     const toNumber = (bigNumber) => ethers.BigNumber.from(bigNumber).toNumber();
-//     const logAndSendMessage = (chatId, eventType, message) => {
-//       // console.log(`Chat Id => ${chatId} | ${eventType} :: ${message}`);
-//       sendMessage(chatId, `${eventType} :: ${message}`);
-//     };
-
-//     const provider = new ethers.providers.JsonRpcProvider(CONTRACT.rpcProvider);
-//     const signer = provider.getSigner();
-//     const oxInstance = new ethers.Contract(
-//       CONTRACT.contract_address,
-//       CONTRACT.oxABI,
-//       signer
-//     );
-//     // console.log("Contract===> " , oxInstance);
-//     oxInstance.on(
-//       "Registration",
-//       async (newUserId, orignalRefId, currentRefId, time) => {
-//         MyAllSubIds.forEach((subId) => {
-//           const chatIds = SubIdAndChatId[subId];
-//           if (chatIds) {
-//             if (orignalRefId == subId) {
-//               chatIds.forEach((chatId) => {
-//                 const message = `newUserId => ${toNumber(
-//                   newUserId
-//                 )} | orignalRefId => ${toNumber(
-//                   orignalRefId
-//                 )} | currentRefId => ${toNumber(currentRefId)}`;
-//                 logAndSendMessage(chatId, "Registration", message);
-//               });
-//             }
-//           }
-//         });
-//       }
-//     );
-
-//     oxInstance.on("DirectPaid", async (to, from, amount, level, timeNow) => {
-//       MyAllSubIds.forEach((subId) => {
-//         const chatIds = SubIdAndChatId[subId];
-//         if (chatIds) {
-//           if (subId === to) {
-//             chatIds.forEach((chatId) => {
-//               const message = `to => ${toNumber(to)} | from => ${toNumber(
-//                 from
-//               )} | Amount => ${toEth(amount)} | level => ${toNumber(level)}`;
-//               logAndSendMessage(chatId, "DirectPaid", message);
-//             });
-//           }
-//         }
-//       });
-//     });
-
-//     oxInstance.on(
-//       "TreePayout",
-//       async (receiverId, senderId, matrix, level, amount, time) => {
-//         MyAllSubIds.forEach((subId) => {
-//           const chatIds = SubIdAndChatId[subId];
-//           if (chatIds) {
-//             if (receiverId == subId) {
-//               chatIds.forEach((chatId) => {
-//                 const message = `Receiver Id => ${toNumber(
-//                   receiverId
-//                 )} | Sender ID => ${toNumber(senderId)} | Level => ${toNumber(
-//                   level
-//                 )} | Amount => ${toEth(amount)} | matrix => ${toNumber(
-//                   matrix
-//                 )}`;
-//                 logAndSendMessage(chatId, "TreePayout", message);
-//               });
-//             }
-//           }
-//         });
-//       }
-//     );
-//     oxInstance.on(
-//       "Reinvest",
-//       async (
-//         reinvestUserId,
-//         newUserId,
-//         newCurrentReferrerId,
-//         level,
-//         reInvestCount,
-//         time
-//       ) => {
-//         MyAllSubIds.forEach((subId) => {
-//           const chatIds = SubIdAndChatId[subId];
-//           if (chatIds) {
-//             if (newUserId == subId) {
-//               chatIds.forEach((chatId) => {
-//                 const message = `reinvestUserId => ${toNumber(
-//                   reinvestUserId
-//                 )} | newUserId => ${toNumber(newUserId)} | Level => ${toNumber(
-//                   level
-//                 )} | newCurrentReferrerId => ${toNumber(newCurrentReferrerId)}`;
-//                 logAndSendMessage(chatId, "Reinvest", message);
-//               });
-//             }
-//           }
-//         });
-//       }
-//     );
-//     oxInstance.on(
-//       "FreezeAmount",
-//       async (freezeUserId, senderId, level, amount, time) => {
-//         MyAllSubIds.forEach((subId) => {
-//           const chatIds = SubIdAndChatId[subId];
-//           if (chatIds) {
-//             if (senderId == subId) {
-//               chatIds.forEach((chatId) => {
-//                 const message = `freezeUserId => ${toNumber(
-//                   freezeUserId
-//                 )} | senderId => ${toNumber(senderId)} | Level => ${toNumber(
-//                   level
-//                 )} | Amount => ${toEth(amount)}`;
-//                 logAndSendMessage(chatId, "FreezeAmount", message);
-//               });
-//             }
-//           }
-//         });
-//       }
-//     );
-//     oxInstance.on(
-//       "NewUserPlace",
-//       async (
-//         sender,
-//         userId,
-//         referrerId,
-//         level,
-//         place,
-//         reInvestCount,
-//         originalReferrer,
-//         time
-//       ) => {
-//         MyAllSubIds.forEach((subId) => {
-//           const chatIds = SubIdAndChatId[subId];
-
-//           if (chatIds) {
-//             if (userId == subId) {
-//               chatIds.forEach((chatId) => {
-//                 const message = `sender => ${toNumber(
-//                   sender
-//                 )} | userId => ${toNumber(userId)} | Level => ${toNumber(
-//                   level
-//                 )} | referrerId => ${toNumber(
-//                   referrerId
-//                 )} | place => ${toNumber(place)} | reInvestCount => ${toNumber(
-//                   reInvestCount
-//                 )} | originalReferrer => ${toNumber(originalReferrer)}`;
-//                 logAndSendMessage(chatId, "NewUserPlace", message);
-//               });
-//             }
-//           }
-//         });
-//       }
-//     );
-//     oxInstance.on(
-//       "FundsPassedUp",
-//       async (receiverWhoMissedId, sender, level, amountMissed, time) => {
-//         MyAllSubIds.forEach((subId) => {
-//           const chatIds = SubIdAndChatId[subId];
-//           if (chatIds) {
-//             if (sender == subId) {
-//               chatIds.forEach((chatId) => {
-//                 const message = `sender => ${toNumber(
-//                   sender
-//                 )} | receiverWhoMissedId => ${toNumber(
-//                   receiverWhoMissedId
-//                 )} | Level => ${toNumber(level)} | amountMissed => ${toEth(
-//                   amountMissed
-//                 )}`;
-//                 logAndSendMessage(chatId, "FundsPassedUp", message);
-//               });
-//             }
-//           }
-//         });
-//       }
-//     );
-//     oxInstance.on(
-//       "Upgrade",
-//       async (msgSenderId, orignalRefId, currentRefId, level, time) => {
-//         MyAllSubIds.forEach((subId) => {
-//           const chatIds = SubIdAndChatId[subId];
-//           if (chatIds) {
-//             if (orignalRefId == subId) {
-//               chatIds.forEach((chatId) => {
-//                 const message = `msgSenderId => ${toNumber(
-//                   msgSenderId
-//                 )} | orignalRefId => ${toNumber(
-//                   orignalRefId
-//                 )} | Level => ${toNumber(level)} | currentRefId => ${toNumber(
-//                   currentRefId
-//                 )}`;
-//                 logAndSendMessage(chatId, "Upgrade", message);
-//               });
-//             }
-//           }
-//         });
-//       }
-//     );
-//   } catch (error) {
-//     console.log("Error in listner Func ==> ", error);
-//   }
-// };
 
 const ListenerFunction = async () => {
   try {
@@ -263,30 +58,23 @@ const ListenerFunction = async () => {
       signer
     );
 
-    const isEventActive = async (subId, eventName, chatId) => {
+    const isEventActive = async (subId, eventName) => {
+      let chatId = CHATID;
       let events = (await getDataFromChatId(chatId)).events;
-
-      // let evt = events[0];
-      // console.log("evt ==> " , events);
-
+      let MyAllSubIds = (await getDataFromChatId(chatId)).data;
+      let fleg = true;
       if (events) {
         for (let index = 0; index < events.length; index++) {
-          console.log("All sub Array => ", MyAllSubIds);
+          // console.log("All sub Array => ", MyAllSubIds);
           if (MyAllSubIds[index] == subId) {
             const element = events[index];
-            // console.log("Ele ==> ", element);
-
-            console.log("Events ==> ", element[0][eventName]);
+            fleg = element[0][eventName];
+            // console.log("Events ==> ", element[0][eventName]);
           }
         }
       }
+      return fleg;
     };
-
-    MyAllSubIds.forEach((subId) => {
-      isEventActive(1212, "Upgrade", userState.chatId);
-    });
-
-    // console.log("Called", MyAllSubIds);
 
     oxInstance.on(
       "Registration",
@@ -296,11 +84,10 @@ const ListenerFunction = async () => {
           if (chatIds && isEventActive(subId, "New Partner")) {
             if (orignalRefId == subId) {
               chatIds.forEach((chatId) => {
-                const message = `newUserId => ${toNumber(
-                  newUserId
-                )} | orignalRefId => ${toNumber(
-                  orignalRefId
-                )} | currentRefId => ${toNumber(currentRefId)}`;
+                const message = `
+                ID ${toNumber(orignalRefId)}: You've got a new partner!
+                \nYour new partner received ID ${toNumber(newUserId)}.
+                `;
                 logAndSendMessage(chatId, "Registration", message);
               });
             }
@@ -335,13 +122,13 @@ const ListenerFunction = async () => {
           if (chatIds && isEventActive(subId, "Place Activation")) {
             if (receiverId == subId) {
               chatIds.forEach((chatId) => {
-                const message = `Receiver Id => ${toNumber(
-                  receiverId
-                )} | Sender ID => ${toNumber(senderId)} | Level => ${toNumber(
-                  level
-                )} | Amount => ${toEth(amount)} | matrix => ${toNumber(
-                  matrix
-                )}`;
+                const message = `ID ${toNumber(receiverId)}: ➕${toEth(
+                  amount
+                )} OC  
+                Level: ${toNumber(level)}
+                From partner: ID ${toNumber(senderId)} 
+                <a href="https://polygonscan.com/address/0x865Ec7e50872B0Fd5322640fA41920d515B2f4e6">[See transaction]</a>
+                `;
                 logAndSendMessage(chatId, "TreePayout", message);
               });
             }
@@ -366,11 +153,12 @@ const ListenerFunction = async () => {
           if (chatIds && isEventActive(subId, "Reinvest")) {
             if (newUserId == subId) {
               chatIds.forEach((chatId) => {
-                const message = `reinvestUserId => ${toNumber(
-                  reinvestUserId
-                )} | newUserId => ${toNumber(newUserId)} | Level => ${toNumber(
-                  level
-                )} | newCurrentReferrerId => ${toNumber(newCurrentReferrerId)}`;
+                const message = `
+                ID ${toNumber(reinvestUserId)}: 🔁 Recycle 
+                Level: ${toNumber(level)} 
+                Level automatically started again. 
+                <a href="https://polygonscan.com/address/0x865Ec7e50872B0Fd5322640fA41920d515B2f4e6">[See transaction]</a>
+                `;
                 logAndSendMessage(chatId, "Reinvest", message);
               });
             }
@@ -484,19 +272,23 @@ const ListenerFunction = async () => {
         });
       }
     );
+
+    await new Promise((resolve) => setTimeout(resolve, 2000));
   } catch (error) {
-    console.log("Error in listener Func ==> ", error);
+    logError("Error Listenning Events Function : ", error);
+    // console.log("Error in listener Func ==> ", error);
   }
 };
 
 //#region Contract Events 2.0
 
 async function sendMessage(chatId, message) {
-  // console.log("Chat Id ==>", chatId);
   try {
-    await bot.telegram.sendMessage(chatId, message);
-    // console.log(`Message sent to chat ID ${chatId}`);
+    await bot.telegram.sendMessage(chatId, message, {
+      parse_mode: "HTML",
+    });
   } catch (error) {
+    logError(`Failed to send message to chat ID ${chatId}:`, error);
     console.error(`Failed to send message to chat ID ${chatId}:`, error);
   }
 }
@@ -512,13 +304,13 @@ const defaultMenu = Markup.keyboard([["Accounts", "Settings"]]).resize();
 
 bot.start(async (ctx) => {
   try {
-    console.log("Bot Start ...");
-    userState.language = (await getDataFromChatId(ctx.from.id)).language;
-    console.log("Language ====> ", userState.language);
+    CHATID = ctx.from.id;
     userState.chatId = ctx.from.id;
     let res = await checkChatid(ctx.from.id);
+   
     if (res == 200) {
-      let language = userState.language;
+      let language = (await getDataFromChatId(ctx.from.id)).language;
+      userState.language = language;
 
       if (language == "TH") {
         await ctx.reply(
@@ -535,34 +327,25 @@ bot.start(async (ctx) => {
       MyAllSubIds = (await getDataFromChatId(ctx.from.id)).data;
       SUB_EVENT_ARR = (await getDataFromChatId(ctx.from.id)).events;
 
-      console.log("Sub Event Err ==> ", SUB_EVENT_ARR);
-      console.log("Sub Event Err ==> ", SUB_EVENT_ARR[0]);
-      console.log("All my Sub Ids ==> ", MyAllSubIds);
       if (MyAllSubIds.length > 0) {
         for (const subIds of MyAllSubIds) {
           const chatIds = await getChatIdFromSubID(subIds);
           SubIdAndChatId[subIds] = chatIds;
         }
       }
-      console.log("All my Sub Ids with chain Ids  ==> ", SubIdAndChatId);
-
-      // await ctx.reply(messages[language].reply);
-      // await ctx.reply(
-      //   messages[language].welcome,
-      //   getSubscriptionButtons(language)
-      // );
     } else {
       await ctx.reply(
         "Select the language of the bot interface.(เลือกภาษาของอินเทอร์เฟซบอท.)",
         Markup.inlineKeyboard([
           [
-            Markup.button.callback("EU", "language_selected_eng"),
+            Markup.button.callback("EN", "language_selected_eng"),
             Markup.button.callback("TH", "language_selected_thai"),
           ],
         ])
       );
     }
   } catch (error) {
+    logError("Error while starting BOT:", error);
     console.error("Error while starting BOT:", error);
   }
 });
@@ -570,6 +353,7 @@ bot.start(async (ctx) => {
 const handleLanguageSelection = async (ctx, language) => {
   userState.chatId = ctx.from.id;
   userState.language = language;
+  // console.log("user.lang ==>", userState.language);
 
   const messages = {
     [LANGUAGE_MODE_CONST.english]: {
@@ -584,19 +368,22 @@ const handleLanguageSelection = async (ctx, language) => {
     },
   };
 
-  await ctx.reply(messages[language].reply);
+  await ctx.reply(messages[language].reply, defaultMenu);
   await ctx.reply(messages[language].welcome, getSubscriptionButtons(language));
 };
 
-bot.action("language_selected_eng", (ctx) =>
-  handleLanguageSelection(ctx, LANGUAGE_MODE_CONST.english)
-);
+bot.action("language_selected_eng", (ctx) => {
+  userState.language = "EN";
+  handleLanguageSelection(ctx, LANGUAGE_MODE_CONST.english);
+});
 
-bot.action("language_selected_thai", (ctx) =>
-  handleLanguageSelection(ctx, LANGUAGE_MODE_CONST.thai)
-);
+bot.action("language_selected_thai", (ctx) => {
+  userState.language = "TH";
+  handleLanguageSelection(ctx, LANGUAGE_MODE_CONST.thai);
+});
 
 const getSubscriptionButtons = (language) => {
+  userState.language = language;
   if (language === LANGUAGE_MODE_CONST.thai) {
     return Markup.inlineKeyboard([
       [Markup.button.callback("สมัครสมาชิก @OurChannel", "add_subscription")],
@@ -614,9 +401,9 @@ const getSubscriptionButtons = (language) => {
   ]);
 };
 
-// Handler for subscription actions
 bot.action("add_subscription", async (ctx) => {
   // userState.idFlag = true;
+  // userState.language = (await getDataFromChatId(ctx.from.id)).language;
   const prompt =
     userState.language === LANGUAGE_MODE_CONST.thai
       ? "กรอกกระเป๋าสตางค์/รหัสประจำตัวของคุณ"
@@ -629,14 +416,20 @@ bot.hears("Accounts", async (ctx) => {
   let err;
   try {
     let allSubs = (await getDataFromChatId(ctx.from.id)).data;
-    console.log("Length ==> ", allSubs);
-
     if (!Array.isArray(allSubs)) {
-      console.error("allSubs is not an array:", allSubs);
+      // console.error("allSubs is not an array:", allSubs);
       if (language == "TH") {
-        return ctx.reply("เกิดข้อผิดพลาดในการดึงข้อมูลสมัครสมาชิก");
+        logError(
+          "An error occurred fetching subscriptions.",
+          'In bot.hears("Accounts")'
+        );
+        return ctx.reply("ไม่พบการสมัครสมาชิก.");
       } else {
-        return ctx.reply("An error occurred fetching subscriptions.");
+        logError(
+          "An error occurred fetching subscriptions.",
+          'In bot.hears("Accounts")'
+        );
+        return ctx.reply("No subscriptions found.");
       }
     }
 
@@ -650,11 +443,12 @@ bot.hears("Accounts", async (ctx) => {
         err = `An error occurred fetching subscriptions.`;
       }
     } else {
-      err = "No subscriptions found.";
+      if (language == "TH") {
+        err = `ไม่พบการสมัครสมาชิก.`;
+      } else {
+        err = "No subscriptions found.";
+      }
     }
-
-    // console.log("Account Chat Id all Subs =>", allSubs);
-
     let idButtons;
     if (allSubs) {
       idButtons = allSubs.map((id) => [
@@ -676,6 +470,7 @@ bot.hears("Accounts", async (ctx) => {
 
     await ctx.reply(messageContent.trim(), Markup.inlineKeyboard(idButtons));
   } catch (error) {
+    logError("Error fetching data in bot.hears=>Accounts.", error);
     console.error("Error fetching subscriptions:", error);
     err = error;
     ctx.reply(err);
@@ -687,7 +482,6 @@ bot.action(/^select_(.+)$/, async (ctx) => {
   const selectedId = ctx.match[1];
   let language = (await getDataFromChatId(chatId)).language;
   let msg;
-  // console.log("Seleted Id in select => ", selectedId);
   let btns = [];
   if (language == "TH") {
     msg = `การตั้งค่าสำหรับ ID ${selectedId}`;
@@ -706,59 +500,11 @@ bot.action(/^select_(.+)$/, async (ctx) => {
   await ctx.reply(msg, Markup.inlineKeyboard(btns));
 });
 
-// bot.action(/^ex_event_(.+)$/, async (ctx) => {
-//   const chatId = ctx.from.chatId;
-//   const selectedID = ctx.match[1];
-//   let language = userState.language;
-//   let idButtons, messageContent;
-//   if (language == "TH") {
-//     messageContent = `ปรับแต่งกิจกรรมของคุณสำหรับ ID ${selectedID} โดยเลือกเฉพาะกิจกรรมที่ถูกต้องเท่านั้น \n ✅ - เปิดใช้งาน \n ☑ - ไม่ได้เปิดใช้งาน`;
-//     idButtons = EVENTS_ARR_THAI.map((evnt) => [
-//       Markup.button.callback(`${evnt}`, `evnt_action_${selectedID}_${evnt}`),
-//     ]);
-//     idButtons.push([Markup.button.callback("กลับไป", `select_${selectedID}`)]);
-//   } else {
-//     messageContent = `Personalize your event for ID ${selectedID} by selection only the right ones. \n ✅ - Actived \n ☑ - Not Activated`;
-//     idButtons = EVENTS_ARR.map((evnt) => [
-//       Markup.button.callback(`${evnt}`, `evnt_action_${selectedID}_${evnt}`),
-//     ]);
-//     idButtons.push([Markup.button.callback("Go Back", `select_${selectedID}`)]);
-//   }
-
-//   await ctx.reply(messageContent.trim(), Markup.inlineKeyboard(idButtons));
-// });
-
-// bot.action(/^evnt_action_(.+)_(.+)$/, async (ctx) => {
-//   const chatId = ctx.from.chatId;
-//   const selectedID = ctx.match[1];
-//   const selectedEvent = ctx.match[2];
-//   let language = userState.language;
-
-//   if (language == "TH") {
-//     await ctx.reply(
-//       `เลือก ID=> ${selectedID} , กิจกรรมที่เลือก -> ${selectedEvent}`
-//     );
-//   } else {
-//     await ctx.reply(
-//       `selected ID => ${selectedID} , selected Event -> ${selectedEvent}`
-//     );
-//   }
-// });
-
-// Example state object to track events per selectedID
-
-let eventState = {};
-
 const generateButtons = async (selectedID, eventsArr, language, chatId) => {
-  console.log("CCCCC ===> ", chatId);
   const evDataResponse = await getDataFromChatId(chatId);
   let MyAllSubIds = evDataResponse.data;
   let count = 0;
-  console.log("Se , MA", MyAllSubIds.length);
-
   for (let index = 0; index < MyAllSubIds.length; index++) {
-    console.log("Se , MA", selectedID, MyAllSubIds[index]);
-
     if (MyAllSubIds[index] == selectedID) {
       break;
     }
@@ -767,12 +513,8 @@ const generateButtons = async (selectedID, eventsArr, language, chatId) => {
 
   const evData = evDataResponse.events[count];
 
-  console.log("EvData ?? ==> ", evData, count);
-
   const eventButtons = eventsArr.map((evnt) => {
     const isActive = evData[0][evnt];
-    // console.log("Us Active ==> ", evData[0][evnt]);
-
     const icon = isActive ? "✅" : "✔️";
     return Markup.button.callback(
       `${evnt} ${icon}`,
@@ -813,74 +555,45 @@ bot.action(/^ex_event_(.+)$/, async (ctx) => {
   await ctx.reply(messageContent.trim(), Markup.inlineKeyboard(idButtons));
 });
 
-// bot.action(/^evnt_action_(.+)_(.+)$/, async (ctx) => {
-//   const chatID = ctx.from.id;
-//   const selectedID = ctx.match[1];
-//   const eventName = ctx.match[2];
-//   const language = userState.language;
-
-//   if (eventState[selectedID]) {
-//     eventState[selectedID][eventName] = !eventState[selectedID][eventName];
-//   } else {
-//     eventState[selectedID] = { [eventName]: true };
-//   }
-
-//   // console.log("chatId ===> ", chatID);
-//   // console.log("Selected id ===> ", selectedID);
-//   // console.log("Events ===> ", eventState);
-
-//   let evt = eventState[selectedID];
-
-//   const res = await editData({
-//     chat_id: chatID,
-//     subscriber_id: selectedID,
-//     events: evt,
-//   });
-
-//   await ctx.answerCbQuery();
-//   await ctx.reply(
-//     language === "TH"
-//       ? `ปรับแต่งกิจกรรมของคุณสำหรับ ID ${selectedID} โดยเลือกเฉพาะกิจกรรมที่ถูกต้องเท่านั้น \n ✅ - เปิดใช้งาน \n ☑ - ไม่ได้เปิดใช้งาน`
-//       : `Personalize your event for ID ${selectedID} by selecting only the right ones. \n ✅ - Activated \n ✔️ - Not Activated.`,
-//     Markup.inlineKeyboard(
-//       await generateButtons(
-//         selectedID,
-//         language === "TH" ? EVENTS_ARR_THAI : EVENTS_ARR,
-//         language,
-//         chatID
-//       )
-//     )
-//   );
-// });
-
 bot.action(/^evnt_action_(.+)_(.+)$/, async (ctx) => {
   const chatID = ctx.from.id;
   const selectedID = ctx.match[1];
   const eventName = ctx.match[2];
   const language = userState.language;
+  const evDataResponse = await getDataFromChatId(chatID);
+  let MyAllSubIds = evDataResponse.data;
+  let eventDataResponse = evDataResponse.events;
+  let count = 0;
 
-  // Fetch the current state of events from the API
-  const eventDataResponse = (await getDataFromChatId(chatID)).events;
-  let eventStates = eventDataResponse[0]; // Assuming the first element contains the relevant event data
+  for (let index = 0; index < MyAllSubIds.length; index++) {
+    // console.log("Se , MA", selectedID, MyAllSubIds[index]);
 
-  console.log(
-    "before EvnStss ==>> ",
-    eventStates[0][eventName],
-    eventStates[0],
-    eventName
-  );
+    if (MyAllSubIds[index] == selectedID) {
+      break;
+    }
+    count++;
+  }
+
+  let eventStates = eventDataResponse[count];
+
+  // console.log(
+  //   "before EvnStss ==>> ",
+  //   eventStates[0][eventName],
+  //   eventStates[0],
+  //   eventName
+  // );
 
   if (eventStates[0][eventName]) {
     eventStates[0][eventName] = false;
   } else {
     eventStates[0][eventName] = true;
   }
-  console.log(
-    "After EvnStss ==>> ",
-    eventStates[0][eventName],
-    eventStates[0],
-    eventName
-  );
+  // console.log(
+  //   "After EvnStss ==>> ",
+  //   eventStates[0][eventName],
+  //   eventStates[0],
+  //   eventName
+  // );
 
   // Send the updated state back to the API for persistence
   const res = await editData({
@@ -925,11 +638,9 @@ bot.action("delete_subscription", async (ctx) => {
     }
 
     if (!Array.isArray(allSubs)) {
-      console.error("allSubs is not an array:", allSubs);
+      // console.error("allSubs is not an array:", allSubs);
       return ctx.reply(err);
     }
-
-    // console.log("Account Chat Id all Subs =>", allSubs);
 
     const idButtons = allSubs.map((id) => [
       Markup.button.callback(`ID => ${id}`, `delete_id_${id}`),
@@ -939,7 +650,8 @@ bot.action("delete_subscription", async (ctx) => {
 
     await ctx.reply(msg.trim(), Markup.inlineKeyboard(idButtons));
   } catch (error) {
-    console.log("Error in delete sub Ids ==>", error);
+    logError("Error in delete sub Ids ==> ", error);
+    // console.log("Error in delete sub Ids ==>", error);
   }
 });
 
@@ -957,14 +669,15 @@ bot.action(/^delete_id_(.+)$/, async (ctx) => {
 
   try {
     let res = await deleteChatId(chatId, selectedId);
-    // console.log("Res ===>>", res);
 
     if (res.status) {
       await ctx.reply(msg);
     } else {
       await ctx.reply(`❌ ${res.data}.`);
     }
-  } catch (error) {}
+  } catch (error) {
+    logError("Error After delete sub Ids ==> ", error);
+  }
 
   // Implement additional logic for handling selected ID
 });
@@ -983,17 +696,19 @@ bot.action("go_back", async (ctx) => {
       msg = `Number Of Subscription => ${allSubs.length} \n\n Click on the ID you are interested in to configure the event filter. \n`;
     }
   } else {
-    err = "No subscriptions found.";
+    if (language == "TH") {
+      err = `ไม่พบการสมัครสมาชิก.`;
+    } else {
+      err = "No subscriptions found.";
+    }
   }
   try {
     if (!Array.isArray(allSubs)) {
-      console.error("allSubs is not an array:", allSubs);
+      // console.error("allSubs is not an array:", allSubs);
       return ctx.reply(err);
     }
 
     let messageContent = msg;
-
-    // console.log("Account Chat Id all Subs =>", allSubs);
 
     const idButtons = allSubs.map((id) => [
       Markup.button.callback(`ID => ${id}`, `select_${id}`),
@@ -1013,6 +728,7 @@ bot.action("go_back", async (ctx) => {
 
     await ctx.reply(messageContent.trim(), Markup.inlineKeyboard(idButtons));
   } catch (error) {
+    logError("Error in Go Back ==> ", error);
     console.error("Error fetching subscriptions:", error);
     ctx.reply(err);
   }
@@ -1023,7 +739,7 @@ bot.action("change_language", async (ctx) => {
 
   const btn = Markup.inlineKeyboard([
     [
-      Markup.button.callback("EU", "language_selected_eng"),
+      Markup.button.callback("EN", "language_selected_eng"),
       Markup.button.callback("TH", "language_selected_thai"),
     ],
     [Markup.button.callback("Go Back", "go_back_lang")],
@@ -1077,13 +793,11 @@ bot.hears("Settings", async (ctx) => {
 bot.on("text", async (ctx) => {
   const chatId = ctx.from.id;
   const txt = ctx.message.text;
-  let lag1 = userState.language;
   let language = (await getDataFromChatId(chatId)).language;
-  // let language = userState.language;
 
-  console.log("Chat ID:", chatId);
-  console.log("Text:", txt);
-  console.log("Language:", lag1);
+  let lag1 = userState.language || language;
+  // console.log("LLLLLLLLLLLLL=====>>>", userState);
+  // console.log("LLLLLLLLLLLLL=====>>>", language);
 
   const defaultEvents = {
     "Place Activation": true,
@@ -1148,7 +862,12 @@ bot.on("text", async (ctx) => {
 bot.launch(() => {
   console.log("bot is live!!!!!");
 });
-ListenerFunction().then(() => {
-  console.log("contract event listening....");
-});
-setInterval(ListenerFunction, 3000);
+const runListenerWithInterval = async () => {
+  while (true) {
+    await ListenerFunction();
+    console.log("contract event listening....");
+    await new Promise((resolve) => setTimeout(resolve, 3000));
+  }
+};
+
+runListenerWithInterval();

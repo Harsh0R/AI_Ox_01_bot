@@ -1,11 +1,10 @@
 //#region APIS
-
 import axios from "axios";
 import FormData from "form-data";
+import logError from "./logger.js";
 
 export const checkChatid = async (data) => {
   try {
-    console.log("Check data ===>>", data);
     if (data) {
       const form = new FormData();
       form.append("chat_id", data);
@@ -16,29 +15,23 @@ export const checkChatid = async (data) => {
         { headers: { "Content-Type": "multipart/form-data" } }
       );
 
-      // Check if the response status code indicates a conflict
-
       if (response.status === 200) {
-        console.log("Data already exists", response.status);
         return response.status;
       } else if (response.status === 404) {
-        return response.status;
+        return response.data.status;
       }
-
-      console.log("Add respo ==> ", response.data);
       return { status: true, data: response.data };
     } else {
       return { status: false, data: null };
     }
   } catch (error) {
-    console.error("Error in set data =====>?>>>>>", error);
+    logError("Error Check data API =====>?>>>>>",error)
     return { status: false, data: null };
   }
 };
 
 export const editData = async (data) => {
   try {
-    console.log("edit data ===>>", data);
     if (data.chat_id && data.subscriber_id && data.events) {
       const form = new FormData();
       form.append("chat_id", data.chat_id);
@@ -51,25 +44,20 @@ export const editData = async (data) => {
         { headers: { "Content-Type": "multipart/form-data" } }
       );
 
-      console.log("rtrrrrr====> " , response.data);
-      
-      
       if (response.status === 201) {
-        console.log("Data Edited", response.data.data);
         return { status: true, data: response.data.data };
       }
     } else {
       return { status: false, data: null };
     }
   } catch (error) {
-    console.error("Error in set data =====>?>>>>>", error);
+    logError("Error in Edite data API =====>?>>>>>",error)
     return { status: false, data: null };
   }
 };
 
 export const insertData = async (data) => {
   try {
-    console.log("insert data ===>>", data);
     if (data.chat_id && data.language && data.subscriber_id && data.events) {
       const form = new FormData();
       form.append("chat_id", data.chat_id);
@@ -83,30 +71,24 @@ export const insertData = async (data) => {
         { headers: { "Content-Type": "multipart/form-data" } }
       );
 
-      // Check if the response status code indicates a conflict
-
       if (response.status === 200) {
-        console.log("Data already exists", response.data.data);
         return { status: false, message: response.data.data };
       }
 
-      console.log("Add respo ==> ", response.data);
       return { status: true, data: response.data };
     } else {
       return { status: false, data: null };
     }
   } catch (error) {
-    console.error("Error in set data =====>?>>>>>", error);
+    logError("Error in Insert data API =====>?>>>>>",error)
     return { status: false, data: null };
   }
 };
 
 export const getChatIdFromSubID = async (data) => {
   try {
-    // console.log("Get Chat Id Para -=--=>", data);
     const form = new FormData();
     form.append("subscriber_id", data);
-    // console.log("Form in Get Chat Id ==:> ", form);
     const response = await axios.post(
       "https://thecrypto360.com/notifier_bot/getchat_id.php",
       form,
@@ -116,23 +98,18 @@ export const getChatIdFromSubID = async (data) => {
     );
 
     const chatIds = response.data.data.map((item) => item.chat_id);
-    // console.log("Chat Id List ==> ", chatIds);
-    // CHAT_IDS = chatIds;
-
-    // return response.data;
+    
     return chatIds;
   } catch (error) {
-    console.error("Error in Get Chain ids  ======>>>>> ", error);
+    logError("Error in Get ChatID from SubId  API =====>?>>>>>",error)
     return { status: false, data: null };
   }
 };
 
 export const getDataFromChatId = async (data) => {
   try {
-    console.log("get data from chatID -=--=>", data);
     const form = new FormData();
     form.append("chat_id", data);
-    // console.log("Form in Get Sub Id ==:> ", form);
     const response = await axios.post(
       "https://thecrypto360.com/notifier_bot/getsubscriber_id.php",
       form,
@@ -140,15 +117,7 @@ export const getDataFromChatId = async (data) => {
         headers: { "Content-Type": "multipart/form-data" },
       }
     );
-    // console.log("res datra>>===> ", response.data.subscribers);
-    // console.log("res status>>===> ", response.data.status);
-    // console.log("res language>>===> ", response.data.language);
 
-    // const chatIds = response.data.data.map((item) => item.subscriber_id);
-    // console.log("Sub ID List ==> ", chatIds);
-
-    // console.log("ressss===>>>> ", response.data);
-    // return response.data;
     return {
       status: response.data.status,
       data: response.data.subscribers,
@@ -156,18 +125,16 @@ export const getDataFromChatId = async (data) => {
       events: response.data.events,
     };
   } catch (error) {
-    console.error("Error in Get Sub Ids ======>>>>> ", error);
+    logError("Error in Get data from ChatID API =====>?>>>>>",error)
     return { status: false, data: null };
   }
 };
 
 export const deleteChatId = async (chatID, SubID) => {
   try {
-    // console.log("get subId Para -=--=>", data);
     const form = new FormData();
     form.append("chat_id", chatID);
     form.append("subscriber_id", SubID);
-    // console.log("Form in Get Sub Id ==:> ", form);
     const response = await axios.post(
       "https://thecrypto360.com/notifier_bot/deletechat.php",
       form,
@@ -175,10 +142,9 @@ export const deleteChatId = async (chatID, SubID) => {
         headers: { "Content-Type": "multipart/form-data" },
       }
     );
-    // return response.data;
     return response;
   } catch (error) {
-    console.error("Error in Delete chat Ids ======>>>>> ", error);
+    logError("Error in Delete data API =====>?>>>>>",error)
     return { status: false, data: "Not Found" };
   }
 };
