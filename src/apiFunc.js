@@ -25,7 +25,7 @@ export const checkChatid = async (data) => {
       return { status: false, data: null };
     }
   } catch (error) {
-    logError("Error Check data API =====>?>>>>>",error)
+    logError("Error Check data API =====>?>>>>>", error);
     return { status: false, data: null };
   }
 };
@@ -51,7 +51,7 @@ export const editData = async (data) => {
       return { status: false, data: null };
     }
   } catch (error) {
-    logError("Error in Edite data API =====>?>>>>>",error)
+    logError("Error in Edite data API =====>?>>>>>", error);
     return { status: false, data: null };
   }
 };
@@ -80,7 +80,7 @@ export const insertData = async (data) => {
       return { status: false, data: null };
     }
   } catch (error) {
-    logError("Error in Insert data API =====>?>>>>>",error)
+    logError("Error in Insert data API =====>?>>>>>", error);
     return { status: false, data: null };
   }
 };
@@ -98,10 +98,10 @@ export const getChatIdFromSubID = async (data) => {
     );
 
     const chatIds = response.data.data.map((item) => item.chat_id);
-    
+
     return chatIds;
   } catch (error) {
-    logError("Error in Get ChatID from SubId  API =====>?>>>>>",error)
+    logError("Error in Get ChatID from SubId  API =====>?>>>>>", error);
     return { status: false, data: null };
   }
 };
@@ -125,7 +125,7 @@ export const getDataFromChatId = async (data) => {
       events: response.data.events,
     };
   } catch (error) {
-    logError("Error in Get data from ChatID API =====>?>>>>>",error)
+    logError("Error in Get data from ChatID API =====>?>>>>>", error);
     return { status: false, data: null };
   }
 };
@@ -144,7 +144,7 @@ export const deleteChatId = async (chatID, SubID) => {
     );
     return response;
   } catch (error) {
-    logError("Error in Delete data API =====>?>>>>>",error)
+    logError("Error in Delete data API =====>?>>>>>", error);
     return { status: false, data: "Not Found" };
   }
 };

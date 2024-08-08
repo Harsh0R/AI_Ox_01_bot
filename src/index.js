@@ -12,7 +12,7 @@ import { ethers } from "ethers";
 import logError from "./logger.js";
 import "dotenv/config";
 
-const bot = new Telegraf(process.env.TELEGRAM_URL);
+const bot = new Telegraf(process.env.TELEGRAF_TOKEN);
 
 const LANGUAGE_MODE_CONST = {
   english: "EN",
@@ -43,6 +43,28 @@ let SUB_EVENT_ARR = [];
 let SubIdAndChatId = {};
 let MyAllSubIds = [];
 
+let preMsg = ''
+let preMsgRe = ''
+let preMsgTP = ''
+
+//#region Contract Events
+
+async function sendMessage(chatId, message) {
+  try {
+    await bot.telegram.sendMessage(chatId, message, {
+      parse_mode: "HTML",
+    });
+  } catch (error) {
+    logError(`Failed to send message to chat ID ${chatId}:`, error);
+    console.error(`Failed to send message to chat ID ${chatId}:`, error);
+  }
+}
+
+function toEth(amount, decimal = 18) {
+  const toEth = ethers.utils.formatUnits(amount, decimal);
+  return toEth.toString();
+}
+
 const ListenerFunction = async () => {
   try {
     const toNumber = (bigNumber) => ethers.BigNumber.from(bigNumber).toNumber();
@@ -63,7 +85,7 @@ const ListenerFunction = async () => {
       let events = (await getDataFromChatId(chatId)).events;
       let MyAllSubIds = (await getDataFromChatId(chatId)).data;
       let fleg = true;
-      if (events) {
+      if (events && MyAllSubIds) {
         for (let index = 0; index < events.length; index++) {
           // console.log("All sub Array => ", MyAllSubIds);
           if (MyAllSubIds[index] == subId) {
@@ -79,6 +101,16 @@ const ListenerFunction = async () => {
     oxInstance.on(
       "Registration",
       async (newUserId, orignalRefId, currentRefId, time) => {
+        // const chatIds = SubIdAndChatId[subId];
+        const message = `
+                ID ${toNumber(orignalRefId)}: You've got a new partner!
+                \nYour new partner received ID ${toNumber(newUserId)}.
+                `;
+                if (preMsgRe != message) {
+                  logAndSendMessage(CHATID, "Registration", message);
+                  preMsgRe = message;
+                }
+
         MyAllSubIds.forEach((subId) => {
           const chatIds = SubIdAndChatId[subId];
           if (chatIds && isEventActive(subId, "New Partner")) {
@@ -117,6 +149,17 @@ const ListenerFunction = async () => {
     oxInstance.on(
       "TreePayout",
       async (receiverId, senderId, matrix, level, amount, time) => {
+        const message = `ID ${toNumber(receiverId)}: ➕${toEth(amount)} OC  
+        Level: ${toNumber(level)}
+        From partner: ID ${toNumber(senderId)} 
+        <a href="https://polygonscan.com/address/0x865Ec7e50872B0Fd5322640fA41920d515B2f4e6">[See transaction]</a>
+        `;
+
+        if (preMsgTP != message) {
+          logAndSendMessage(CHATID, "TreePayout", message);
+          preMsgTP = message
+        }
+
         MyAllSubIds.forEach((subId) => {
           const chatIds = SubIdAndChatId[subId];
           if (chatIds && isEventActive(subId, "Place Activation")) {
@@ -253,6 +296,20 @@ const ListenerFunction = async () => {
     oxInstance.on(
       "Upgrade",
       async (msgSenderId, orignalRefId, currentRefId, level, time) => {
+
+
+        const message = `msgSenderId => ${toNumber(
+          msgSenderId
+        )} | orignalRefId => ${toNumber(
+          orignalRefId
+        )} | Level => ${toNumber(level)} | currentRefId => ${toNumber(
+          currentRefId
+        )}`;
+        if (preMsg != message) {
+          logAndSendMessage(CHATID, "Upgrade", message);
+          preMsg = message
+        }
+
         MyAllSubIds.forEach((subId) => {
           const chatIds = SubIdAndChatId[subId];
           if (chatIds && isEventActive(subId, "Upgrade")) {
@@ -280,24 +337,6 @@ const ListenerFunction = async () => {
   }
 };
 
-//#region Contract Events 2.0
-
-async function sendMessage(chatId, message) {
-  try {
-    await bot.telegram.sendMessage(chatId, message, {
-      parse_mode: "HTML",
-    });
-  } catch (error) {
-    logError(`Failed to send message to chat ID ${chatId}:`, error);
-    console.error(`Failed to send message to chat ID ${chatId}:`, error);
-  }
-}
-
-function toEth(amount, decimal = 18) {
-  const toEth = ethers.utils.formatUnits(amount, decimal);
-  return toEth.toString();
-}
-
 // region Bot region
 
 const defaultMenu = Markup.keyboard([["Accounts", "Settings"]]).resize();
@@ -307,7 +346,7 @@ bot.start(async (ctx) => {
     CHATID = ctx.from.id;
     userState.chatId = ctx.from.id;
     let res = await checkChatid(ctx.from.id);
-   
+
     if (res == 200) {
       let language = (await getDataFromChatId(ctx.from.id)).language;
       userState.language = language;

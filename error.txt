@@ -254,3 +254,614 @@ AxiosError: Request failed with status code 404
     at async execute (C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\composer.js:518:17)
     at async C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\composer.js:519:21
 
+[2024-08-08T06:46:57.242Z] Error Check data API =====>?>>>>>
+ReferenceError: data is not defined
+    at getData (file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/src/apiFunc.js:9:28)
+    at file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/src/index.js:311:5
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async execute (C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\composer.js:518:17)
+    at async C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\composer.js:518:17)
+    at async execute (C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\composer.js:518:17)
+    at async execute (C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\composer.js:518:17)
+    at async execute (C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\composer.js:518:17)
+    at async execute (C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\composer.js:518:17)
+
+[2024-08-08T06:47:14.291Z] Error Check data API =====>?>>>>>
+ReferenceError: data is not defined
+    at getData (file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/src/apiFunc.js:9:28)
+    at file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/src/index.js:311:11
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async execute (C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\composer.js:518:17)
+    at async C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\composer.js:518:17)
+    at async execute (C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\composer.js:518:17)
+    at async execute (C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\composer.js:518:17)
+    at async execute (C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\composer.js:518:17)
+    at async execute (C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\composer.js:518:17)
+
+[2024-08-08T13:33:50.717Z] Error in Get data from ChatID API =====>?>>>>>
+Error: read ECONNRESET
+    at AxiosError.from (file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/node_modules/axios/lib/core/AxiosError.js:89:14)
+    at RedirectableRequest.handleRequestError (file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/node_modules/axios/lib/adapters/http.js:620:25)
+    at RedirectableRequest.emit (node:events:518:28)
+    at eventHandlers.<computed> (C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\follow-redirects\index.js:38:24)
+    at ClientRequest.emit (node:events:518:28)
+    at TLSSocket.socketErrorListener (node:_http_client:495:9)
+    at TLSSocket.emit (node:events:518:28)
+    at emitErrorNT (node:internal/streams/destroy:169:8)
+    at emitErrorCloseNT (node:internal/streams/destroy:128:3)
+    at process.processTicksAndRejections (node:internal/process/task_queues:82:21)
+    at Axios.request (file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/node_modules/axios/lib/core/Axios.js:45:41)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getDataFromChatId (file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/src/apiFunc.js:113:22)
+    at async file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/src/index.js:493:19
+    at async execute (C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\composer.js:518:17)
+    at async C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\composer.js:518:17)
+    at async C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\composer.js:518:17)
+    at async C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\composer.js:519:21
+
+[2024-08-08T13:34:24.298Z] Error in Get data from ChatID API =====>?>>>>>
+Error: read ECONNRESET
+    at AxiosError.from (file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/node_modules/axios/lib/core/AxiosError.js:89:14)
+    at RedirectableRequest.handleRequestError (file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/node_modules/axios/lib/adapters/http.js:620:25)
+    at RedirectableRequest.emit (node:events:518:28)
+    at eventHandlers.<computed> (C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\follow-redirects\index.js:38:24)
+    at ClientRequest.emit (node:events:518:28)
+    at TLSSocket.socketErrorListener (node:_http_client:495:9)
+    at TLSSocket.emit (node:events:518:28)
+    at emitErrorNT (node:internal/streams/destroy:169:8)
+    at emitErrorCloseNT (node:internal/streams/destroy:128:3)
+    at process.processTicksAndRejections (node:internal/process/task_queues:82:21)
+    at Axios.request (file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/node_modules/axios/lib/core/Axios.js:45:41)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getDataFromChatId (file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/src/apiFunc.js:113:22)
+    at async file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/src/index.js:493:19
+    at async execute (C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\composer.js:518:17)
+    at async C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\composer.js:518:17)
+    at async C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\composer.js:518:17)
+    at async C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\composer.js:519:21
+
+[2024-08-08T13:36:18.532Z] Failed to send message to chat ID 5440753121:
+Error: 400: Bad Request: chat not found
+    at Telegram.callApi (C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\core\network\client.js:315:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async sendMessage (file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/src/index.js:50:5)
+
+[2024-08-08T13:36:18.539Z] Failed to send message to chat ID 5440753121:
+Error: 400: Bad Request: chat not found
+    at Telegram.callApi (C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\core\network\client.js:315:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async sendMessage (file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/src/index.js:50:5)
+
+[2024-08-08T13:36:18.537Z] Failed to send message to chat ID 5440753121:
+Error: 400: Bad Request: chat not found
+    at Telegram.callApi (C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\core\network\client.js:315:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async sendMessage (file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/src/index.js:50:5)
+
+[2024-08-08T13:36:18.544Z] Failed to send message to chat ID 5440753121:
+Error: 400: Bad Request: chat not found
+    at Telegram.callApi (C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\core\network\client.js:315:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async sendMessage (file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/src/index.js:50:5)
+
+[2024-08-08T13:36:18.549Z] Failed to send message to chat ID 526240270:
+Error: 400: Bad Request: chat not found
+    at Telegram.callApi (C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\core\network\client.js:315:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async sendMessage (file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/src/index.js:50:5)
+
+[2024-08-08T13:36:18.553Z] Failed to send message to chat ID 526240270:
+Error: 400: Bad Request: chat not found
+    at Telegram.callApi (C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\core\network\client.js:315:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async sendMessage (file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/src/index.js:50:5)
+
+[2024-08-08T13:36:18.564Z] Failed to send message to chat ID 526240270:
+Error: 400: Bad Request: chat not found
+    at Telegram.callApi (C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\core\network\client.js:315:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async sendMessage (file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/src/index.js:50:5)
+
+[2024-08-08T13:36:18.571Z] Failed to send message to chat ID 526240270:
+Error: 400: Bad Request: chat not found
+    at Telegram.callApi (C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\core\network\client.js:315:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async sendMessage (file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/src/index.js:50:5)
+
+[2024-08-08T13:36:21.798Z] Failed to send message to chat ID 5440753121:
+Error: 400: Bad Request: chat not found
+    at Telegram.callApi (C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\core\network\client.js:315:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async sendMessage (file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/src/index.js:50:5)
+
+[2024-08-08T13:36:21.801Z] Failed to send message to chat ID 526240270:
+Error: 400: Bad Request: chat not found
+    at Telegram.callApi (C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\core\network\client.js:315:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async sendMessage (file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/src/index.js:50:5)
+
+[2024-08-08T13:36:21.803Z] Failed to send message to chat ID 5440753121:
+Error: 400: Bad Request: chat not found
+    at Telegram.callApi (C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\core\network\client.js:315:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async sendMessage (file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/src/index.js:50:5)
+
+[2024-08-08T13:36:21.805Z] Failed to send message to chat ID 526240270:
+Error: 400: Bad Request: chat not found
+    at Telegram.callApi (C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\core\network\client.js:315:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async sendMessage (file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/src/index.js:50:5)
+
+[2024-08-08T13:36:21.807Z] Failed to send message to chat ID 526240270:
+Error: 400: Bad Request: chat not found
+    at Telegram.callApi (C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\core\network\client.js:315:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async sendMessage (file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/src/index.js:50:5)
+
+[2024-08-08T13:36:21.811Z] Failed to send message to chat ID 526240270:
+Error: 400: Bad Request: chat not found
+    at Telegram.callApi (C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\core\network\client.js:315:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async sendMessage (file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/src/index.js:50:5)
+
+[2024-08-08T13:36:21.809Z] Failed to send message to chat ID 5440753121:
+Error: 400: Bad Request: chat not found
+    at Telegram.callApi (C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\core\network\client.js:315:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async sendMessage (file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/src/index.js:50:5)
+
+[2024-08-08T13:36:21.816Z] Failed to send message to chat ID 5440753121:
+Error: 400: Bad Request: chat not found
+    at Telegram.callApi (C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\core\network\client.js:315:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async sendMessage (file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/src/index.js:50:5)
+
+[2024-08-08T13:36:24.082Z] Failed to send message to chat ID 5440753121:
+Error: 400: Bad Request: chat not found
+    at Telegram.callApi (C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\core\network\client.js:315:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async sendMessage (file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/src/index.js:50:5)
+
+[2024-08-08T13:36:24.088Z] Failed to send message to chat ID 526240270:
+Error: 400: Bad Request: chat not found
+    at Telegram.callApi (C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\core\network\client.js:315:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async sendMessage (file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/src/index.js:50:5)
+
+[2024-08-08T13:36:24.085Z] Failed to send message to chat ID 5440753121:
+Error: 400: Bad Request: chat not found
+    at Telegram.callApi (C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\core\network\client.js:315:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async sendMessage (file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/src/index.js:50:5)
+
+[2024-08-08T13:36:24.087Z] Failed to send message to chat ID 5440753121:
+Error: 400: Bad Request: chat not found
+    at Telegram.callApi (C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\core\network\client.js:315:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async sendMessage (file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/src/index.js:50:5)
+
+[2024-08-08T13:36:24.090Z] Failed to send message to chat ID 5440753121:
+Error: 400: Bad Request: chat not found
+    at Telegram.callApi (C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\core\network\client.js:315:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async sendMessage (file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/src/index.js:50:5)
+
+[2024-08-08T13:36:24.093Z] Failed to send message to chat ID 526240270:
+Error: 400: Bad Request: chat not found
+    at Telegram.callApi (C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\core\network\client.js:315:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async sendMessage (file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/src/index.js:50:5)
+
+[2024-08-08T13:36:24.095Z] Failed to send message to chat ID 526240270:
+Error: 400: Bad Request: chat not found
+    at Telegram.callApi (C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\core\network\client.js:315:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async sendMessage (file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/src/index.js:50:5)
+
+[2024-08-08T13:36:24.266Z] Failed to send message to chat ID 526240270:
+Error: 400: Bad Request: chat not found
+    at Telegram.callApi (C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\core\network\client.js:315:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async sendMessage (file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/src/index.js:50:5)
+
+[2024-08-08T13:36:59.604Z] Failed to send message to chat ID 526240270:
+Error: 400: Bad Request: chat not found
+    at Telegram.callApi (C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\core\network\client.js:315:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async sendMessage (file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/src/index.js:50:5)
+
+[2024-08-08T13:36:59.608Z] Failed to send message to chat ID 5440753121:
+Error: 400: Bad Request: chat not found
+    at Telegram.callApi (C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\core\network\client.js:315:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async sendMessage (file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/src/index.js:50:5)
+
+[2024-08-08T13:36:59.610Z] Failed to send message to chat ID 5440753121:
+Error: 400: Bad Request: chat not found
+    at Telegram.callApi (C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\core\network\client.js:315:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async sendMessage (file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/src/index.js:50:5)
+
+[2024-08-08T13:36:59.615Z] Failed to send message to chat ID 526240270:
+Error: 400: Bad Request: chat not found
+    at Telegram.callApi (C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\core\network\client.js:315:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async sendMessage (file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/src/index.js:50:5)
+
+[2024-08-08T13:36:59.613Z] Failed to send message to chat ID 5440753121:
+Error: 400: Bad Request: chat not found
+    at Telegram.callApi (C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\core\network\client.js:315:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async sendMessage (file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/src/index.js:50:5)
+
+[2024-08-08T13:36:59.612Z] Failed to send message to chat ID 526240270:
+Error: 400: Bad Request: chat not found
+    at Telegram.callApi (C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\core\network\client.js:315:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async sendMessage (file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/src/index.js:50:5)
+
+[2024-08-08T13:36:59.617Z] Failed to send message to chat ID 5440753121:
+Error: 400: Bad Request: chat not found
+    at Telegram.callApi (C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\core\network\client.js:315:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async sendMessage (file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/src/index.js:50:5)
+
+[2024-08-08T13:36:59.619Z] Failed to send message to chat ID 526240270:
+Error: 400: Bad Request: chat not found
+    at Telegram.callApi (C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\core\network\client.js:315:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async sendMessage (file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/src/index.js:50:5)
+
+[2024-08-08T13:37:04.206Z] Failed to send message to chat ID 526240270:
+Error: 400: Bad Request: chat not found
+    at Telegram.callApi (C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\core\network\client.js:315:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async sendMessage (file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/src/index.js:50:5)
+
+[2024-08-08T13:37:04.210Z] Failed to send message to chat ID 526240270:
+Error: 400: Bad Request: chat not found
+    at Telegram.callApi (C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\core\network\client.js:315:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async sendMessage (file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/src/index.js:50:5)
+
+[2024-08-08T13:37:04.214Z] Failed to send message to chat ID 526240270:
+Error: 400: Bad Request: chat not found
+    at Telegram.callApi (C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\core\network\client.js:315:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async sendMessage (file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/src/index.js:50:5)
+
+[2024-08-08T13:37:04.222Z] Failed to send message to chat ID 526240270:
+Error: 400: Bad Request: chat not found
+    at Telegram.callApi (C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\core\network\client.js:315:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async sendMessage (file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/src/index.js:50:5)
+
+[2024-08-08T13:37:04.226Z] Failed to send message to chat ID 5440753121:
+Error: 400: Bad Request: chat not found
+    at Telegram.callApi (C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\core\network\client.js:315:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async sendMessage (file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/src/index.js:50:5)
+
+[2024-08-08T13:37:04.231Z] Failed to send message to chat ID 5440753121:
+Error: 400: Bad Request: chat not found
+    at Telegram.callApi (C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\core\network\client.js:315:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async sendMessage (file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/src/index.js:50:5)
+
+[2024-08-08T13:37:04.232Z] Failed to send message to chat ID 5440753121:
+Error: 400: Bad Request: chat not found
+    at Telegram.callApi (C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\core\network\client.js:315:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async sendMessage (file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/src/index.js:50:5)
+
+[2024-08-08T13:37:04.239Z] Failed to send message to chat ID 5440753121:
+Error: 400: Bad Request: chat not found
+    at Telegram.callApi (C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\core\network\client.js:315:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async sendMessage (file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/src/index.js:50:5)
+
+[2024-08-08T13:46:16.856Z] Error in Get data from ChatID API =====>?>>>>>
+Error: read ECONNRESET
+    at AxiosError.from (file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/node_modules/axios/lib/core/AxiosError.js:89:14)
+    at RedirectableRequest.handleRequestError (file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/node_modules/axios/lib/adapters/http.js:620:25)
+    at RedirectableRequest.emit (node:events:518:28)
+    at eventHandlers.<computed> (C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\follow-redirects\index.js:38:24)
+    at ClientRequest.emit (node:events:518:28)
+    at TLSSocket.socketErrorListener (node:_http_client:495:9)
+    at TLSSocket.emit (node:events:518:28)
+    at emitErrorNT (node:internal/streams/destroy:169:8)
+    at emitErrorCloseNT (node:internal/streams/destroy:128:3)
+    at process.processTicksAndRejections (node:internal/process/task_queues:82:21)
+    at Axios.request (file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/node_modules/axios/lib/core/Axios.js:45:41)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getDataFromChatId (file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/src/apiFunc.js:113:22)
+    at async file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/src/index.js:547:19
+    at async execute (C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\composer.js:518:17)
+    at async C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\composer.js:518:17)
+    at async C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\composer.js:518:17)
+    at async C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\composer.js:519:21
+
+[2024-08-08T13:47:00.029Z] Failed to send message to chat ID 526240270:
+Error: 400: Bad Request: chat not found
+    at Telegram.callApi (C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\core\network\client.js:315:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async sendMessage (file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/src/index.js:50:5)
+
+[2024-08-08T13:47:00.034Z] Failed to send message to chat ID 526240270:
+Error: 400: Bad Request: chat not found
+    at Telegram.callApi (C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\core\network\client.js:315:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async sendMessage (file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/src/index.js:50:5)
+
+[2024-08-08T13:47:00.038Z] Failed to send message to chat ID 526240270:
+Error: 400: Bad Request: chat not found
+    at Telegram.callApi (C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\core\network\client.js:315:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async sendMessage (file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/src/index.js:50:5)
+
+[2024-08-08T13:47:00.040Z] Failed to send message to chat ID 526240270:
+Error: 400: Bad Request: chat not found
+    at Telegram.callApi (C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\core\network\client.js:315:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async sendMessage (file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/src/index.js:50:5)
+
+[2024-08-08T13:47:00.187Z] Failed to send message to chat ID 5440753121:
+Error: 400: Bad Request: chat not found
+    at Telegram.callApi (C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\core\network\client.js:315:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async sendMessage (file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/src/index.js:50:5)
+
+[2024-08-08T13:47:00.192Z] Failed to send message to chat ID 5440753121:
+Error: 400: Bad Request: chat not found
+    at Telegram.callApi (C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\core\network\client.js:315:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async sendMessage (file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/src/index.js:50:5)
+
+[2024-08-08T13:47:00.194Z] Failed to send message to chat ID 5440753121:
+Error: 400: Bad Request: chat not found
+    at Telegram.callApi (C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\core\network\client.js:315:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async sendMessage (file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/src/index.js:50:5)
+
+[2024-08-08T13:47:00.199Z] Failed to send message to chat ID 5440753121:
+Error: 400: Bad Request: chat not found
+    at Telegram.callApi (C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\core\network\client.js:315:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async sendMessage (file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/src/index.js:50:5)
+
+[2024-08-08T13:47:14.063Z] Failed to send message to chat ID 5440753121:
+Error: 400: Bad Request: chat not found
+    at Telegram.callApi (C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\core\network\client.js:315:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async sendMessage (file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/src/index.js:50:5)
+
+[2024-08-08T13:47:14.066Z] Failed to send message to chat ID 5440753121:
+Error: 400: Bad Request: chat not found
+    at Telegram.callApi (C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\core\network\client.js:315:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async sendMessage (file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/src/index.js:50:5)
+
+[2024-08-08T13:47:14.068Z] Failed to send message to chat ID 5440753121:
+Error: 400: Bad Request: chat not found
+    at Telegram.callApi (C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\core\network\client.js:315:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async sendMessage (file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/src/index.js:50:5)
+
+[2024-08-08T13:47:14.074Z] Failed to send message to chat ID 5440753121:
+Error: 400: Bad Request: chat not found
+    at Telegram.callApi (C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\core\network\client.js:315:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async sendMessage (file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/src/index.js:50:5)
+
+[2024-08-08T13:47:14.075Z] Failed to send message to chat ID 526240270:
+Error: 400: Bad Request: chat not found
+    at Telegram.callApi (C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\core\network\client.js:315:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async sendMessage (file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/src/index.js:50:5)
+
+[2024-08-08T13:47:14.078Z] Failed to send message to chat ID 526240270:
+Error: 400: Bad Request: chat not found
+    at Telegram.callApi (C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\core\network\client.js:315:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async sendMessage (file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/src/index.js:50:5)
+
+[2024-08-08T13:47:14.080Z] Failed to send message to chat ID 526240270:
+Error: 400: Bad Request: chat not found
+    at Telegram.callApi (C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\core\network\client.js:315:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async sendMessage (file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/src/index.js:50:5)
+
+[2024-08-08T13:47:14.083Z] Failed to send message to chat ID 526240270:
+Error: 400: Bad Request: chat not found
+    at Telegram.callApi (C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\core\network\client.js:315:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async sendMessage (file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/src/index.js:50:5)
+
+[2024-08-08T13:51:30.308Z] Failed to send message to chat ID 526240270:
+Error: 400: Bad Request: chat not found
+    at Telegram.callApi (C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\core\network\client.js:315:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async sendMessage (file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/src/index.js:50:5)
+
+[2024-08-08T13:51:30.311Z] Failed to send message to chat ID 5440753121:
+Error: 400: Bad Request: chat not found
+    at Telegram.callApi (C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\core\network\client.js:315:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async sendMessage (file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/src/index.js:50:5)
+
+[2024-08-08T13:51:30.313Z] Failed to send message to chat ID 5440753121:
+Error: 400: Bad Request: chat not found
+    at Telegram.callApi (C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\core\network\client.js:315:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async sendMessage (file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/src/index.js:50:5)
+
+[2024-08-08T13:51:30.314Z] Failed to send message to chat ID 526240270:
+Error: 400: Bad Request: chat not found
+    at Telegram.callApi (C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\core\network\client.js:315:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async sendMessage (file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/src/index.js:50:5)
+
+[2024-08-08T13:51:30.316Z] Failed to send message to chat ID 526240270:
+Error: 400: Bad Request: chat not found
+    at Telegram.callApi (C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\core\network\client.js:315:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async sendMessage (file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/src/index.js:50:5)
+
+[2024-08-08T13:51:30.318Z] Failed to send message to chat ID 5440753121:
+Error: 400: Bad Request: chat not found
+    at Telegram.callApi (C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\core\network\client.js:315:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async sendMessage (file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/src/index.js:50:5)
+
+[2024-08-08T13:51:30.334Z] Failed to send message to chat ID 526240270:
+Error: 400: Bad Request: chat not found
+    at Telegram.callApi (C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\core\network\client.js:315:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async sendMessage (file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/src/index.js:50:5)
+
+[2024-08-08T13:51:30.347Z] Failed to send message to chat ID 5440753121:
+Error: 400: Bad Request: chat not found
+    at Telegram.callApi (C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\core\network\client.js:315:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async sendMessage (file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/src/index.js:50:5)
+
+[2024-08-08T13:51:37.531Z] Failed to send message to chat ID 526240270:
+Error: 400: Bad Request: chat not found
+    at Telegram.callApi (C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\core\network\client.js:315:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async sendMessage (file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/src/index.js:50:5)
+
+[2024-08-08T13:51:37.534Z] Failed to send message to chat ID 526240270:
+Error: 400: Bad Request: chat not found
+    at Telegram.callApi (C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\core\network\client.js:315:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async sendMessage (file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/src/index.js:50:5)
+
+[2024-08-08T13:51:37.536Z] Failed to send message to chat ID 526240270:
+Error: 400: Bad Request: chat not found
+    at Telegram.callApi (C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\core\network\client.js:315:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async sendMessage (file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/src/index.js:50:5)
+
+[2024-08-08T13:51:37.542Z] Failed to send message to chat ID 526240270:
+Error: 400: Bad Request: chat not found
+    at Telegram.callApi (C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\core\network\client.js:315:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async sendMessage (file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/src/index.js:50:5)
+
+[2024-08-08T13:51:37.552Z] Failed to send message to chat ID 5440753121:
+Error: 400: Bad Request: chat not found
+    at Telegram.callApi (C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\core\network\client.js:315:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async sendMessage (file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/src/index.js:50:5)
+
+[2024-08-08T13:51:37.551Z] Failed to send message to chat ID 5440753121:
+Error: 400: Bad Request: chat not found
+    at Telegram.callApi (C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\core\network\client.js:315:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async sendMessage (file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/src/index.js:50:5)
+
+[2024-08-08T13:51:37.556Z] Failed to send message to chat ID 5440753121:
+Error: 400: Bad Request: chat not found
+    at Telegram.callApi (C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\core\network\client.js:315:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async sendMessage (file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/src/index.js:50:5)
+
+[2024-08-08T13:51:37.559Z] Failed to send message to chat ID 5440753121:
+Error: 400: Bad Request: chat not found
+    at Telegram.callApi (C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\core\network\client.js:315:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async sendMessage (file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/src/index.js:50:5)
+
+[2024-08-08T13:51:40.956Z] Failed to send message to chat ID 526240270:
+Error: 400: Bad Request: chat not found
+    at Telegram.callApi (C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\core\network\client.js:315:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async sendMessage (file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/src/index.js:50:5)
+
+[2024-08-08T13:51:40.970Z] Failed to send message to chat ID 5440753121:
+Error: 400: Bad Request: chat not found
+    at Telegram.callApi (C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\core\network\client.js:315:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async sendMessage (file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/src/index.js:50:5)
+
+[2024-08-08T13:51:50.579Z] Failed to send message to chat ID 5440753121:
+Error: 400: Bad Request: chat not found
+    at Telegram.callApi (C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\core\network\client.js:315:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async sendMessage (file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/src/index.js:50:5)
+
+[2024-08-08T13:51:50.581Z] Failed to send message to chat ID 526240270:
+Error: 400: Bad Request: chat not found
+    at Telegram.callApi (C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\core\network\client.js:315:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async sendMessage (file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/src/index.js:50:5)
+
+[2024-08-08T13:51:56.656Z] Failed to send message to chat ID 526240270:
+Error: 400: Bad Request: chat not found
+    at Telegram.callApi (C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\core\network\client.js:315:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async sendMessage (file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/src/index.js:50:5)
+
+[2024-08-08T13:51:56.658Z] Failed to send message to chat ID 526240270:
+Error: 400: Bad Request: chat not found
+    at Telegram.callApi (C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\core\network\client.js:315:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async sendMessage (file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/src/index.js:50:5)
+
+[2024-08-08T13:51:56.660Z] Failed to send message to chat ID 526240270:
+Error: 400: Bad Request: chat not found
+    at Telegram.callApi (C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\core\network\client.js:315:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async sendMessage (file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/src/index.js:50:5)
+
+[2024-08-08T13:51:56.669Z] Failed to send message to chat ID 526240270:
+Error: 400: Bad Request: chat not found
+    at Telegram.callApi (C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\core\network\client.js:315:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async sendMessage (file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/src/index.js:50:5)
+
+[2024-08-08T13:51:56.908Z] Failed to send message to chat ID 5440753121:
+Error: 400: Bad Request: chat not found
+    at Telegram.callApi (C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\core\network\client.js:315:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async sendMessage (file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/src/index.js:50:5)
+
+[2024-08-08T13:51:56.916Z] Failed to send message to chat ID 5440753121:
+Error: 400: Bad Request: chat not found
+    at Telegram.callApi (C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\core\network\client.js:315:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async sendMessage (file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/src/index.js:50:5)
+
+[2024-08-08T13:51:56.919Z] Failed to send message to chat ID 5440753121:
+Error: 400: Bad Request: chat not found
+    at Telegram.callApi (C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\core\network\client.js:315:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async sendMessage (file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/src/index.js:50:5)
+
+[2024-08-08T13:51:56.936Z] Failed to send message to chat ID 5440753121:
+Error: 400: Bad Request: chat not found
+    at Telegram.callApi (C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\core\network\client.js:315:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async sendMessage (file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/src/index.js:50:5)
+
+[2024-08-08T13:51:57.824Z] Failed to send message to chat ID 526240270:
+Error: 400: Bad Request: chat not found
+    at Telegram.callApi (C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\core\network\client.js:315:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async sendMessage (file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/src/index.js:50:5)
+
+[2024-08-08T13:51:57.834Z] Failed to send message to chat ID 5440753121:
+Error: 400: Bad Request: chat not found
+    at Telegram.callApi (C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\core\network\client.js:315:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async sendMessage (file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/src/index.js:50:5)
+
