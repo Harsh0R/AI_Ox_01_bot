@@ -29,23 +29,23 @@ const EVENTS_ARR = [
   "Place Activation",
   "Upgrade",
   "Reinvest",
-  "Missed, Disabled Lavel",
+  "Missed, Disabled Level",
   "New Partner",
 ];
 const EVENTS_ARR_THAI = [
   "การเปิดใช้งานตำแหน่ง",
   "การอัปเกรด",
   "การลงทุนซ้ำ",
-  "ระดับที่พลาดหรือปิดการใช้งาน",
+  "พลาด, ระดับผู้พิการ",
   "พันธมิตรใหม่",
 ];
 let SUB_EVENT_ARR = [];
 let SubIdAndChatId = {};
 let MyAllSubIds = [];
 
-let preMsg = ''
-let preMsgRe = ''
-let preMsgTP = ''
+let preMsg = "";
+let preMsgRe = "";
+let preMsgTP = "";
 
 //#region Contract Events
 
@@ -67,6 +67,8 @@ function toEth(amount, decimal = 18) {
 
 const ListenerFunction = async () => {
   try {
+    console.log("Events listening....");
+    
     const toNumber = (bigNumber) => ethers.BigNumber.from(bigNumber).toNumber();
     const logAndSendMessage = (chatId, eventType, message) => {
       sendMessage(chatId, `${eventType} :: ${message}`);
@@ -106,10 +108,10 @@ const ListenerFunction = async () => {
                 ID ${toNumber(orignalRefId)}: You've got a new partner!
                 \nYour new partner received ID ${toNumber(newUserId)}.
                 `;
-                if (preMsgRe != message) {
-                  logAndSendMessage(CHATID, "Registration", message);
-                  preMsgRe = message;
-                }
+        if (preMsgRe != message) {
+          logAndSendMessage(CHATID, "Registration", message);
+          preMsgRe = message;
+        }
 
         MyAllSubIds.forEach((subId) => {
           const chatIds = SubIdAndChatId[subId];
@@ -154,10 +156,11 @@ const ListenerFunction = async () => {
         From partner: ID ${toNumber(senderId)} 
         <a href="https://polygonscan.com/address/0x865Ec7e50872B0Fd5322640fA41920d515B2f4e6">[See transaction]</a>
         `;
-
+        console.log("Treepayout >>>>> " , message);
+        
         if (preMsgTP != message) {
           logAndSendMessage(CHATID, "TreePayout", message);
-          preMsgTP = message
+          preMsgTP = message;
         }
 
         MyAllSubIds.forEach((subId) => {
@@ -296,18 +299,14 @@ const ListenerFunction = async () => {
     oxInstance.on(
       "Upgrade",
       async (msgSenderId, orignalRefId, currentRefId, level, time) => {
-
-
         const message = `msgSenderId => ${toNumber(
           msgSenderId
-        )} | orignalRefId => ${toNumber(
-          orignalRefId
-        )} | Level => ${toNumber(level)} | currentRefId => ${toNumber(
-          currentRefId
-        )}`;
+        )} | orignalRefId => ${toNumber(orignalRefId)} | Level => ${toNumber(
+          level
+        )} | currentRefId => ${toNumber(currentRefId)}`;
         if (preMsg != message) {
           logAndSendMessage(CHATID, "Upgrade", message);
-          preMsg = message
+          preMsg = message;
         }
 
         MyAllSubIds.forEach((subId) => {
@@ -345,7 +344,10 @@ bot.start(async (ctx) => {
   try {
     CHATID = ctx.from.id;
     userState.chatId = ctx.from.id;
+    let username = ctx.from.username;
     let res = await checkChatid(ctx.from.id);
+
+    // console.log("ctx ==|>" , ctx.from.username);
 
     if (res == 200) {
       let language = (await getDataFromChatId(ctx.from.id)).language;
@@ -357,10 +359,7 @@ bot.start(async (ctx) => {
           defaultMenu
         );
       } else {
-        await ctx.reply(
-          "You are already registered. \nEnter your wallet / ID :",
-          defaultMenu
-        );
+        await ctx.reply("Enter your OxCashID or wallet", defaultMenu);
       }
 
       MyAllSubIds = (await getDataFromChatId(ctx.from.id)).data;
@@ -390,20 +389,19 @@ bot.start(async (ctx) => {
 });
 
 const handleLanguageSelection = async (ctx, language) => {
+  let username = ctx.from.first_name;
   userState.chatId = ctx.from.id;
   userState.language = language;
-  // console.log("user.lang ==>", userState.language);
+  // console.log("user.lang ==>", ctx.from);
 
   const messages = {
     [LANGUAGE_MODE_CONST.english]: {
-      reply: "✅ Changes were successfully accepted",
-      welcome:
-        "Welcome!! \ntelegram bot sends you instant free notifications \nabout making profits, registering new partners and other important events in your account and the entire ecosystem. \n\nTo start using all the features of the Telegram bot, subscribe to the official Telegram channel at the link below.",
+      reply: "Changes were successfully accepted",
+      welcome: `Welcome, ${username}!\n\nThis Telegram bot sends you instant free notifications about making profits, registering new partners and other important events in your account and the entire OxCash ecosystem. \n\nTo start using all the features of the Telegram bot, subscribe to the official Telegram channel at the link below.`,
     },
     [LANGUAGE_MODE_CONST.thai]: {
-      reply: "✅ การเปลี่ยนแปลงได้รับการยอมรับสำเร็จแล้ว",
-      welcome:
-        "ยินดีต้อนรับ!! \ntelegram bot จะส่งการแจ้งเตือนฟรีทันทีเกี่ยวกับการทำกำไร การลงทะเบียนพันธมิตรใหม่ และกิจกรรมสำคัญอื่นๆ ในบัญชีของคุณและระบบนิเวศทั้งหมด \n\nหากต้องการเริ่มใช้คุณสมบัติทั้งหมดของ Telegram bot ให้สมัครรับข้อมูลช่อง Telegram อย่างเป็นทางการที่ลิงก์ด้านล่าง",
+      reply: "การเปลี่ยนแปลงได้รับการยอมรับสำเร็จแล้ว",
+      welcome: `ยินดีต้อนรับ, ${username}! \n\nPer Telegram bot ส่งการแจ้งเตือนฟรีทันที \nabout การทำกำไร, การลงทะเบียนพันธมิตรใหม่และเหตุการณ์สำคัญอื่น ๆ ในบัญชีของคุณและระบบนิเวศ OxCash ทั้งหมด. \n\nTo เริ่มต้นใช้คุณสมบัติทั้งหมดของบอท Telegram, สมัครสมาชิกช่องทาง Telegram อย่างเป็นทางการที่ลิงค์ด้านล่าง.`,
     },
   };
 
@@ -436,7 +434,7 @@ const getSubscriptionButtons = (language) => {
   }
   return Markup.inlineKeyboard([
     [Markup.button.callback("subscribe @OurChannel", "add_subscription")],
-    [Markup.button.callback("I already subscribed", "add_subscription")],
+    [Markup.button.callback("I subscribed", "add_subscription")],
   ]);
 };
 
@@ -446,7 +444,7 @@ bot.action("add_subscription", async (ctx) => {
   const prompt =
     userState.language === LANGUAGE_MODE_CONST.thai
       ? "กรอกกระเป๋าสตางค์/รหัสประจำตัวของคุณ"
-      : "Enter your wallet/id";
+      : "Enter your OxCashID or wallet";
   await ctx.reply(prompt);
 });
 
@@ -457,6 +455,7 @@ bot.hears("Accounts", async (ctx) => {
     let allSubs = (await getDataFromChatId(ctx.from.id)).data;
     if (!Array.isArray(allSubs)) {
       // console.error("allSubs is not an array:", allSubs);
+      let btnErr = [Markup.button.callback("Add", "add_subscription")];
       if (language == "TH") {
         logError(
           "An error occurred fetching subscriptions.",
@@ -468,7 +467,11 @@ bot.hears("Accounts", async (ctx) => {
           "An error occurred fetching subscriptions.",
           'In bot.hears("Accounts")'
         );
-        return ctx.reply("No subscriptions found.");
+        await ctx.reply(
+          `Number of subscriptions : 0.\n\nClick on the ID you are interested in to configure the events filter.`,
+          Markup.inlineKeyboard(btnErr)
+        );
+        return;
       }
     }
 
@@ -485,7 +488,7 @@ bot.hears("Accounts", async (ctx) => {
       if (language == "TH") {
         err = `ไม่พบการสมัครสมาชิก.`;
       } else {
-        err = "No subscriptions found.";
+        err = `Number of subscriptions : 0.\n\nClick on the ID you are interested in to configure the events filter`;
       }
     }
     let idButtons;
@@ -551,9 +554,12 @@ const generateButtons = async (selectedID, eventsArr, language, chatId) => {
   }
 
   const evData = evDataResponse.events[count];
-
+  console.log("EVdata ====?>> ",evData);
+  
   const eventButtons = eventsArr.map((evnt) => {
     const isActive = evData[0][evnt];
+    console.log("flag ==> " , isActive);
+    
     const icon = isActive ? "✅" : "✔️";
     return Markup.button.callback(
       `${evnt} ${icon}`,
@@ -573,25 +579,32 @@ const generateButtons = async (selectedID, eventsArr, language, chatId) => {
 bot.action(/^ex_event_(.+)$/, async (ctx) => {
   const chatId = ctx.from.id;
   const selectedID = ctx.match[1];
+  let AllSubs = (await getDataFromChatId(chatId)).data;
   let language = (await getDataFromChatId(chatId)).language;
 
   let messageContent;
   let idButtons;
 
-  if (language === "TH") {
-    messageContent = `ปรับแต่งกิจกรรมของคุณสำหรับ ID ${selectedID} โดยเลือกเฉพาะกิจกรรมที่ถูกต้องเท่านั้น \n ✅ - เปิดใช้งาน \n ☑ - ไม่ได้เปิดใช้งาน`;
-    idButtons = await generateButtons(
-      selectedID,
-      EVENTS_ARR_THAI,
-      language,
-      chatId
-    );
+  if (AllSubs.includes(selectedID)) {
+    console.log(`ID ${selectedID} is present in AllSubs.`);
+    if (language === "TH") {
+      messageContent = `ปรับแต่งกิจกรรมของคุณสำหรับ ID ${selectedID} โดยเลือกเฉพาะกิจกรรมที่ถูกต้องเท่านั้น \n  - เปิดใช้งาน \n ☑ - ไม่ได้เปิดใช้งาน`;
+      idButtons = await generateButtons(
+        selectedID,
+        EVENTS_ARR_THAI,
+        language,
+        chatId
+      );
+    } else {
+      messageContent = `Personalize your event for ID ${selectedID} by selecting only the right ones. \n  - Activated \n ✔️ - Not Activated`;
+      idButtons = await generateButtons(selectedID, EVENTS_ARR, language, chatId);
+    }
+  
+    await ctx.reply(messageContent.trim(), Markup.inlineKeyboard(idButtons));
   } else {
-    messageContent = `Personalize your event for ID ${selectedID} by selecting only the right ones. \n ✅ - Activated \n ✔️ - Not Activated`;
-    idButtons = await generateButtons(selectedID, EVENTS_ARR, language, chatId);
+    await ctx.reply(`You are not subscribe to ${selectedID}`);
   }
 
-  await ctx.reply(messageContent.trim(), Markup.inlineKeyboard(idButtons));
 });
 
 bot.action(/^evnt_action_(.+)_(.+)$/, async (ctx) => {
@@ -646,8 +659,8 @@ bot.action(/^evnt_action_(.+)_(.+)$/, async (ctx) => {
   // Generate buttons based on the updated state and reply to the user
   await ctx.reply(
     language === "TH"
-      ? `ปรับแต่งกิจกรรมของคุณสำหรับ ID ${selectedID} โดยเลือกเฉพาะกิจกรรมที่ถูกต้องเท่านั้น \n ✅ - เปิดใช้งาน \n ☑ - ไม่ได้เปิดใช้งาน`
-      : `Personalize your event for ID ${selectedID} by selecting only the right ones. \n ✅ - Activated \n ✔️ - Not Activated.`,
+      ? `ปรับแต่งกิจกรรมของคุณสำหรับ ID ${selectedID} โดยเลือกเฉพาะกิจกรรมที่ถูกต้องเท่านั้น \n  - เปิดใช้งาน \n ☑ - ไม่ได้เปิดใช้งาน`
+      : `Personalize your event for ID ${selectedID} by selecting only the right ones. \n  - Activated \n ✔️ - Not Activated.`,
     Markup.inlineKeyboard(
       await generateButtons(
         selectedID,
@@ -712,7 +725,7 @@ bot.action(/^delete_id_(.+)$/, async (ctx) => {
     if (res.status) {
       await ctx.reply(msg);
     } else {
-      await ctx.reply(`❌ ${res.data}.`);
+      await ctx.reply(`❌Subscriber ID ${selectedId} ${res.data}.`);
     }
   } catch (error) {
     logError("Error After delete sub Ids ==> ", error);
@@ -738,7 +751,8 @@ bot.action("go_back", async (ctx) => {
     if (language == "TH") {
       err = `ไม่พบการสมัครสมาชิก.`;
     } else {
-      err = "No subscriptions found.";
+      err =
+        "Number of subscriptions : 0.\n\nClick on the ID you are interested in to configure the events filter.";
     }
   }
   try {
@@ -842,7 +856,7 @@ bot.on("text", async (ctx) => {
     "Place Activation": true,
     Upgrade: true,
     Reinvest: true,
-    "Missed, Disabled Lavel": true,
+    "Missed, Disabled Level": true,
     "New Partner": true,
   };
 
@@ -859,14 +873,14 @@ bot.on("text", async (ctx) => {
       if (result.status) {
         responseMessage =
           userState.language === LANGUAGE_MODE_CONST.thai
-            ? "✅ บันทึก ID ของคุณเรียบร้อยแล้ว"
-            : "✅ Your ID has been successfully recorded.";
+            ? `✅ บัญชี ${txt} เพิ่มขึ้นเรียบร้อยแล้ว`
+            : `✅ Account ${txt} successfully added.`;
       } else {
         if (result.message === "Already exist") {
           responseMessage =
             userState.language === LANGUAGE_MODE_CONST.thai
-              ? "✔️ID นี้มีอยู่แล้ว"
-              : "✔️ This ID already exists.";
+              ? `✔️คุณสมัครสมาชิกบัญชีแล้ว ${txt}`
+              : `✔️ You are already subscribed to the account "${txt}".`;
         } else if (result.message === "Subcriber Id Invalid") {
           responseMessage =
             userState.language === LANGUAGE_MODE_CONST.thai
@@ -901,6 +915,7 @@ bot.on("text", async (ctx) => {
 bot.launch(() => {
   console.log("bot is live!!!!!");
 });
+
 const runListenerWithInterval = async () => {
   while (true) {
     await ListenerFunction();

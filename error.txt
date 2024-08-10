@@ -865,3 +865,564 @@ Error: 400: Bad Request: chat not found
     at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
     at async sendMessage (file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/src/index.js:50:5)
 
+[2024-08-09T09:22:26.430Z] Error Check data API =====>?>>>>>
+AggregateError
+    at AxiosError.from (file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/node_modules/axios/lib/core/AxiosError.js:89:14)
+    at RedirectableRequest.handleRequestError (file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/node_modules/axios/lib/adapters/http.js:620:25)
+    at RedirectableRequest.emit (node:events:518:28)
+    at eventHandlers.<computed> (C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\follow-redirects\index.js:38:24)
+    at ClientRequest.emit (node:events:518:28)
+    at TLSSocket.socketErrorListener (node:_http_client:495:9)
+    at TLSSocket.emit (node:events:518:28)
+    at emitErrorNT (node:internal/streams/destroy:169:8)
+    at emitErrorCloseNT (node:internal/streams/destroy:128:3)
+    at process.processTicksAndRejections (node:internal/process/task_queues:82:21)
+    at Axios.request (file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/node_modules/axios/lib/core/Axios.js:45:41)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async checkChatid (file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/src/apiFunc.js:12:24)
+    at async file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/src/index.js:348:15
+    at async execute (C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\composer.js:518:17)
+    at async C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\composer.js:518:17)
+    at async execute (C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\composer.js:518:17)
+    at async execute (C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\composer.js:518:17)
+    at async execute (C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\composer.js:518:17)
+
+[2024-08-09T09:23:35.149Z] Error in Get data from ChatID API =====>?>>>>>
+AggregateError
+    at AxiosError.from (file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/node_modules/axios/lib/core/AxiosError.js:89:14)
+    at RedirectableRequest.handleRequestError (file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/node_modules/axios/lib/adapters/http.js:620:25)
+    at RedirectableRequest.emit (node:events:518:28)
+    at eventHandlers.<computed> (C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\follow-redirects\index.js:38:24)
+    at ClientRequest.emit (node:events:518:28)
+    at TLSSocket.socketErrorListener (node:_http_client:495:9)
+    at TLSSocket.emit (node:events:518:28)
+    at emitErrorNT (node:internal/streams/destroy:169:8)
+    at emitErrorCloseNT (node:internal/streams/destroy:128:3)
+    at process.processTicksAndRejections (node:internal/process/task_queues:82:21)
+    at Axios.request (file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/node_modules/axios/lib/core/Axios.js:45:41)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getDataFromChatId (file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/src/apiFunc.js:113:22)
+    at async file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/src/index.js:522:19
+    at async execute (C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\composer.js:518:17)
+    at async C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\composer.js:518:17)
+    at async C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\composer.js:518:17)
+    at async C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\composer.js:519:21
+
+[2024-08-09T09:29:10.319Z] Error in Get data from ChatID API =====>?>>>>>
+AggregateError
+    at AxiosError.from (file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/node_modules/axios/lib/core/AxiosError.js:89:14)
+    at RedirectableRequest.handleRequestError (file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/node_modules/axios/lib/adapters/http.js:620:25)
+    at RedirectableRequest.emit (node:events:518:28)
+    at eventHandlers.<computed> (C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\follow-redirects\index.js:38:24)
+    at ClientRequest.emit (node:events:518:28)
+    at TLSSocket.socketErrorListener (node:_http_client:495:9)
+    at TLSSocket.emit (node:events:518:28)
+    at emitErrorNT (node:internal/streams/destroy:169:8)
+    at emitErrorCloseNT (node:internal/streams/destroy:128:3)
+    at process.processTicksAndRejections (node:internal/process/task_queues:82:21)
+    at Axios.request (file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/node_modules/axios/lib/core/Axios.js:45:41)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getDataFromChatId (file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/src/apiFunc.js:113:22)
+    at async file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/src/index.js:835:19
+    at async execute (C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\composer.js:518:17)
+    at async C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\composer.js:518:17)
+    at async C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\composer.js:518:17)
+    at async C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\composer.js:519:21
+
+[2024-08-09T09:50:15.874Z] Error in Delete data API =====>?>>>>>
+AxiosError: Request failed with status code 404
+    at settle (file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/node_modules/axios/lib/core/settle.js:19:12)
+    at BrotliDecompress.handleStreamEnd (file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/node_modules/axios/lib/adapters/http.js:599:11)
+    at BrotliDecompress.emit (node:events:530:35)
+    at endReadableNT (node:internal/streams/readable:1696:12)
+    at process.processTicksAndRejections (node:internal/process/task_queues:82:21)
+    at Axios.request (file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/node_modules/axios/lib/core/Axios.js:45:41)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async deleteChatId (file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/src/apiFunc.js:138:22)
+    at async file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/src/index.js:710:15
+    at async execute (C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\composer.js:518:17)
+    at async C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\composer.js:518:17)
+    at async C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\composer.js:518:17)
+    at async C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\composer.js:519:21
+
+[2024-08-09T09:59:24.690Z] Error in Get data from ChatID API =====>?>>>>>
+AxiosError: Request failed with status code 404
+    at settle (file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/node_modules/axios/lib/core/settle.js:19:12)
+    at BrotliDecompress.handleStreamEnd (file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/node_modules/axios/lib/adapters/http.js:599:11)
+    at BrotliDecompress.emit (node:events:530:35)
+    at endReadableNT (node:internal/streams/readable:1696:12)
+    at process.processTicksAndRejections (node:internal/process/task_queues:82:21)
+    at Axios.request (file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/node_modules/axios/lib/core/Axios.js:45:41)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getDataFromChatId (file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/src/apiFunc.js:113:22)
+    at async file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/src/index.js:731:18
+    at async execute (C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\composer.js:518:17)
+    at async C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\composer.js:518:17)
+    at async C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\composer.js:518:17)
+    at async C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\composer.js:519:21
+
+[2024-08-09T10:05:57.592Z] An error occurred fetching subscriptions.
+In bot.hears("Accounts")
+
+[2024-08-09T10:05:57.591Z] Error in Get data from ChatID API =====>?>>>>>
+AxiosError: Request failed with status code 404
+    at settle (file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/node_modules/axios/lib/core/settle.js:19:12)
+    at BrotliDecompress.handleStreamEnd (file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/node_modules/axios/lib/adapters/http.js:599:11)
+    at BrotliDecompress.emit (node:events:530:35)
+    at endReadableNT (node:internal/streams/readable:1696:12)
+    at process.processTicksAndRejections (node:internal/process/task_queues:82:21)
+    at Axios.request (file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/node_modules/axios/lib/core/Axios.js:45:41)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getDataFromChatId (file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/src/apiFunc.js:113:22)
+    at async file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/src/index.js:461:20
+    at async execute (C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\composer.js:518:17)
+    at async C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\composer.js:518:17)
+    at async C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\composer.js:518:17)
+    at async C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\composer.js:519:21
+
+[2024-08-09T10:07:05.028Z] Error in Get data from ChatID API =====>?>>>>>
+AxiosError: Request failed with status code 404
+    at settle (file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/node_modules/axios/lib/core/settle.js:19:12)
+    at BrotliDecompress.handleStreamEnd (file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/node_modules/axios/lib/adapters/http.js:599:11)
+    at BrotliDecompress.emit (node:events:530:35)
+    at endReadableNT (node:internal/streams/readable:1696:12)
+    at process.processTicksAndRejections (node:internal/process/task_queues:82:21)
+    at Axios.request (file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/node_modules/axios/lib/core/Axios.js:45:41)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getDataFromChatId (file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/src/apiFunc.js:113:22)
+    at async file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/src/index.js:461:20
+    at async execute (C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\composer.js:518:17)
+    at async C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\composer.js:518:17)
+    at async C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\composer.js:518:17)
+    at async C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\composer.js:519:21
+
+[2024-08-09T10:07:05.029Z] An error occurred fetching subscriptions.
+In bot.hears("Accounts")
+
+[2024-08-09T10:07:17.784Z] Error in Get data from ChatID API =====>?>>>>>
+AxiosError: Request failed with status code 404
+    at settle (file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/node_modules/axios/lib/core/settle.js:19:12)
+    at BrotliDecompress.handleStreamEnd (file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/node_modules/axios/lib/adapters/http.js:599:11)
+    at BrotliDecompress.emit (node:events:530:35)
+    at endReadableNT (node:internal/streams/readable:1696:12)
+    at process.processTicksAndRejections (node:internal/process/task_queues:82:21)
+    at Axios.request (file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/node_modules/axios/lib/core/Axios.js:45:41)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getDataFromChatId (file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/src/apiFunc.js:113:22)
+    at async file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/src/index.js:461:20
+    at async execute (C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\composer.js:518:17)
+    at async C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\composer.js:518:17)
+    at async C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\composer.js:518:17)
+    at async C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\composer.js:519:21
+
+[2024-08-09T10:07:17.785Z] An error occurred fetching subscriptions.
+In bot.hears("Accounts")
+
+[2024-08-09T10:08:13.192Z] Error in Get data from ChatID API =====>?>>>>>
+AxiosError: Request failed with status code 404
+    at settle (file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/node_modules/axios/lib/core/settle.js:19:12)
+    at BrotliDecompress.handleStreamEnd (file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/node_modules/axios/lib/adapters/http.js:599:11)
+    at BrotliDecompress.emit (node:events:530:35)
+    at endReadableNT (node:internal/streams/readable:1696:12)
+    at process.processTicksAndRejections (node:internal/process/task_queues:82:21)
+    at Axios.request (file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/node_modules/axios/lib/core/Axios.js:45:41)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getDataFromChatId (file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/src/apiFunc.js:113:22)
+    at async file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/src/index.js:461:20
+    at async execute (C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\composer.js:518:17)
+    at async C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\composer.js:518:17)
+    at async C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\composer.js:518:17)
+    at async C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\composer.js:519:21
+
+[2024-08-09T10:08:13.193Z] An error occurred fetching subscriptions.
+In bot.hears("Accounts")
+
+[2024-08-09T10:08:31.271Z] Error in Get data from ChatID API =====>?>>>>>
+AxiosError: Request failed with status code 404
+    at settle (file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/node_modules/axios/lib/core/settle.js:19:12)
+    at BrotliDecompress.handleStreamEnd (file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/node_modules/axios/lib/adapters/http.js:599:11)
+    at BrotliDecompress.emit (node:events:530:35)
+    at endReadableNT (node:internal/streams/readable:1696:12)
+    at process.processTicksAndRejections (node:internal/process/task_queues:82:21)
+    at Axios.request (file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/node_modules/axios/lib/core/Axios.js:45:41)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getDataFromChatId (file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/src/apiFunc.js:113:22)
+    at async file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/src/index.js:461:20
+    at async execute (C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\composer.js:518:17)
+    at async C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\composer.js:518:17)
+    at async C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\composer.js:518:17)
+    at async C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\composer.js:519:21
+
+[2024-08-09T10:08:31.272Z] An error occurred fetching subscriptions.
+In bot.hears("Accounts")
+
+[2024-08-09T10:08:41.246Z] Error in Get data from ChatID API =====>?>>>>>
+AxiosError: Request failed with status code 404
+    at settle (file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/node_modules/axios/lib/core/settle.js:19:12)
+    at BrotliDecompress.handleStreamEnd (file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/node_modules/axios/lib/adapters/http.js:599:11)
+    at BrotliDecompress.emit (node:events:530:35)
+    at endReadableNT (node:internal/streams/readable:1696:12)
+    at process.processTicksAndRejections (node:internal/process/task_queues:82:21)
+    at Axios.request (file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/node_modules/axios/lib/core/Axios.js:45:41)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getDataFromChatId (file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/src/apiFunc.js:113:22)
+    at async file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/src/index.js:461:20
+    at async execute (C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\composer.js:518:17)
+    at async C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\composer.js:518:17)
+    at async C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\composer.js:518:17)
+    at async C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\composer.js:519:21
+
+[2024-08-09T10:08:41.247Z] An error occurred fetching subscriptions.
+In bot.hears("Accounts")
+
+[2024-08-09T10:08:51.637Z] An error occurred fetching subscriptions.
+In bot.hears("Accounts")
+
+[2024-08-09T10:08:51.636Z] Error in Get data from ChatID API =====>?>>>>>
+AxiosError: Request failed with status code 404
+    at settle (file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/node_modules/axios/lib/core/settle.js:19:12)
+    at BrotliDecompress.handleStreamEnd (file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/node_modules/axios/lib/adapters/http.js:599:11)
+    at BrotliDecompress.emit (node:events:530:35)
+    at endReadableNT (node:internal/streams/readable:1696:12)
+    at process.processTicksAndRejections (node:internal/process/task_queues:82:21)
+    at Axios.request (file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/node_modules/axios/lib/core/Axios.js:45:41)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getDataFromChatId (file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/src/apiFunc.js:113:22)
+    at async file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/src/index.js:461:20
+    at async execute (C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\composer.js:518:17)
+    at async C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\composer.js:518:17)
+    at async C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\composer.js:518:17)
+    at async C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\composer.js:519:21
+
+[2024-08-09T10:09:22.500Z] Error in Get data from ChatID API =====>?>>>>>
+AxiosError: Request failed with status code 404
+    at settle (file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/node_modules/axios/lib/core/settle.js:19:12)
+    at BrotliDecompress.handleStreamEnd (file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/node_modules/axios/lib/adapters/http.js:599:11)
+    at BrotliDecompress.emit (node:events:530:35)
+    at endReadableNT (node:internal/streams/readable:1696:12)
+    at process.processTicksAndRejections (node:internal/process/task_queues:82:21)
+    at Axios.request (file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/node_modules/axios/lib/core/Axios.js:45:41)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getDataFromChatId (file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/src/apiFunc.js:113:22)
+    at async file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/src/index.js:461:20
+    at async execute (C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\composer.js:518:17)
+    at async C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\composer.js:518:17)
+    at async C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\composer.js:518:17)
+    at async C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\composer.js:519:21
+
+[2024-08-09T10:09:22.501Z] An error occurred fetching subscriptions.
+In bot.hears("Accounts")
+
+[2024-08-09T10:09:22.910Z] Error fetching data in bot.hears=>Accounts.
+TypeError: Cannot read properties of undefined (reading 'push')
+    at file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/src/index.js:508:17
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async execute (C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\composer.js:518:17)
+    at async C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\composer.js:518:17)
+    at async C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\composer.js:518:17)
+    at async C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\composer.js:518:17)
+    at async C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\composer.js:519:21
+
+[2024-08-09T10:10:26.103Z] Error in Get data from ChatID API =====>?>>>>>
+AxiosError: Request failed with status code 404
+    at settle (file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/node_modules/axios/lib/core/settle.js:19:12)
+    at BrotliDecompress.handleStreamEnd (file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/node_modules/axios/lib/adapters/http.js:599:11)
+    at BrotliDecompress.emit (node:events:530:35)
+    at endReadableNT (node:internal/streams/readable:1696:12)
+    at process.processTicksAndRejections (node:internal/process/task_queues:82:21)
+    at Axios.request (file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/node_modules/axios/lib/core/Axios.js:45:41)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getDataFromChatId (file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/src/apiFunc.js:113:22)
+    at async file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/src/index.js:461:20
+    at async execute (C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\composer.js:518:17)
+    at async C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\composer.js:518:17)
+    at async C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\composer.js:518:17)
+    at async C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\composer.js:519:21
+
+[2024-08-09T10:10:26.104Z] An error occurred fetching subscriptions.
+In bot.hears("Accounts")
+
+[2024-08-09T10:10:26.468Z] Error fetching data in bot.hears=>Accounts.
+TypeError: Cannot read properties of undefined (reading 'push')
+    at file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/src/index.js:508:17
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async execute (C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\composer.js:518:17)
+    at async C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\composer.js:518:17)
+    at async C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\composer.js:518:17)
+    at async C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\composer.js:518:17)
+    at async C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\composer.js:519:21
+
+[2024-08-09T10:10:51.308Z] Error in Get data from ChatID API =====>?>>>>>
+AxiosError: Request failed with status code 404
+    at settle (file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/node_modules/axios/lib/core/settle.js:19:12)
+    at BrotliDecompress.handleStreamEnd (file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/node_modules/axios/lib/adapters/http.js:599:11)
+    at BrotliDecompress.emit (node:events:530:35)
+    at endReadableNT (node:internal/streams/readable:1696:12)
+    at process.processTicksAndRejections (node:internal/process/task_queues:82:21)
+    at Axios.request (file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/node_modules/axios/lib/core/Axios.js:45:41)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getDataFromChatId (file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/src/apiFunc.js:113:22)
+    at async file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/src/index.js:461:20
+    at async execute (C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\composer.js:518:17)
+    at async C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\composer.js:518:17)
+    at async C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\composer.js:518:17)
+    at async C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\composer.js:519:21
+
+[2024-08-09T10:10:51.309Z] An error occurred fetching subscriptions.
+In bot.hears("Accounts")
+
+[2024-08-09T10:12:35.545Z] Error in Get data from ChatID API =====>?>>>>>
+AxiosError: Request failed with status code 404
+    at settle (file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/node_modules/axios/lib/core/settle.js:19:12)
+    at BrotliDecompress.handleStreamEnd (file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/node_modules/axios/lib/adapters/http.js:599:11)
+    at BrotliDecompress.emit (node:events:530:35)
+    at endReadableNT (node:internal/streams/readable:1696:12)
+    at process.processTicksAndRejections (node:internal/process/task_queues:82:21)
+    at Axios.request (file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/node_modules/axios/lib/core/Axios.js:45:41)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getDataFromChatId (file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/src/apiFunc.js:113:22)
+    at async file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/src/index.js:461:20
+    at async execute (C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\composer.js:518:17)
+    at async C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\composer.js:518:17)
+    at async C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\composer.js:518:17)
+    at async C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\composer.js:519:21
+
+[2024-08-09T10:12:35.546Z] An error occurred fetching subscriptions.
+In bot.hears("Accounts")
+
+[2024-08-09T10:12:35.891Z] Error fetching data in bot.hears=>Accounts.
+TypeError: Cannot read properties of undefined (reading 'push')
+    at file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/src/index.js:509:17
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async execute (C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\composer.js:518:17)
+    at async C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\composer.js:518:17)
+    at async C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\composer.js:518:17)
+    at async C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\composer.js:518:17)
+    at async C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\composer.js:519:21
+
+[2024-08-09T10:14:43.171Z] Error in Get data from ChatID API =====>?>>>>>
+AxiosError: Request failed with status code 404
+    at settle (file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/node_modules/axios/lib/core/settle.js:19:12)
+    at BrotliDecompress.handleStreamEnd (file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/node_modules/axios/lib/adapters/http.js:599:11)
+    at BrotliDecompress.emit (node:events:530:35)
+    at endReadableNT (node:internal/streams/readable:1696:12)
+    at process.processTicksAndRejections (node:internal/process/task_queues:82:21)
+    at Axios.request (file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/node_modules/axios/lib/core/Axios.js:45:41)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getDataFromChatId (file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/src/apiFunc.js:113:22)
+    at async file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/src/index.js:461:20
+    at async execute (C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\composer.js:518:17)
+    at async C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\composer.js:518:17)
+    at async C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\composer.js:518:17)
+    at async C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\composer.js:519:21
+
+[2024-08-09T10:14:43.173Z] An error occurred fetching subscriptions.
+In bot.hears("Accounts")
+
+[2024-08-09T10:16:22.516Z] Error in Get data from ChatID API =====>?>>>>>
+AxiosError: Request failed with status code 404
+    at settle (file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/node_modules/axios/lib/core/settle.js:19:12)
+    at BrotliDecompress.handleStreamEnd (file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/node_modules/axios/lib/adapters/http.js:599:11)
+    at BrotliDecompress.emit (node:events:530:35)
+    at endReadableNT (node:internal/streams/readable:1696:12)
+    at process.processTicksAndRejections (node:internal/process/task_queues:82:21)
+    at Axios.request (file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/node_modules/axios/lib/core/Axios.js:45:41)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getDataFromChatId (file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/src/apiFunc.js:113:22)
+    at async file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/src/index.js:461:20
+    at async execute (C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\composer.js:518:17)
+    at async C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\composer.js:518:17)
+    at async C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\composer.js:518:17)
+    at async C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\composer.js:519:21
+
+[2024-08-09T10:16:22.517Z] An error occurred fetching subscriptions.
+In bot.hears("Accounts")
+
+[2024-08-09T11:18:39.443Z] Error Check data API =====>?>>>>>
+AxiosError: Request failed with status code 404
+    at settle (file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/node_modules/axios/lib/core/settle.js:19:12)
+    at BrotliDecompress.handleStreamEnd (file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/node_modules/axios/lib/adapters/http.js:599:11)
+    at BrotliDecompress.emit (node:events:530:35)
+    at endReadableNT (node:internal/streams/readable:1696:12)
+    at process.processTicksAndRejections (node:internal/process/task_queues:82:21)
+    at Axios.request (file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/node_modules/axios/lib/core/Axios.js:45:41)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async checkChatid (file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/src/apiFunc.js:12:24)
+    at async file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/src/index.js:348:15
+    at async execute (C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\composer.js:518:17)
+    at async C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\composer.js:518:17)
+    at async execute (C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\composer.js:518:17)
+    at async execute (C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\composer.js:518:17)
+    at async execute (C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\composer.js:518:17)
+
+[2024-08-09T11:30:36.415Z] Error Check data API =====>?>>>>>
+AxiosError: Request failed with status code 404
+    at settle (file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/node_modules/axios/lib/core/settle.js:19:12)
+    at BrotliDecompress.handleStreamEnd (file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/node_modules/axios/lib/adapters/http.js:599:11)
+    at BrotliDecompress.emit (node:events:530:35)
+    at endReadableNT (node:internal/streams/readable:1696:12)
+    at process.processTicksAndRejections (node:internal/process/task_queues:82:21)
+    at Axios.request (file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/node_modules/axios/lib/core/Axios.js:45:41)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async checkChatid (file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/src/apiFunc.js:12:24)
+    at async file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/src/index.js:348:15
+    at async execute (C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\composer.js:518:17)
+    at async C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\composer.js:518:17)
+    at async execute (C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\composer.js:518:17)
+    at async execute (C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\composer.js:518:17)
+    at async execute (C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\composer.js:518:17)
+
+[2024-08-09T11:30:48.157Z] Error in Get data from ChatID API =====>?>>>>>
+AxiosError: Request failed with status code 404
+    at settle (file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/node_modules/axios/lib/core/settle.js:19:12)
+    at BrotliDecompress.handleStreamEnd (file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/node_modules/axios/lib/adapters/http.js:599:11)
+    at BrotliDecompress.emit (node:events:530:35)
+    at endReadableNT (node:internal/streams/readable:1696:12)
+    at process.processTicksAndRejections (node:internal/process/task_queues:82:21)
+    at Axios.request (file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/node_modules/axios/lib/core/Axios.js:45:41)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getDataFromChatId (file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/src/apiFunc.js:113:22)
+    at async file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/src/index.js:839:19
+    at async execute (C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\composer.js:518:17)
+    at async C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\composer.js:518:17)
+    at async C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\composer.js:518:17)
+    at async C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\composer.js:519:21
+
+[2024-08-09T11:31:17.373Z] Error in Get data from ChatID API =====>?>>>>>
+AxiosError: Request failed with status code 404
+    at settle (file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/node_modules/axios/lib/core/settle.js:19:12)
+    at BrotliDecompress.handleStreamEnd (file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/node_modules/axios/lib/adapters/http.js:599:11)
+    at BrotliDecompress.emit (node:events:530:35)
+    at endReadableNT (node:internal/streams/readable:1696:12)
+    at process.processTicksAndRejections (node:internal/process/task_queues:82:21)
+    at Axios.request (file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/node_modules/axios/lib/core/Axios.js:45:41)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getDataFromChatId (file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/src/apiFunc.js:113:22)
+    at async file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/src/index.js:839:19
+    at async execute (C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\composer.js:518:17)
+    at async C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\composer.js:518:17)
+    at async C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\composer.js:518:17)
+    at async C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\composer.js:519:21
+
+[2024-08-09T11:31:37.548Z] Error in Get data from ChatID API =====>?>>>>>
+AxiosError: Request failed with status code 404
+    at settle (file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/node_modules/axios/lib/core/settle.js:19:12)
+    at BrotliDecompress.handleStreamEnd (file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/node_modules/axios/lib/adapters/http.js:599:11)
+    at BrotliDecompress.emit (node:events:530:35)
+    at endReadableNT (node:internal/streams/readable:1696:12)
+    at process.processTicksAndRejections (node:internal/process/task_queues:82:21)
+    at Axios.request (file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/node_modules/axios/lib/core/Axios.js:45:41)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getDataFromChatId (file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/src/apiFunc.js:113:22)
+    at async file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/src/index.js:839:19
+    at async execute (C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\composer.js:518:17)
+    at async C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\composer.js:518:17)
+    at async C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\composer.js:518:17)
+    at async C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\composer.js:519:21
+
+[2024-08-09T11:31:44.812Z] Error in Get data from ChatID API =====>?>>>>>
+AxiosError: Request failed with status code 404
+    at settle (file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/node_modules/axios/lib/core/settle.js:19:12)
+    at BrotliDecompress.handleStreamEnd (file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/node_modules/axios/lib/adapters/http.js:599:11)
+    at BrotliDecompress.emit (node:events:530:35)
+    at endReadableNT (node:internal/streams/readable:1696:12)
+    at process.processTicksAndRejections (node:internal/process/task_queues:82:21)
+    at Axios.request (file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/node_modules/axios/lib/core/Axios.js:45:41)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getDataFromChatId (file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/src/apiFunc.js:113:22)
+    at async file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/src/index.js:839:19
+    at async execute (C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\composer.js:518:17)
+    at async C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\composer.js:518:17)
+    at async C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\composer.js:518:17)
+    at async C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\composer.js:519:21
+
+[2024-08-09T11:59:22.546Z] Error in Delete data API =====>?>>>>>
+AxiosError: Request failed with status code 404
+    at settle (file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/node_modules/axios/lib/core/settle.js:19:12)
+    at BrotliDecompress.handleStreamEnd (file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/node_modules/axios/lib/adapters/http.js:599:11)
+    at BrotliDecompress.emit (node:events:530:35)
+    at endReadableNT (node:internal/streams/readable:1696:12)
+    at process.processTicksAndRejections (node:internal/process/task_queues:82:21)
+    at Axios.request (file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/node_modules/axios/lib/core/Axios.js:45:41)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async deleteChatId (file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/src/apiFunc.js:138:22)
+    at async file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/src/index.js:720:15
+    at async execute (C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\composer.js:518:17)
+    at async C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\composer.js:518:17)
+    at async C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\composer.js:518:17)
+    at async C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\composer.js:519:21
+
+[2024-08-09T12:00:58.587Z] Error in Delete data API =====>?>>>>>
+AxiosError: Request failed with status code 404
+    at settle (file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/node_modules/axios/lib/core/settle.js:19:12)
+    at BrotliDecompress.handleStreamEnd (file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/node_modules/axios/lib/adapters/http.js:599:11)
+    at BrotliDecompress.emit (node:events:530:35)
+    at endReadableNT (node:internal/streams/readable:1696:12)
+    at process.processTicksAndRejections (node:internal/process/task_queues:82:21)
+    at Axios.request (file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/node_modules/axios/lib/core/Axios.js:45:41)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async deleteChatId (file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/src/apiFunc.js:138:22)
+    at async file:///C:/Users/MASTER/Desktop/projects/solana/AI_Ox_01_bot/src/index.js:720:15
+    at async execute (C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\composer.js:518:17)
+    at async C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\composer.js:518:17)
+    at async C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\composer.js:518:17)
+    at async C:\Users\MASTER\Desktop\projects\solana\AI_Ox_01_bot\node_modules\telegraf\lib\composer.js:519:21
+
